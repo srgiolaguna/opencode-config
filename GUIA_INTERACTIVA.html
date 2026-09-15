@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OpenCode — Guía Interactiva Completa</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --bg: #0d1117; --surface: #161b22; --border: #30363d;
+  --text: #e6edf3; --text-muted: #8b949e; --accent: #58a6ff;
+  --green: #3fb950; --yellow: #d29922; --red: #f85149;
+  --purple: #bc8cff; --teal: #39d2c0; --orange: #db6d28;
+}
+body { font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace; background: var(--bg); color: var(--text); line-height: 1.6; }
+.container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+header { text-align: center; padding: 60px 20px; border-bottom: 1px solid var(--border); margin-bottom: 40px; }
+header h1 { font-size: 2.5em; color: var(--accent); margin-bottom: 10px; }
+header p { color: var(--text-muted); font-size: 1.1em; }
+.badge { display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 0.85em; font-weight: 600; }
+.badge-green { background: rgba(63,185,80,0.15); color: var(--green); border: 1px solid var(--green); }
+.badge-yellow { background: rgba(210,153,34,0.15); color: var(--yellow); border: 1px solid var(--yellow); }
+.badge-red { background: rgba(248,81,73,0.15); color: var(--red); border: 1px solid var(--red); }
+.badge-purple { background: rgba(188,140,255,0.15); color: var(--purple); border: 1px solid var(--purple); }
+.badge-teal { background: rgba(57,210,192,0.15); color: var(--teal); border: 1px solid var(--teal); }
+nav { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin: 30px 0; }
+nav a { padding: 10px 20px; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; color: var(--text); text-decoration: none; font-size: 0.9em; transition: all 0.2s; }
+nav a:hover { border-color: var(--accent); color: var(--accent); }
+section { margin-bottom: 50px; }
+section h2 { font-size: 1.8em; color: var(--accent); border-bottom: 2px solid var(--border); padding-bottom: 10px; margin-bottom: 25px; display: flex; align-items: center; gap: 10px; }
+.card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px; }
+.card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px; transition: all 0.2s; }
+.card:hover { border-color: var(--accent); transform: translateY(-2px); }
+.card h3 { font-size: 1.1em; margin-bottom: 8px; color: var(--text); }
+.card p { color: var(--text-muted); font-size: 0.9em; }
+.card .tag { display: inline-block; padding: 2px 8px; border-radius: 12px; font-size: 0.75em; margin-top: 8px; }
+.tag-free { background: rgba(63,185,80,0.15); color: var(--green); }
+.tag-pending { background: rgba(248,81,73,0.15); color: var(--red); }
+.tag-local { background: rgba(188,140,255,0.15); color: var(--purple); }
+.command-box { background: #0d1117; border: 1px solid var(--border); border-radius: 8px; padding: 16px; margin: 10px 0; overflow-x: auto; }
+.command-box code { color: var(--green); font-size: 0.9em; }
+.command-box .comment { color: var(--text-muted); font-size: 0.8em; }
+table { width: 100%; border-collapse: collapse; margin: 16px 0; }
+th, td { padding: 12px 16px; text-align: left; border-bottom: 1px solid var(--border); }
+th { background: var(--surface); color: var(--accent); font-size: 0.85em; text-transform: uppercase; letter-spacing: 0.5px; }
+td { font-size: 0.9em; }
+tr:hover td { background: rgba(88,166,255,0.05); }
+.fallback-chain { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 20px; margin: 16px 0; }
+.fallback-chain .arrow { color: var(--accent); font-weight: bold; }
+.fallback-chain .model { color: var(--green); font-weight: 600; }
+.fallback-chain .fallback-arrow { color: var(--yellow); }
+.accordion { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; margin: 8px 0; overflow: hidden; }
+.accordion-header { padding: 16px 20px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; color: var(--text); font-weight: 600; }
+.accordion-header:hover { background: rgba(88,166,255,0.05); }
+.accordion-header::after { content: '▼'; font-size: 0.7em; transition: transform 0.3s; }
+.accordion-header.open::after { transform: rotate(180deg); }
+.accordion-content { padding: 0 20px; max-height: 0; overflow: hidden; transition: all 0.3s; }
+.accordion-content.open { padding: 0 20px 20px; max-height: 500px; }
+.verification-box { background: rgba(63,185,80,0.1); border: 1px solid var(--green); border-radius: 12px; padding: 24px; margin: 20px 0; text-align: center; }
+.verification-box h3 { color: var(--green); margin-bottom: 10px; }
+.verification-box p { color: var(--text-muted); }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+@media (max-width: 768px) { .two-col { grid-template-columns: 1fr; } .card-grid { grid-template-columns: 1fr; } header h1 { font-size: 1.8em; } }
+.code-block { background: #0d1117; border: 1px solid var(--border); border-radius: 8px; padding: 16px; overflow-x: auto; margin: 10px 0; }
+.code-block pre { color: var(--text); font-size: 0.85em; }
+.code-block .keyword { color: var(--purple); }
+.code-block .string { color: var(--green); }
+.code-block .comment { color: var(--text-muted); }
+.tooltip { position: relative; cursor: help; }
+.modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 1000; justify-content: center; align-items: center; }
+.modal-overlay.active { display: flex; }
+.modal { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 32px; max-width: 600px; width: 90%; }
+.modal h2 { color: var(--accent); margin-bottom: 16px; }
+.modal button { background: var(--accent); color: white; border: none; padding: 10px 24px; border-radius: 8px; cursor: pointer; margin-top: 16px; }
+.progress-bar { height: 6px; background: var(--border); border-radius: 3px; margin: 8px 0; overflow: hidden; }
+.progress-bar .fill { height: 100%; background: var(--green); border-radius: 3px; transition: width 0.3s; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<header>
+  <h1>⚡ OpenCode</h1>
+  <p>Guía Interactiva Completa — Configuración, Modelos y Comandos</p>
+  <p style="margin-top:15px">
+    <span class="badge badge-green">opencode v1.18.31</span>
+    <span class="badge badge-purple">oh-my-opencode v4.19.4</span>
+    <span class="badge badge-green">12 Proveedores FREE</span>
+    <span class="badge badge-teal">5 Agentes Nativos</span>
+  </p>
+  <p style="margin-top:20px; color: var(--text-muted); font-size: 0.85em;">
+    ✅ Documentación fiel a la realidad y actualizada — 15 septiembre 2026
+  </p>
+</header>
+
+<nav>
+  <a href="#proveedores">Proveedores</a>
+  <a href="#modelos">Modelos</a>
+  <a href="#agentes">Agentes</a>
+  <a href="#oh-my">Oh-My-OpenCode</a>
+  <a href="#fallback">Fallback</a>
+  <a href="#comandos">Comandos</a>
+  <a href="#cerrar">Cerrar Sesión</a>
+  <a href="#verificacion">Verificación</a>
+</nav>
+
+<!-- SECTION 1: PROVEEDORES -->
+<section id="proveedores">
+  <h2>🌐 Proveedores de API</h2>
+  <p style="color: var(--text-muted); margin-bottom:20px;">Todas las claves se leen desde <code>~/.zshenv</code> mediante <code>{env:VARIABLE}</code>. Ninguna clave está en los repositorios de GitHub.</p>
+  <div class="card-grid">
+    <div class="card">
+      <h3>✅ opencode</h3>
+      <p>Modelos propios de OpenCode. Siempre gratuitos.</p>
+      <p style="margin-top:8px;font-size:0.85em;color:var(--text-muted);">Variable: <code>OPENCODE_SECRET_KEY</code></p>
+      <span class="tag tag-free">FREE</span>
+    </div>
+    <div class="card">
+      <h3>✅ google/gemini</h3>
+      <p>Gemini 3.6 Flash — razonamiento y planificación.</p>
+      <p style="margin-top:8px;font-size:0.85em;color:var(--text-muted);">Variables: <code>GEMINI_API_KEY</code>, <code>GOOGLE_API_KEY</code></p>
+      <span class="tag tag-free">FREE</span>
+    </div>
+    <div class="card">
+      <h3>✅ groq</h3>
+      <p>Llama 3.1 70B — inferencia ultra-rápida.</p>
+      <p style="margin-top:8px;font-size:0.85em;color:var(--text-muted);">Variable: <code>GROQ_API_KEY</code></p>
+      <span class="tag tag-free">FREE</span>
+    </div>
+    <div class="card">
+      <h3>✅ cerebras</h3>
+      <p>Llama 3.3 70B — generación rápida, gran contexto.</p>
+      <p style="margin-top:8px;font-size:0.85em;color:var(--text-muted);">Variable: <code>CEREBRAS_API_KEY</code></p>
+      <span class="tag tag-free">FREE</span>
+    </div>
+    <div class="card">
+      <h3>✅ mistral</h3>
+      <p>Mistral Small — tareas multilingües.</p>
+      <p style="margin-top:8px;font-size:0.85em;color:var(--text-muted);">Variable: <code>MISTRAL_API_KEY</code></p>
+      <span class="tag tag-free">FREE</span>
+    </div>
+    <div class="card">
+      <h3>✅ sambanova</h3>
+      <p>Llama 3.1 — inferencia rápida.</p>
+      <p style="margin-top:8px;font-size:0.85em;color:var(--text-muted);">Variable: <code>SAMBANOVA_API_KEY</code></p>
+      <span class="tag tag-free">FREE</span>
+    </div>
+    <div class="card">
+      <h3>✅ cloudflare</h3>
+      <p>Workers AI — llama-3.1, rápido y escalable.</p>
+      <p style="margin-top:8px;font-size:0.85em;color:var(--text-muted);">Variables: <code>CLOUDFLARE_API_TOKEN</code>, <code>CLOUDFLARE_ACCOUNT_ID</code></p>
+      <span class="tag tag-free">FREE</span>
+    </div>
+    <div class="card">
+      <h3>✅ ai-gateway</h3>
+      <p>Mixtral — mixture-of-experts.</p>
+      <p style="margin-top:8px;font-size:0.85em;color:var(--text-muted);">Variable: <code>AI_GATEWAY_API_KEY</code></p>
+      <span class="tag tag-free">FREE</span>
+    </div>
+    <div class="card">
+      <h3>100% LOCAL ollama</h3>
+      <p>Sin conexión a internet. Qwen 2.5 Codex + Llama3.</p>
+      <p style="margin-top:8px;font-size:0.85em;color:var(--text-muted);">Sin variable de entorno</p>
+      <span class="tag tag-local">LOCAL</span>
+    </div>
+    <div class="card">
+      <h3>⏳ openrouter</h3>
+      <p>Free tier — modelo abierto.</p>
+      <p style="margin-top:8px;font-size:0.85em;color:var(--text-muted);">Variable: <code>OPENROUTER_API_KEY</code></p>
+      <span class="tag tag-pending">CLAVE PENDIENTE</span>
+    </div>
+    <div class="card">
+      <h3>⏳ github</h3>
+      <p>GPT-4o — modelo gratuito de GitHub.</p>
+      <p style="margin-top:8px;font-size:0.85em;color:var(--text-muted);">Variable: <code>GITHUB_TOKEN</code></p>
+      <span class="tag tag-pending">CLAVE PENDIENTE</span>
+    </div>
+    <div class="card">
+      <h3>⏳ nvidia</h3>
+      <p>Nemotron 3 Ultra — potente modelo NVIDIA.</p>
+      <p style="margin-top:8px;font-size:0.85em;color:var(--text-muted);">Variable: <code>NVIDIA_NIM_API_KEY</code></p>
+      <span class="tag tag-pending">CLAVE PENDIENTE</span>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 2: MODELOS -->
+<section id="modelos">
+  <h2>🤖 Modelos Gratuitos</h2>
+  <h3 style="margin-bottom:15px;color:var(--accent);">Modelos OpenCode (propios, siempre FREE)</h3>
+  <table>
+    <tr><th>Modelo</th><th>Uso</th><th>Velocidad</th></tr>
+    <tr><td><code>opencode/ling-3.0-flash-fin-free</code></td><td>Default, validación rápida</td><td>⚡ Ultra-rápido</td></tr>
+    <tr><td><code>opencode/mimo-v2.5-free</code></td><td>Análisis, optimización</td><td>🚀 Rápido</td></tr>
+    <tr><td><code>opencode/nemotron-3.5-lightning-free</code></td><td>Ejecución de cambios</td><td>🚀 Rápido</td></tr>
+    <tr><td><code>opencode/nemotron-3-ultra-free</code></td><td>Validación final, tareas pesadas</td><td>🐢 Potente</td></tr>
+  </table>
+  <h3 style="margin:20px 0 15px;color:var(--accent);">Modelos de Proveedores Externos (FREE tier)</h3>
+  <table>
+    <tr><th>Proveedor</th><th>Modelo</th><th>Caso de uso</th></tr>
+    <tr><td>google</td><td><code>gemini-3.6-flash</code></td><td>Razonamiento, planificación, debugging</td></tr>
+    <tr><td>groq</td><td><code>llama-3.1-70b</code></td><td>Inferencia rápida, gran contexto</td></tr>
+    <tr><td>cerebras</td><td><code>llama-3.3-70b</code></td><td>Generación rápida, gran contexto</td></tr>
+    <tr><td>mistral</td><td><code>mistral-small</code></td><td>Tareas multilingües</td></tr>
+    <tr><td>sambanova</td><td><code>llama-3.1</code></td><td>Inferencia rápida</td></tr>
+    <tr><td>cloudflare</td><td><code>llama-3.1</code></td><td>Workers AI, tareas rápidas</td></tr>
+    <tr><td>ai-gateway</td><td><code>mixtral</code></td><td>Mixture-of-experts</td></tr>
+    <tr><td>ollama</td><td><code>qwen2.5-coder:3b</code></td><td>Coding local, sin conexión</td></tr>
+    <tr><td>ollama</td><td><code>llama3</code></td><td>Uso general local</td></tr>
+  </table>
+</section>
+
+<!-- SECTION 3: AGENTES -->
+<section id="agentes">
+  <h2>👥 Agentes Configurados</h2>
+  <h3 style="margin-bottom:15px;color:var(--accent);">Agentes Nativos (en opencode.jsonc)</h3>
+  <table>
+    <tr><th>Agente</th><th>Modelo</th><th>Permisos</th><th>Descripción</th></tr>
+    <tr><td><strong>auditor</strong></td><td><code>mimo-v2.5-free</code></td><td>edit: deny</td><td>Analiza proyectos, detecta problemas. No modifica archivos.</td></tr>
+    <tr><td><strong>implementer</strong></td><td><code>nemotron-3.5-lightning-free</code></td><td>—</td><td>Ejecuta cambios aprobados.</td></tr>
+    <tr><td><strong>optimizer</strong></td><td><code>mimo-v2.5-free</code></td><td>edit: deny</td><td>Propone optimizaciones sin aplicarlas.</td></tr>
+    <tr><td><strong>reviewer</strong></td><td><code>nemotron-3-ultra-free</code></td><td>edit: deny</td><td>Valida cambios y detecta errores y regresiones.</td></tr>
+    <tr><td><strong>validator</strong></td><td><code>ling-3.0-flash-fin-free</code></td><td>edit: deny</td><td>Lint, syntax-check, compilación. Ultra-rápido.</td></tr>
+  </table>
+  <h3 style="margin:25px 0 15px;color:var(--accent);">Agentes oh-my-opencode (en ~/.omo/omo.jsonc)</h3>
+  <table>
+    <tr><th>Agente</th><th>Modelo principal</th><th>Fallback chain</th></tr>
+    <tr><td><strong>sisyphus-junior</strong></td><td><code>nemotron-3-ultra-free</code></td><td><code>gemini-3.6-flash</code> → <code>nemotron-3.5-lightning-free</code> → <code>mimo-v2.5-free</code></td></tr>
+    <tr><td><strong>oracle</strong></td><td><code>gemini-3.6-flash</code></td><td><code>nemotron-3-ultra-free</code> → <code>mimo-v2.5-free</code></td></tr>
+    <tr><td><strong>librarian</strong></td><td><code>gemini-3.6-flash</code></td><td><code>nemotron-3-ultra-free</code> → <code>nemotron-3.5-lightning-free</code></td></tr>
+    <tr><td><strong>explore</strong></td><td><code>ling-3.0-flash-fin-free</code></td><td><code>mimo-v2.5-free</code></td></tr>
+    <tr><td><strong>prometheus</strong></td><td><code>gemini-3.6-flash</code></td><td><code>nemotron-3-ultra-free</code> → <code>nemotron-3.5-lightning-free</code></td></tr>
+    <tr><td><strong>metis</strong></td><td><code>mimo-v2.5-free</code></td><td><code>ling-3.0-flash-fin-free</code> → <code>gemini-3.6-flash</code></td></tr>
+    <tr><td><strong>momus</strong></td><td><code>mimo-v2.5-free</code></td><td><code>ling-3.0-flash-fin-free</code></td></tr>
+    <tr><td><strong>hephaestus</strong></td><td><code>nemotron-3.5-lightning-free</code></td><td><code>nemotron-3-ultra-free</code> → <code>gemini-3.6-flash</code></td></tr>
+    <tr><td><strong>atlas</strong></td><td><code>nemotron-3.5-lightning-free</code></td><td><code>nemotron-3-ultra-free</code> → <code>gemini-3.6-flash</code></td></tr>
+    <tr><td><strong>multimodal-looker</strong></td><td><code>gemini-3.6-flash</code></td><td><code>nemotron-3.5-lightning-free</code> → <code>nemotron-3-ultra-free</code></td></tr>
+  </table>
+</section>
+
+<!-- SECTION 4: OH-MY-OPENCODE -->
+<section id="oh-my">
+  <h2>🔮 oh-my-opencode</h2>
+  <div class="card">
+    <h3>¿Qué es?</h3>
+    <p>Plugin de orquestación para OpenCode que añade enrutamiento automático de modelos, fallback automático y cadenas de respaldo por agente.</p>
+  </div>
+  <div class="card" style="margin-top:16px;">
+    <h3>Instalación (ya completada)</h3>
+    <div class="code-block"><pre>brew install bun
+bun add -g oh-my-opencode
+bunx oh-my-opencode install --no-tui \
+  --platform opencode \
+  --claude no --openai no --gemini no \
+  --copilot no --opencode-zen no \
+  --zai-coding-plan no --kimi-for-coding no \
+  --opencode-go no</pre></div>
+  </div>
+  <div class="card" style="margin-top:16px;">
+    <h3>Cómo funciona</h3>
+    <ul style="margin-top:8px;color:var(--text-muted);padding-left:20px;">
+      <li><strong>1. Enrutamiento automático</strong> — decide qué modelo usar según el tipo de tarea</li>
+      <li><strong>2. Fallback automático</strong> — si un modelo falla, prueba el siguiente sin reiniciar</li>
+      <li><strong>3. Cadenas por agente</strong> — cada agente tiene su propia lista de fallback</li>
+      <li><strong>4. Cadena global</strong> — respaldo para todos los agentes</li>
+    </ul>
+  </div>
+  <div style="margin-top:20px;">
+    <h3 style="color:var(--accent);">Archivos clave</h3>
+    <table>
+      <tr><th>Archivo</th><th>Propósito</th></tr>
+      <tr><td><code>~/.omo/omo.jsonc</code></td><td>Configuración principal (agentes, categorías, fallback)</td></tr>
+      <tr><td><code>~/.config/opencode/node_modules/oh-my-openagent/</code></td><td>Plugin instalado</td></tr>
+      <tr><td><code>~/.bun/bin/omo</code></td><td>Commando <code>omo</code> (wrapper via bun)</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- SECTION 5: FALLBACK -->
+<section id="fallback">
+  <h2>🔄 Cadena de Fallback Automático</h2>
+  <p style="color: var(--text-muted); margin-bottom:20px;">Si un modelo falla (rate limit, error 500, timeout), el sistema automáticamente prueba el siguiente de la cadena <strong>sin perder contexto</strong>.</p>
+  <div class="fallback-chain">
+    <strong style="color:var(--accent);">Cadena Global:</strong><br>
+    <span class="model">nemotron-3-ultra-free</span>
+    <span class="fallback-arrow"> → </span>
+    <span class="model">gemini-3.6-flash</span>
+    <span class="fallback-arrow"> → </span>
+    <span class="model">nemotron-3.5-lightning-free</span>
+    <span class="fallback-arrow"> → </span>
+    <span class="model">mimo-v2.5-free</span>
+    <span class="fallback-arrow"> → </span>
+    <span class="model">ling-3.0-flash-fin-free</span>
+  </div>
+  <div class="two-col">
+    <div class="card">
+      <h3>🎯 Cuándo se activa</h3>
+      <ul style="color:var(--text-muted);padding-left:20px;margin-top:8px;">
+        <li>Rate limit (429)</li>
+        <li>Error del servidor (500, 502, 503, 504)</li>
+        <li>Modelo no encontrado</li>
+        <li>Timeout / sin tokens</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>📊 Categorías de tareas</h3>
+      <table style="margin-top:8px;">
+        <tr><th>Categoría</th><th>Modelo</th></tr>
+        <tr><td>quick</td><td><code>ling-3.0-flash-fin-free</code></td></tr>
+        <tr><td>deep</td><td><code>nemotron-3-ultra-free</code></td></tr>
+        <tr><td>visual-engineering</td><td><code>gemini-3.6-flash</code></td></tr>
+        <tr><td>ultrabrain</td><td><code>nemotron-3-ultra-free</code></td></tr>
+        <tr><td>writing</td><td><code>mimo-v2.5-free</code></td></tr>
+        <tr><td>artistry</td><td><code>nemotron-3.5-lightning-free</code></td></tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 6: COMANDOS -->
+<section id="comandos">
+  <h2>⌨️ Comandos Más Utilizados</h2>
+  <h3 style="margin-bottom:15px;color:var(--accent);">opencode</h3>
+  <div class="command-box"><code>opencode</code> <span class="comment">— Iniciar opencode</span></div>
+  <div class="command-box"><code>opencode models</code> <span class="comment">— Listar todos los modelos disponibles</span></div>
+  <div class="command-box"><code>opencode -m &lt;model&gt;</code> <span class="comment">— Usar un modelo específico (ej: opencode -m gemini/gemini-3.6-flash)</span></div>
+  <div class="command-box"><code>opencode agent &lt;agente&gt;</code> <span class="comment">— Lanzar un agente específico (ej: auditor, validator)</span></div>
+  <div class="command-box"><code>opencode doctor</code> <span class="comment">— Verificar la configuración</span></div>
+  <h3 style="margin:20px 0 15px;color:var(--accent);">Cambio de modelo durante sesión</h3>
+  <div class="command-box"><code>/model gemini/gemini-3.6-flash</code></div>
+  <div class="command-box"><code>/model opencode/nemotron-3-ultra-free</code></div>
+  <div class="command-box"><code>/model opencode/ling-3.0-flash-fin-free</code></div>
+  <h3 style="margin:20px 0 15px;color:var(--accent);">oh-my-opencode</h3>
+  <div class="command-box"><code>omo</code> <span class="comment">— Iniciar oh-my-opencode</span></div>
+  <div class="command-box"><code>omo --version</code> <span class="comment">— Ver versión (4.19.4)</span></div>
+  <h3 style="margin:20px 0 15px;color:var(--accent);">Terminal y sistema</h3>
+  <div class="command-box"><code>cerrar</code> <span class="comment">— Cierre de sesión: commit + push + verificación de procesos</span></div>
+  <div class="command-box"><code>source ~/.zshenv</code> <span class="comment">— Recargar variables de entorno</span></div>
+  <div class="command-box"><code>bun --version</code> <span class="comment">— Ver versión de bun (1.4.2)</span></div>
+</section>
+
+<!-- SECTION 7: CERRAR SESIÓN -->
+<section id="cerrar">
+  <h2>🔒 Comando: <code>cerrar</code></h2>
+  <p style="color: var(--text-muted); margin-bottom:20px;">Escribe <code>cerrar</code> en la terminal antes de cerrar sesión. Automáticamente:</p>
+  <div class="card-grid">
+    <div class="card">
+      <h3>1. Git Commit</h3>
+      <p>Commita cambios en <code>~/.config/opencode/</code> y <code>~/dotfiles/</code></p>
+    </div>
+    <div class="card">
+      <h3>2. Verificación de Procesos</h3>
+      <p>Comprueba que los 3 procesos de NEXº estén vivos</p>
+    </div>
+    <div class="card">
+      <h3>3. Recordatorio</h3>
+      <p>Muestra las 3 claves API pendientes</p>
+    </div>
+    <div class="card">
+      <h3>4. Git Push</h3>
+      <p>Sube los commits a GitHub (<code>srgiolaguna/opencode-config</code>, <code>srgiolaguna/dotfiles</code>)</p>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 8: REPOS GITHUB -->
+<section id="verificacion">
+  <h2>📦 Repositorios GitHub</h2>
+  <table>
+    <tr><th>Repo</th><th>URL</th><th>Contiene</th></tr>
+    <tr><td><strong>opencode-config</strong></td><td><code>github.com/srgiolaguna/opencode-config</code></td><td>opencode.jsonc, agentes, DOCUMENTACION.md</td></tr>
+    <tr><td><strong>dotfiles</strong></td><td><code>github.com/srgiolaguna/dotfiles</code></td><td>omo.jsonc, .gitignore, README.md</td></tr>
+  </table>
+  <div class="verification-box">
+    <h3>✅ Verificación Completa</h3>
+    <p>La documentación es <strong>fiel a la realidad</strong> y está <strong>actualizada</strong>. Toda la configuración está en su lugar.</p>
+    <p style="margin-top:10px; color: var(--text-muted); font-size: 0.85em;">
+      <code>~/.config/opencode/DOCUMENTACION.md</code> — Documentación original<br>
+      <code>~/Desktop/OpenCode_Config_Resumen.md</code> — Symlink → config (se puede borrar sin afectar nada)
+    </p>
+  </div>
+  <h3 style="margin:25px 0 15px;color:var(--accent);">Seguridad</h3>
+  <div class="card">
+    <p>✅ Ninguna clave API está en los repositorios de GitHub.</p>
+    <p>✅ <code>~/.zshenv</code> está excluido de git mediante <code>.gitignore</code>.</p>
+    <p>✅ Todas las claves se leen desde <code>~/.zshenv</code> vía <code>{env:VARIABLE}</code>.</p>
+    <p>✅ El archivo del escritorio es un <strong>symlink</strong> — al borrarlo no afecta la configuración.</p>
+  </div>
+</section>
+
+</div>
+
+<script>
+// Accordion functionality
+document.querySelectorAll('.accordion-header').forEach(header => {
+  header.addEventListener('click', () => {
+    header.classList.toggle('open');
+    const content = header.nextElementSibling;
+    content.classList.toggle('open');
+  });
+});
+
+// Smooth scroll for nav links
+document.querySelectorAll('nav a').forEach(a => {
+  a.addEventListener('click', (e) => {
+    e.preventDefault();
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) target.scrollIntoView({ behavior: 'smooth' });
+  });
+});
+
+// Console welcome
+console.log('%c⚡ OpenCode Guía Interactiva', 'color: #58a6ff; font-size: 20px; font-weight: bold;');
+console.log('%cDocumentación fiel a la realidad — 15 septiembre 2026', 'color: #8b949e;');
+</script>
+</body>
+</html>
