@@ -1,6 +1,6 @@
 # OpenCode — Configuración Completa
 
-> Última actualización: 16 septiembre 2026
+> Última actualización: 16 septiembre 2026 (revisión exhaustiva evening)
 > Sistema: macOS (M3 MacBook Air) · Usuario: `giolaguna`
 > Instalación: Homebrew · opencode v1.18.31
 > Usuario GitHub: `srgiolaguna`
@@ -9,11 +9,11 @@
 
 ## 1. Resumen
 
-OpenCode está configurado con **13 proveedores** de modelos AI gratuitos, **34 modelos** disponibles, **5 agentes nativos** y **10 agentes oh-my-opencode**, con fallback automático y Ultrawork mode. Todo es **100% gratuito**. No se paga por nada.
+OpenCode está configurado con **13 proveedores** de modelos AI gratuitos, **34 modelos FREE** en catálogo (6 opencode, 20 openrouter, 8 vercel), **5 agentes nativos** y **10 agentes oh-my-opencode**, con fallback automático y Ultrawork mode. Todo es **100% gratuito**. No se paga por nada.
 
 **Seguridad**: Ningún API key está en los repositorios de GitHub. Todas las claves están en `~/.zshenv` (no rastreado por git). El historial de git fue limpiado con `git filter-repo`.
 
-**Guía visual**: `GUIA_INTERACTIVA.html` — 534 líneas con sistema de popups explicativos (44), launcher interactivo (14 modelos con prompt + modo normal/ulw/plan), y 28 comandos copiables. Hacer click en cualquier elemento muestra detalles del proveedor, modelo o agente.
+**Guía visual**: `GUIA_INTERACTIVA.html` — 546 líneas con sistema de popups explicativos (44), launcher interactivo (14 modelos con prompt + modo normal/ulw/plan), y 28 comandos copiables. Hacer click en cualquier elemento muestra detalles del proveedor, modelo o agente.
 
 ---
 
@@ -59,7 +59,12 @@ Todas las claves se leen desde `~/.zshenv` mediante `{env:VARIABLE}`. **Las 13 c
 
 ## 4. Modelos gratuitos
 
-### 34 modelos FREE en 12 proveedores
+### 34 modelos FREE en 3 proveedores del catálogo
+| Proveedor | Modelos free |
+|-----------|--------------|
+| `opencode` | 6 |
+| `openrouter` | 20 |
+| `vercel` | 8 |
 
 ### Modelos OpenCode (propios, siempre FREE)
 
@@ -88,7 +93,7 @@ Todas las claves se leen desde `~/.zshenv` mediante `{env:VARIABLE}`. **Las 13 c
 | `ai-gateway/mixtral` | MoE | Diversidad |
 | `openrouter/nvidia/nemotron-3-ultra-550b-a55b` | Ultra-potente 55B | Pesado |
 | `huggingface/Qwen/Qwen2.5-Coder-32B-Instruct` | Coding avanzado | 32B |
-| `huggingface/google/gemma-4-31b-it` | Multimodal | 31B visual |
+| `openrouter/google/gemma-4-31b-it:free` | Multimodal | 31B visual |
 | `openrouter/perplexity/sonar-pro-search` | Investigación web | Search |
 | `vercel/fish-audio/s1-free` | Transcripción de voz | Audio |
 
@@ -143,7 +148,7 @@ bunx oh-my-opencode install --no-tui \
 - **Enrutamiento automático** de modelos según el tipo de tarea
 - **Fallback automático** sin perder contexto
 - **Cadenas de fallback por agente**
-- **8 categorías**: quick, deep, visual-engineering, ultrabrain, writing, artistry, exploration, construction
+- **8 categorías** (omo.jsonc): visual-engineering, ultrabrain, deep, artistry, quick, writing, unspecified-low, unspecified-high
 - **Ultrawork (ulw)** — modo autónomo. Escribe `ulw` en el prompt y el agente trabaja sin confirmar cada paso. **GRATIS.**
 - **Modo Plan** — `--plan` o `/plan`. Primero planifica, luego ejecuta. **GRATIS.**
 - **MCP Servers** — websearch (Exa), context7 (docs), grep_app (GitHub), LSP, 25+ hooks configurables. **GRATIS.**
@@ -238,7 +243,7 @@ Todas las claves API están configuradas en `~/.zshenv`:
 
 ## 10. Guía Visual Interactiva
 
-`GUIA_INTERACTIVA.html` — 534 líneas, paleta turquesa/klein blue/oro/plata/óxido sobre negro mate con fuente Urbanist.
+`GUIA_INTERACTIVA.html` — 546 líneas, paleta turquesa/klein blue/oro/plata/óxido sobre negro mate con fuente Urbanist.
 
 ### Secciones
 
@@ -282,7 +287,7 @@ PROVEEDORES · MODELOS · AGENTES · OH-MY-OPENCODE · LAUNCHER · FALLBACK · C
 │   └── validator.md
 ├── node_modules/           ← oh-my-openagent plugin v4.19.4
 ├── DOCUMENTACION.md        ← Esta documentación
-└── GUIA_INTERACTIVA.html   ← Guía visual (534 líneas, 45 popups, launcher)
+└── GUIA_INTERACTIVA.html   ← Guía visual (546 líneas, 44 popups, launcher)
 
 ~/.omo/
 └── omo.jsonc              ← Config oh-my-opencode (10 agentes, 8 categorías)
@@ -321,6 +326,12 @@ PROVEEDORES · MODELOS · AGENTES · OH-MY-OPENCODE · LAUNCHER · FALLBACK · C
 | Sep 2026 | opencode.jsonc corregido: default a nemotron-3-ultra-free, huggingface añadido |
 | Sep 2026 | DOCUMENTACION.md actualizada a 311 líneas |
 | Sep 2026 | Guía HTML 534 líneas: Launcher, /plan /cost /diff /compact slash commands |
+| Sep 2026 | Revisión exhaustiva: JS de la guía reescrito (funciones rotas arregladas, 44 popups OK) |
+| Sep 2026 | Guía: añadido data de sambanova, fix sisyphus-junior, +y todos los popups abren |
+| Sep 2026 | Guía: emojis eliminados de la data de showInfo (0 emojis) |
+| Sep 2026 | Guía: modelos de agentes y categorías alineados con opencode.jsonc/omo.jsonc reales |
+| Sep 2026 | Guía: gemma corregido a openrouter/google/gemma-4-31b-it:free (existe en catálogo) |
+| Sep 2026 | Verificado: 34 modelos FREE en 3 proveedores (opencode 6, openrouter 20, vercel 8) |
 | Sep 2026 | Documentación fiel a la realidad y actualizada ✅ |
 
 ---
@@ -344,7 +355,7 @@ echo $GITHUB_TOKEN          # Debe mostrar ghp_...
 echo $NVIDIA_NIM_API_KEY    # Debe mostrar nvapi_...
 
 # Config
-opencode models             # Listar 34 modelos
+opencode models             # Listar 34 modelos FREE
 cat ~/.config/opencode/opencode.jsonc  # Verificar 13 proveedores
 cat ~/.omo/omo.jsonc        # Verificar 10 agentes
 
@@ -356,4 +367,4 @@ cerrar                      # Commit + push de todos los repos
 
 *Generado el 16 septiembre 2026 · opencode v1.18.31 · oh-my-opencode v4.19.4*
 *Documentación fiel a la realidad y actualizada ✅*
-*13 proveedores · 34 modelos · 15 agentes · 13 claves API · 0 pendientes*
+*13 proveedores · 34 modelos FREE · 15 agentes · 13 claves API · 0 pendientes*
