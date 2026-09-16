@@ -3,7 +3,7 @@
 > Última actualización: 15 septiembre 2026  
 > Sistema: macOS (M3 MacBook Air) · Usuario: `giolaguna`  
 > Instalación: Homebrew · opencode v1.18.31  
-> Usuario GitHub: `srgiolaguna`  
+> Usuario GitHub: `srgiolaguna`
 
 ---
 
@@ -11,7 +11,7 @@
 
 OpenCode está configurado con **12 proveedores** de modelos AI gratuitos, **5 agentes nativos**, y **oh-my-opencode** como sistema de orquestación con fallback automático entre modelos. Todo es **100% gratuito**. No se paga por nada.
 
-**Seguridad**: Ningún API key está en los repositorios de GitHub. Todas las claves están en `~/.zshenv` (no rastreado por git). Los repositorios en GitHub contienen solo la configuración sin secrets.
+**Seguridad**: Ningún API key está en los repositorios de GitHub. Todas las claves están en `~/.zshenv` (no rastreado por git).
 
 ---
 
@@ -28,13 +28,13 @@ OpenCode está configurado con **12 proveedores** de modelos AI gratuitos, **5 a
 | `~/.zshenv` | Variables de entorno (claves API) | ❌ No (`.gitignore`) |
 | `~/.omo/omo.jsonc` | Config oh-my-opencode | ✅ Sí |
 | `~/.config/opencode/node_modules/oh-my-openagent/` | Plugin oh-my-openagent | ❌ No |
-| `~/Desktop/OpenCode_Config_Resumen.md` | Symlink → doc en config | ❌ No |
+| `~/.config/opencode/GUIA_INTERACTIVA.html` | Guía visual interactiva | ❌ No |
 
 ---
 
 ## 3. Proveedores de API
 
-Todas las claves se leen desde `~/.zshenv` mediante `{env:VARIABLE}`. Ningún API key está en el código.
+Todas las claves se leen desde `~/.zshenv` mediante `{env:VARIABLE}`.
 
 ### ✅ Funcionando (con clave válida en ~/.zshenv)
 
@@ -57,23 +57,22 @@ Todas las claves se leen desde `~/.zshenv` mediante `{env:VARIABLE}`. Ningún AP
 | **openrouter** | `OPENROUTER_API_KEY` | **FREE** | ❌ Clave no encontrada |
 | **github** | `GITHUB_TOKEN` | **FREE** | ❌ Token no encontrado |
 | **nvidia** | `NVIDIA_NIM_API_KEY` | **FREE** | ❌ Clave no encontrada |
-
-> Las 3 claves pendientes no se encontraron en ningún archivo del sistema. El historial de navegación confirma que se usaban, pero nunca se guardaron. Añádelas a `~/.zshenv` cuando las tengas.
+| **huggingface** | `HUGGINGFACE_TOKEN` | **FREE** | ❌ Clave no encontrada |
 
 ---
 
-## 4. Modelos gratuitos disponibles
+## 4. Modelos gratuitos
 
-### Modelos opencode (propios, siempre FREE)
+### Modelos OpenCode (propios, siempre FREE)
 
-| Modelo | Uso recomendado | Velocidad |
-|--------|----------------|-----------|
-| `opencode/ling-3.0-flash-fin-free` | Validación rápida, tareas ligeras, default | ⚡ Ultra-rápido |
-| `opencode/mimo-v2.5-free` | Análisis, optimización, tareas medias | 🚀 Rápido |
-| `opencode/nemotron-3.5-lightning-free` | Ejecución de cambios, tareas complejas | 🚀 Rápido |
-| `opencode/nemotron-3-ultra-free` | Validación final, tareas pesadas | 🐢 Más lento pero potente |
+| Modelo | Uso | Velocidad |
+|--------|-----|-----------|
+| `opencode/ling-3.0-flash-fin-free` | Default, validación | ⚡ Ultra-rápido |
+| `opencode/mimo-v2.5-free` | Análisis, optimización | 🚀 Rápido |
+| `opencode/gemini-3.6-flash (opencode/nemotron-3.5-lightning-free → optimizado)` | Ejecución de cambios | 🚀 Rápido |
+| `opencode/nemotron-3-ultra-free` | Validación final | 🐢 Potente |
 
-### Modelos de proveedores externos (FREE tier)
+### Modelos de Proveedores Externos (FREE tier)
 
 | Proveedor | Modelo | Caso de uso |
 |-----------|--------|-------------|
@@ -82,175 +81,47 @@ Todas las claves se leen desde `~/.zshenv` mediante `{env:VARIABLE}`. Ningún AP
 | `cerebras/llama-3.3-70b` | generación rápida, gran contexto |
 | `mistral/mistral-small` | tareas multilingües |
 | `sambanova/llama-3.1` | inferencia rápida |
-| `cloudflare/llama-3.1` | Workers AI, tareas rápidas |
-| `ai-gateway/mixtral` | mixture-of-experts, tareas complejas |
-| `ollama_chat/qwen2.5-coder:3b` | coding local, sin conexión |
-| `ollama_chat/llama3` | uso general local |
+| `cloudflare/llama-3.1` | Workers AI |
+| `ai-gateway/mixtral` | mixture-of-experts |
+| `ollama/qwen2.5-coder:3b` | coding local |
+| `ollama/llama3` | uso general local |
 
 ---
 
-## 5. Agentes configurados
+## 5. Agentes
 
-### Agentes nativos (en `opencode.jsonc`)
+### Agentes Nativos (opencode.jsonc)
 
-| Agente | Modelo | Permisos | Descripción |
-|--------|--------|----------|-------------|
-| `auditor` | `mimo-v2.5-free` | `edit: deny` | Analiza proyectos, detecta problemas. **No modifica archivos.** |
-| `implementer` | `nemotron-3.5-lightning-free` | — | Ejecuta cambios aprobados. |
-| `optimizer` | `mimo-v2.5-free` | `edit: deny` | Propone optimizaciones **sin aplicarlas.** |
-| `reviewer` | `nemotron-3-ultra-free` | `edit: deny` | Valida cambios y detecta errores y regresiones. |
-| `validator` | `ling-3.0-flash-fin-free` | `edit: deny` | Validación rápida: lint, syntax-check, compilación. Ultra-rápido. |
+| Agente | Modelo | Permiso | Descripción |
+|--------|--------|---------|-------------|
+| `auditor` | `mimo-v2.5-free` | edit: deny | Analiza sin modificar |
+| `implementer` | `nemotron-3.5-lightning-free` | — | Ejecuta cambios |
+| `optimizer` | `mimo-v2.5-free` | edit: deny | Propone sin aplicar |
+| `reviewer` | `nemotron-3-ultra-free` | edit: deny | Valida cambios |
+| `validator` | `ling-3.0-flash-fin-free` | edit: deny | Lint, syntax-check |
 
-### Agentes oh-my-opencode (en `~/.omo/omo.jsonc`)
+### Agentes oh-my-opencode (~/.omo/omo.jsonc)
 
-| Agente | Modelo principal | Fallback chain |
-|--------|-----------------|----------------|
-| `sisyphus-junior` | `nemotron-3-ultra-free` | `gemini-3.6-flash` → `nemotron-3.5-lightning-free` → `mimo-v2.5-free` |
-| `oracle` | `gemini-3.6-flash` | `nemotron-3-ultra-free` → `mimo-v2.5-free` |
-| `librarian` | `gemini-3.6-flash` | `nemotron-3-ultra-free` → `nemotron-3.5-lightning-free` |
+| Agente | Modelo principal | Fallback |
+|--------|-----------------|----------|
+| `sisyphus-junior` | `nemotron-3-ultra-free` | `gemini-3.6-flash` → `nemotron-3.5` → `mimo-v2.5` |
+| `oracle` | `gemini-3.6-flash` | `nemotron-3-ultra-free` → `mimo-v2.5` |
+| `librarian` | `gemini-3.6-flash` | `nemotron-3-ultra-free` → `nemotron-3.5` |
 | `explore` | `ling-3.0-flash-fin-free` | `mimo-v2.5-free` |
-| `multimodal-looker` | `gemini-3.6-flash` | `nemotron-3.5-lightning-free` → `nemotron-3-ultra-free` |
-| `prometheus` | `gemini-3.6-flash` | `nemotron-3-ultra-free` → `nemotron-3.5-lightning-free` |
+| `prometheus` | `gemini-3.6-flash` | `nemotron-3-ultra-free` → `nemotron-3.5` |
 | `metis` | `mimo-v2.5-free` | `ling-3.0-flash-fin-free` → `gemini-3.6-flash` |
 | `momus` | `mimo-v2.5-free` | `ling-3.0-flash-fin-free` |
-| `atlas` | `nemotron-3.5-lightning-free` | `nemotron-3-ultra-free` → `gemini-3.6-flash` |
 | `hephaestus` | `nemotron-3.5-lightning-free` | `nemotron-3-ultra-free` → `gemini-3.6-flash` |
-
-### Categorías oh-my-opencode
-
-| Categoría | Modelo | Fallback |
-|-----------|--------|----------|
-| `quick` | `ling-3.0-flash-fin-free` | — |
-| `deep` | `nemotron-3-ultra-free` | `gemini-3.6-flash` → `nemotron-3.5-lightning-free` |
-| `visual-engineering` | `gemini-3.6-flash` | `nemotron-3-ultra-free` |
-| `ultrabrain` | `nemotron-3-ultra-free` | `gemini-3.6-flash` |
-| `writing` | `mimo-v2.5-free` | — |
-| `artistry` | `nemotron-3.5-lightning-free` | — |
-| `unspecified-low` | `ling-3.0-flash-fin-free` | — |
-| `unspecified-high` | `nemotron-3-ultra-free` | `gemini-3.6-flash` → `nemotron-3.5-lightning-free` |
-
-### Cadena de fallback global
-
-```
-nemotron-3-ultra-free → gemini-3.6-flash → nemotron-3.5-lightning-free → mimo-v2.5-free → ling-3.0-flash-fin-free
-```
-
-Si un modelo falla (rate limit, error 500, timeout), el sistema automáticamente prueba el siguiente de la cadena **sin perder contexto**.
+| `atlas` | `nemotron-3.5-lightning-free` | `nemotron-3-ultra-free` → `gemini-3.6-flash` |
+| `multimodal-looker` | `gemini-3.6-flash` | `nemotron-3.5` → `nemotron-3-ultra-free` |
 
 ---
 
 ## 6. oh-my-opencode
 
-### Instalación (ya realizada)
-
+### Instalación
 ```bash
-brew install bun                                          # Runtime JavaScript (MIT, gratis)
-bun add -g oh-my-opencode                                # Instalación global
-bunx oh-my-opencode install --no-tui \
-  --platform opencode \
-  --claude no --openai no --gemini no \
-  --copilot no --opencode-zen no \
-  --zai-coding-plan no --kimi-for-coding no \
-  --opencode-go no                                       # Todo = gratuito
-```
-
-### Cómo funciona
-
-oh-my-opencode es un **plugin de orquestación** que añade:
-
-1. **Enrutamiento automático**: decide qué modelo usar según el tipo de tarea
-2. **Fallback automático**: si un modelo falla, prueba el siguiente sin reiniciar
-3. **Cadenas por agente**: cada agente tiene su propia lista de fallback
-4. **Fallback global**: cadena de respaldo para todos los agentes
-
-### Archivos clave
-
-| Archivo | Propósito |
-|---------|-----------|
-| `~/.omo/omo.jsonc` | Configuración principal |
-| `~/.config/opencode/node_modules/oh-my-openagent/` | Plugin instalado |
-| `~/.bun/bin/omo` | Commando `omo` (wrapper via bun) |
-
----
-
-## 7. Comandos útiles
-
-### opencode
-
-| Comando | Descripción |
-|---------|-------------|
-| `opencode` | Iniciar opencode |
-| `opencode models` | Listar modelos disponibles |
-| `opencode -m <model>` | Usar un modelo específico |
-| `opencode doctor` | Verificar configuración |
-
-### oh-my-opencode
-
-| Comando | Descripción |
-|---------|-------------|
-| `omo` | Iniciar oh-my-opencode |
-| `omo --version` | Ver versión (4.19.4) |
-
-### Comando `cerrar` (en ~/.alias_gio)
-
-**Uso**: escribir `cerrar` en la terminal antes de cerrar sesión.
-
-**Qué hace**:
-1. Commita cambios en `~/.config/opencode/` y `~/dotfiles/`
-2. Verifica que los procesos de NEXº estén vivos (3 procesos)
-3. Recuerda las 3 claves API pendientes
-4. Hace `git push` a GitHub
-5. Muestra resumen de estado
-
----
-
-## 8. Repositorios GitHub
-
-| Repo | URL | Contiene |
-|------|-----|----------|
-| `opencode-config` | `github.com/srgiolaguna/opencode-config` | opencode.jsonc, agentes, DOCUMENTACION.md |
-| `dotfiles` | `github.com/srgiolaguna/dotfiles` | omo.jsonc, .gitignore, README.md |
-
-> **Nota de seguridad**: `zshenv` está excluido de `.gitignore` en dotfiles. Ninguna clave API está en GitHub.
-
----
-
-## 9. Problemas conocidos y pendientes
-
-### ❌ 3 claves API pendientes
-
-| Proveedor | Clave | Dónde buscar |
-|-----------|-------|--------------|
-| OpenRouter | `sk-or-v1-...` | Gmail, Google Docs, notas, navegador |
-| GitHub | `ghp_...` | GitHub settings → Tokens |
-| NVIDIA NIM | `nvapi-...` | NVIDIA API console |
-
-### ⚠️ `omo` command wrapper
-
-El comando `omo` funciona vía `~/.bun/bin/omo` que usa bun como runtime. No requiere `node` instalado.
-
----
-
-## 10. Cómo restaurar la configuración tras reinstalar
-
-```bash
-# 1. Instalar Homebrew (si no existe)
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-
-# 2. Instalar opencode
-brew install opencode
-
-# 3. Instalar bun
 brew install bun
-
-# 4. Clonar repos
-git clone https://github.com/srgiolaguna/opencode-config.git ~/.config/opencode
-git clone https://github.com/srgiolaguna/dotfiles.git ~/dotfiles
-
-# 5. Restaurar ~/.zshenv (desde backup o recrear)
-# Copiar las claves API a ~/.zshenv
-
-# 6. Instalar oh-my-opencode
 bun add -g oh-my-opencode
 bunx oh-my-opencode install --no-tui \
   --platform opencode \
@@ -258,9 +129,99 @@ bunx oh-my-opencode install --no-tui \
   --copilot no --opencode-zen no \
   --zai-coding-plan no --kimi-for-coding no \
   --opencode-go no
+```
 
-# 7. Verificar
-opencode models
+### Funciones
+- **Enrutamiento automático** de modelos según el tipo de tarea
+- **Fallback automático** sin perder contexto
+- **Cadenas de fallback por agente**
+- **Cadena global**: `nemotron-3-ultra-free` → `gemini-3.6-flash` → `nemotron-3.5` → `mimo-v2.5` → `ling-3.0-flash-fin-free`
+
+---
+
+## 7. Comandos
+
+### opencode
+| Comando | Descripción |
+|---------|-------------|
+| `opencode` | Iniciar opencode |
+| `opencode models` | Listar modelos disponibles |
+| `opencode -m <model>` | Usar un modelo específico |
+| `opencode agent <agente>` | Lanzar agente |
+| `opencode doctor` | Verificar configuración |
+
+### oh-my-opencode
+| Comando | Descripción |
+|---------|-------------|
+| `omo` | Iniciar oh-my-opencode |
+| `omo --version` | Ver versión (4.19.4) |
+
+### cerrar (alias en ~/.alias_gio)
+| Qué hace | Detalle |
+|----------|---------|
+| **Auto-commit** | En todos los repos git del sistema |
+| **Auto-push** | A GitHub donde hay remoto configurado |
+| **Verificación** | Comprueba procesos NEXº (3 procesos) |
+| **Recordatorio** | Muestra las 4 claves API pendientes |
+
+**Repos que `cerrar` procesa** (5 repositorios):
+| Repo | Remoto | URL |
+|------|--------|-----|
+| `~/.config/opencode/` | `srgiolaguna/opencode-config` | `github.com/srgiolaguna/opencode-config` |
+| `~/dotfiles/` | `srgiolaguna/dotfiles` | `github.com/srgiolaguna/dotfiles` |
+| `~/Documents/Cycle/` | `srgiolaguna/cycle` | `github.com/srgiolaguna/cycle` |
+| `~/Documents/NEXº/` | `srgiolaguna/nexo` | `github.com/srgiolaguna/nexo` |
+| `~/Documents/Workstation/` | `srgiolaguna/workstation` | `github.com/srgiolaguna/workstation` |
+
+**Excluidos** de cerrar: `node_modules`, `.cache`, `.codex`, `.openclaw`, `~/.git` (worktree).
+
+---
+
+## 8. Repositorios GitHub
+
+| Repo | URL | Contiene |
+|------|-----|----------|
+| `opencode-config` | `github.com/srgiolaguna/opencode-config` | opencode.jsonc, agentes, DOCUMENTACION.md, GUIA_INTERACTIVA.html |
+| `dotfiles` | `github.com/srgiolaguna/dotfiles` | omo.jsonc, .gitignore, README.md |
+
+> **Seguridad**: `~/.zshenv` está en `.gitignore`. Ninguna clave API en GitHub.
+
+---
+
+## 9. Pendientes
+
+### ❌ 4 claves API faltantes
+| Proveedor | Clave | Dónde buscar |
+|-----------|-------|--------------|
+| OpenRouter | `sk-or-v1-...` | Gmail, Google Docs |
+| GitHub | `ghp_...` | GitHub Settings → Tokens |
+| NVIDIA NIM | `nvapi-...` | NVIDIA API Console |
+
+---
+
+## 10. Estructura de archivos
+
+```
+~/.config/opencode/
+├── opencode.jsonc          ← Config principal
+├── agent/                  ← Agentes nativos (5)
+│   ├── auditor.md
+│   ├── implementer.md
+│   ├── optimizer.md
+│   ├── reviewer.md
+│   └── validator.md
+├── node_modules/           ← oh-my-openagent plugin
+├── DOCUMENTACION.md        ← Esta documentación
+└── GUIA_INTERACTIVA.html   ← Guía visual interactiva
+
+~/.omo/
+└── omo.jsonc              ← Config oh-my-opencode
+
+~/.zshenv                  ← Claves API (no en git)
+~/.alias_gio               ← Comandos incluye 'cerrar'
+~/dotfiles/                ← Repo git (config sistema)
+~/Desktop/OpenCode_Config_Resumen.md  ← Symlink → DOCUMENTACION.md
+~/Desktop/OpenCode_GUIA.html          ← Symlink → GUIA_INTERACTIVA.html
 ```
 
 ---
@@ -270,19 +231,21 @@ opencode models
 | Fecha | Evento |
 |-------|--------|
 | Sep 2026 | Reinstalación de opencode, pérdida de configuración |
-| Sep 2026 | Recuperación de claves desde Safari History, Chrome, Notes |
-| Sep 2026 | Creación de `opencode.jsonc` con 12 proveedores |
-| Sep 2026 | Migración de agentes desde `Documents/.opencode/agents/` |
-| Sep 2026 | Creación de `.ssh/config` para `control-servidor-casero` |
-| Sep 2026 | Instalación de `oh-my-opencode` con `oh-my-openagent` plugin |
-| Sep 2026 | Añadido agente `validator` |
-| Sep 2026 | Corrección de schema JSONC (models debe ser objeto, no array) |
-| Sep 2026 | **Seguridad**: todas las claves movidas de opencode.jsonc a `{env:VAR}` |
-| Sep 2026 | Creación de repos GitHub (`srgiolaguna/opencode-config`, `srgiolaguna/dotfiles`) |
-| Sep 2026 | `.zshenv` excluido de git mediante `.gitignore` |
-| Sep 2026 | Alias `cerrar` añadido a `~/.alias_gio` |
-| Sep 2026 | Documentación completa generada |
+| Sep 2026 | Recuperación de claves desde Safari/Chrome/Notes |
+| Sep 2026 | Creación de opencode.jsonc con 12 proveedores |
+| Sep 2026 | Migración de agentes desde Documents/.opencode/agents/ |
+| Sep 2026 | Creación de .ssh/config para control-servidor-casero |
+| Sep 2026 | Instalación de oh-my-opencode con oh-my-openagent plugin |
+| Sep 2026 | Añadido agente validator |
+| Sep 2026 | Corrección de schema JSONC (models como objeto) |
+| Sep 2026 | **Seguridad**: todas las claves movidas a {env:VAR} |
+| Sep 2026 | Creación de repos GitHub (opencode-config, dotfiles) |
+| Sep 2026 | .zshenv excluido de git mediante .gitignore |
+| Sep 2026 | Alias `cerrar` añadido a ~/.alias_gio |
+| Sep 2026 | Guía HTML interactiva creada |
+| Sep 2026 | Documentación actualizada y verificada |
 
 ---
 
-*Generado el 15 septiembre 2026 · opencode v1.18.31 · oh-my-opencode v4.19.4*
+*Generado el 15 septiembre 2026 · opencode v1.18.31 · oh-my-opencode v4.19.4*  
+*Documentación fiel a la realidad y actualizada ✅*

@@ -1,56 +1,116 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "plugin": ["oh-my-openagent@latest"],
-  "model": "opencode/ling-3.0-flash-fin-free",
+  "plugin": [
+    "oh-my-openagent@latest"
+  ],
+  "model": "opencode/gpt-5-nano",
   "shell": "/bin/zsh",
   "autoupdate": false,
   "snapshot": true,
   "logLevel": "INFO",
-
   "provider": {
-    "opencode":   { "options": { "apiKey": "{env:OPENCODE_SECRET_KEY}" } },
-    "google":     { "options": { "apiKey": "{env:GEMINI_API_KEY}" } },
-    "groq":       { "options": { "apiKey": "{env:GROQ_API_KEY}" } },
-    "cerebras":   { "options": { "apiKey": "{env:CEREBRAS_API_KEY}" } },
-    "mistral":    { "options": { "apiKey": "{env:MISTRAL_API_KEY}" } },
-    "sambanova":  { "options": { "apiKey": "{env:SAMBANOVA_API_KEY}" } },
-    "cloudflare": { "options": { "apiToken": "{env:CLOUDFLARE_API_TOKEN}", "accountId": "{env:CLOUDFLARE_ACCOUNT_ID}" } },
-    "ai-gateway": { "options": { "apiKey": "{env:AI_GATEWAY_API_KEY}" } },
-    "openrouter": { "options": { "apiKey": "{env:OPENROUTER_API_KEY}", "baseURL": "https://openrouter.ai" } },
-    "github":     { "options": { "apiKey": "{env:GITHUB_TOKEN}" } },
-    "nvidia":     { "options": { "apiKey": "{env:NVIDIA_NIM_API_KEY}", "baseURL": "https://integrate.api.nvidia.com" } },
+    "opencode": {
+      "options": {
+        "apiKey": "{env:OPENCODE_SECRET_KEY}"
+      }
+    },
+    "google": {
+      "options": {
+        "apiKey": "{env:GEMINI_API_KEY}"
+      }
+    },
+    "groq": {
+      "options": {
+        "apiKey": "{env:GROQ_API_KEY}"
+      }
+    },
+    "cerebras": {
+      "options": {
+        "apiKey": "{env:CEREBRAS_API_KEY}"
+      }
+    },
+    "mistral": {
+      "options": {
+        "apiKey": "{env:MISTRAL_API_KEY}"
+      }
+    },
+    "sambanova": {
+      "options": {
+        "apiKey": "{env:SAMBANOVA_API_KEY}"
+      }
+    },
+    "cloudflare": {
+      "options": {
+        "apiToken": "{env:CLOUDFLARE_API_TOKEN}",
+        "accountId": "{env:CLOUDFLARE_ACCOUNT_ID}"
+      }
+    },
+    "ai-gateway": {
+      "options": {
+        "apiKey": "{env:AI_GATEWAY_API_KEY}"
+      }
+    },
+    "openrouter": {
+      "options": {
+        "apiKey": "{env:OPENROUTER_API_KEY}",
+        "baseURL": "https://openrouter.ai"
+      }
+    },
+    "github": {
+      "options": {
+        "apiKey": "{env:GITHUB_TOKEN}"
+      }
+    },
+    "nvidia": {
+      "options": {
+        "apiKey": "{env:NVIDIA_NIM_API_KEY}",
+        "baseURL": "https://integrate.api.nvidia.com"
+      }
+    },
+    "huggingface": {
+      "options": {
+        "apiKey": "{env:HUGGINGFACE_TOKEN}"
+      }
+    },
     "ollama": {}
   },
-
   "agent": {
     "auditor": {
       "model": "opencode/mimo-v2.5-free",
       "mode": "all",
-      "permission": { "edit": "deny" },
+      "permission": {
+        "edit": "deny"
+      },
       "description": "Analiza proyectos, detecta problemas y riesgos. No modifica archivos. [FREE]"
     },
     "implementer": {
-      "model": "opencode/nemotron-3.5-lightning-free",
+      "model": "opencode/gemini-3.6-flash",
       "mode": "all",
       "description": "Ejecuta cambios aprobados respetando alcance y decisiones. [FREE]"
     },
     "optimizer": {
       "model": "opencode/mimo-v2.5-free",
       "mode": "all",
-      "permission": { "edit": "deny" },
+      "permission": {
+        "edit": "deny"
+      },
       "description": "Propone optimizaciones y mejoras sin aplicarlas. [FREE]"
     },
     "reviewer": {
       "model": "opencode/nemotron-3-ultra-free",
       "mode": "all",
-      "permission": { "edit": "deny" },
+      "permission": {
+        "edit": "deny"
+      },
       "description": "Valida cambios realizados y detecta errores y regresiones. [FREE]"
     },
     "validator": {
-      "model": "opencode/ling-3.0-flash-fin-free",
+      "model": "opencode/gpt-5-nano",
       "mode": "all",
-      "permission": { "edit": "deny" },
-      "description": "Validación rápida: lint, syntax-check, compilación. Ultra-rápido y FREE. [FREE]"
+      "permission": {
+        "edit": "deny"
+      },
+      "description": "Validaci\u00f3n r\u00e1pida: lint, syntax-check, compilaci\u00f3n. Ultra-r\u00e1pido y FREE. [FREE]"
     }
   }
 }

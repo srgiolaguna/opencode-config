@@ -190,7 +190,7 @@ tr:hover td { background: rgba(88,166,255,0.05); }
   <h3 style="margin-bottom:15px;color:var(--accent);">Modelos OpenCode (propios, siempre FREE)</h3>
   <table>
     <tr><th>Modelo</th><th>Uso</th><th>Velocidad</th></tr>
-    <tr><td><code>opencode/ling-3.0-flash-fin-free</code></td><td>Default, validación rápida</td><td>⚡ Ultra-rápido</td></tr>
+    <tr><td><code>opencode/gpt-5-nano</code></td><td>Default, validación rápida</td><td>⚡ Ultra-rápido</td></tr>
     <tr><td><code>opencode/mimo-v2.5-free</code></td><td>Análisis, optimización</td><td>🚀 Rápido</td></tr>
     <tr><td><code>opencode/nemotron-3.5-lightning-free</code></td><td>Ejecución de cambios</td><td>🚀 Rápido</td></tr>
     <tr><td><code>opencode/nemotron-3-ultra-free</code></td><td>Validación final, tareas pesadas</td><td>🐢 Potente</td></tr>
@@ -220,7 +220,7 @@ tr:hover td { background: rgba(88,166,255,0.05); }
     <tr><td><strong>implementer</strong></td><td><code>nemotron-3.5-lightning-free</code></td><td>—</td><td>Ejecuta cambios aprobados.</td></tr>
     <tr><td><strong>optimizer</strong></td><td><code>mimo-v2.5-free</code></td><td>edit: deny</td><td>Propone optimizaciones sin aplicarlas.</td></tr>
     <tr><td><strong>reviewer</strong></td><td><code>nemotron-3-ultra-free</code></td><td>edit: deny</td><td>Valida cambios y detecta errores y regresiones.</td></tr>
-    <tr><td><strong>validator</strong></td><td><code>ling-3.0-flash-fin-free</code></td><td>edit: deny</td><td>Lint, syntax-check, compilación. Ultra-rápido.</td></tr>
+    <tr><td><strong>validator</strong></td><td><code>gpt-5-nano</code></td><td>edit: deny</td><td>Lint, syntax-check, compilación. Ultra-rápido.</td></tr>
   </table>
   <h3 style="margin:25px 0 15px;color:var(--accent);">Agentes oh-my-opencode (en ~/.omo/omo.jsonc)</h3>
   <table>
@@ -228,10 +228,10 @@ tr:hover td { background: rgba(88,166,255,0.05); }
     <tr><td><strong>sisyphus-junior</strong></td><td><code>nemotron-3-ultra-free</code></td><td><code>gemini-3.6-flash</code> → <code>nemotron-3.5-lightning-free</code> → <code>mimo-v2.5-free</code></td></tr>
     <tr><td><strong>oracle</strong></td><td><code>gemini-3.6-flash</code></td><td><code>nemotron-3-ultra-free</code> → <code>mimo-v2.5-free</code></td></tr>
     <tr><td><strong>librarian</strong></td><td><code>gemini-3.6-flash</code></td><td><code>nemotron-3-ultra-free</code> → <code>nemotron-3.5-lightning-free</code></td></tr>
-    <tr><td><strong>explore</strong></td><td><code>ling-3.0-flash-fin-free</code></td><td><code>mimo-v2.5-free</code></td></tr>
+    <tr><td><strong>explore</strong></td><td><code>gpt-5-nano</code></td><td><code>mimo-v2.5-free</code></td></tr>
     <tr><td><strong>prometheus</strong></td><td><code>gemini-3.6-flash</code></td><td><code>nemotron-3-ultra-free</code> → <code>nemotron-3.5-lightning-free</code></td></tr>
-    <tr><td><strong>metis</strong></td><td><code>mimo-v2.5-free</code></td><td><code>ling-3.0-flash-fin-free</code> → <code>gemini-3.6-flash</code></td></tr>
-    <tr><td><strong>momus</strong></td><td><code>mimo-v2.5-free</code></td><td><code>ling-3.0-flash-fin-free</code></td></tr>
+    <tr><td><strong>metis</strong></td><td><code>mimo-v2.5-free</code></td><td><code>gpt-5-nano</code> → <code>gemini-3.6-flash</code></td></tr>
+    <tr><td><strong>momus</strong></td><td><code>mimo-v2.5-free</code></td><td><code>gpt-5-nano</code></td></tr>
     <tr><td><strong>hephaestus</strong></td><td><code>nemotron-3.5-lightning-free</code></td><td><code>nemotron-3-ultra-free</code> → <code>gemini-3.6-flash</code></td></tr>
     <tr><td><strong>atlas</strong></td><td><code>nemotron-3.5-lightning-free</code></td><td><code>nemotron-3-ultra-free</code> → <code>gemini-3.6-flash</code></td></tr>
     <tr><td><strong>multimodal-looker</strong></td><td><code>gemini-3.6-flash</code></td><td><code>nemotron-3.5-lightning-free</code> → <code>nemotron-3-ultra-free</code></td></tr>
@@ -290,7 +290,7 @@ bunx oh-my-opencode install --no-tui \
     <span class="fallback-arrow"> → </span>
     <span class="model">mimo-v2.5-free</span>
     <span class="fallback-arrow"> → </span>
-    <span class="model">ling-3.0-flash-fin-free</span>
+    <span class="model">gpt-5-nano</span>
   </div>
   <div class="two-col">
     <div class="card">
@@ -306,7 +306,7 @@ bunx oh-my-opencode install --no-tui \
       <h3>📊 Categorías de tareas</h3>
       <table style="margin-top:8px;">
         <tr><th>Categoría</th><th>Modelo</th></tr>
-        <tr><td>quick</td><td><code>ling-3.0-flash-fin-free</code></td></tr>
+        <tr><td>quick</td><td><code>gpt-5-nano</code></td></tr>
         <tr><td>deep</td><td><code>nemotron-3-ultra-free</code></td></tr>
         <tr><td>visual-engineering</td><td><code>gemini-3.6-flash</code></td></tr>
         <tr><td>ultrabrain</td><td><code>nemotron-3-ultra-free</code></td></tr>
@@ -329,7 +329,7 @@ bunx oh-my-opencode install --no-tui \
   <h3 style="margin:20px 0 15px;color:var(--accent);">Cambio de modelo durante sesión</h3>
   <div class="command-box"><code>/model gemini/gemini-3.6-flash</code></div>
   <div class="command-box"><code>/model opencode/nemotron-3-ultra-free</code></div>
-  <div class="command-box"><code>/model opencode/ling-3.0-flash-fin-free</code></div>
+  <div class="command-box"><code>/model opencode/gpt-5-nano</code></div>
   <h3 style="margin:20px 0 15px;color:var(--accent);">oh-my-opencode</h3>
   <div class="command-box"><code>omo</code> <span class="comment">— Iniciar oh-my-opencode</span></div>
   <div class="command-box"><code>omo --version</code> <span class="comment">— Ver versión (4.19.4)</span></div>
