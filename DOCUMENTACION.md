@@ -68,6 +68,13 @@ Todas las claves se leen desde `~/.zshenv` mediante `{env:VARIABLE}`. **Todas la
 | `opencode/nemotron-3-ultra-free` | Validación final, tareas pesadas | 🐢 Potente |
 | `opencode/ling-3.0-flash-fin-free` | Validación rápida | ⚡ Ultra-rápido |
 
+| `opencode/ling-3.0-flash-fin-free` | Validación rápida, exploración | ⚡ Ultra-rápido | **FREE** |
+| `opencode/mimo-v2.5-free` | Análisis, optimización, auditor, optimizer | 🚀 Rápido | **FREE** |
+| `opencode/nemotron-3.5-lightning-free` | Ejecución de cambios, implementer, agentes omo | 🚀 Rápido | **FREE** |
+| `opencode/nemotron-3-ultra-free` | Validación final, reviewer, tareas pesadas | 🐢 Potente | **FREE** |
+| `opencode/muse-spark-1.2-contributor-free` | Contributor tier | ⚡ Gratuito | **FREE** |
+| `opencode/muse-spark-1.3-contributor-free` | Contributor tier | ⚡ Gratuito | **FREE** |
+
 ### Modelos de Proveedores Externos (FREE tier)
 
 | Proveedor | Modelo | Caso de uso |
