@@ -3,7 +3,7 @@
   "plugin": [
     "oh-my-openagent@latest"
   ],
-  "model": "opencode/gpt-5-nano",
+  "model": "opencode/nemotron-3-ultra-free",
   "shell": "/bin/zsh",
   "autoupdate": false,
   "snapshot": true,
@@ -105,7 +105,7 @@
       "description": "Valida cambios realizados y detecta errores y regresiones. [FREE]"
     },
     "validator": {
-      "model": "opencode/gpt-5-nano",
+      "model": "opencode/nemotron-3-ultra-free",
       "mode": "all",
       "permission": {
         "edit": "deny"

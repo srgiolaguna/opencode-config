@@ -244,7 +244,6 @@ Todas las claves API están configuradas en `~/.zshenv`:
 ~/.zshenv                  ← Claves API (no en git, en .gitignore)
 ~/.alias_gio               ← Comandos incluye 'cerrar'
 ~/dotfiles/                ← Repo git (config sistema)
-~/Desktop/OpenCode_Config_Resumen.md  ← Symlink → DOCUMENTACION.md
 ~/Desktop/OpenCode_GUIA.html          ← Symlink → GUIA_INTERACTIVA.html
 ```
 
