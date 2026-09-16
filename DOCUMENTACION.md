@@ -1,17 +1,17 @@
 # OpenCode — Configuración Completa
 
-> Última actualización: 15 septiembre 2026  
-> Sistema: macOS (M3 MacBook Air) · Usuario: `giolaguna`  
-> Instalación: Homebrew · opencode v1.18.31  
+> Última actualización: 16 septiembre 2026
+> Sistema: macOS (M3 MacBook Air) · Usuario: `giolaguna`
+> Instalación: Homebrew · opencode v1.18.31
 > Usuario GitHub: `srgiolaguna`
 
 ---
 
 ## 1. Resumen
 
-OpenCode está configurado con **12 proveedores** de modelos AI gratuitos, **5 agentes nativos**, y **oh-my-opencode** como sistema de orquestación con fallback automático entre modelos. Todo es **100% gratuito**. No se paga por nada.
+OpenCode está configurado con **13 proveedores** de modelos AI gratuitos, **5 agentes nativos**, y **oh-my-opencode** como sistema de orquestación con fallback automático entre modelos. Todo es **100% gratuito**. No se paga por nada.
 
-**Seguridad**: Ningún API key está en los repositorios de GitHub. Todas las claves están en `~/.zshenv` (no rastreado por git).
+**Seguridad**: Ningún API key está en los repositorios de GitHub. Todas las claves están en `~/.zshenv` (no rastreado por git). Todas las claves han sido resueltas.
 
 ---
 
@@ -34,7 +34,7 @@ OpenCode está configurado con **12 proveedores** de modelos AI gratuitos, **5 a
 
 ## 3. Proveedores de API
 
-Todas las claves se leen desde `~/.zshenv` mediante `{env:VARIABLE}`.
+Todas las claves se leen desde `~/.zshenv` mediante `{env:VARIABLE}`. **Todas las 13 claves configuradas y activas.**
 
 ### ✅ Funcionando (con clave válida en ~/.zshenv)
 
@@ -48,16 +48,11 @@ Todas las claves se leen desde `~/.zshenv` mediante `{env:VARIABLE}`.
 | **sambanova** | `SAMBANOVA_API_KEY` | **FREE** |
 | **cloudflare** | `CLOUDFLARE_API_TOKEN`, `CLOUDFLARE_ACCOUNT_ID` | **FREE** |
 | **ai-gateway** | `AI_GATEWAY_API_KEY` | **FREE** |
+| **openrouter** | `OPENROUTER_API_KEY` | **FREE** |
+| **github** | `GITHUB_TOKEN` | **FREE** |
+| **nvidia** | `NVIDIA_NIM_API_KEY` | **FREE** |
+| **huggingface** | `HUGGINGFACE_TOKEN` | **FREE** |
 | **ollama** | Ninguna (local) | **100% LOCAL** |
-
-### ⏳ Pendientes (necesitan clave)
-
-| Proveedor | Variable de entorno | Tier | Estado |
-|-----------|---------------------|------|--------|
-| **openrouter** | `OPENROUTER_API_KEY` | **FREE** | ❌ Clave no encontrada |
-| **github** | `GITHUB_TOKEN` | **FREE** | ❌ Token no encontrado |
-| **nvidia** | `NVIDIA_NIM_API_KEY` | **FREE** | ❌ Clave no encontrada |
-| **huggingface** | `HUGGINGFACE_TOKEN` | **FREE** | ❌ Clave no encontrada |
 
 ---
 
@@ -67,10 +62,11 @@ Todas las claves se leen desde `~/.zshenv` mediante `{env:VARIABLE}`.
 
 | Modelo | Uso | Velocidad |
 |--------|-----|-----------|
-| `opencode/ling-3.0-flash-fin-free` | Default, validación | ⚡ Ultra-rápido |
+| `opencode/gpt-5-nano` | Default, validación rápida | ⚡ Ultra-rápido |
 | `opencode/mimo-v2.5-free` | Análisis, optimización | 🚀 Rápido |
-| `opencode/gemini-3.6-flash (opencode/nemotron-3.5-lightning-free → optimizado)` | Ejecución de cambios | 🚀 Rápido |
-| `opencode/nemotron-3-ultra-free` | Validación final | 🐢 Potente |
+| `opencode/nemotron-3.5-lightning-free` | Ejecución de cambios | 🚀 Rápido |
+| `opencode/nemotron-3-ultra-free` | Validación final, tareas pesadas | 🐢 Potente |
+| `opencode/ling-3.0-flash-fin-free` | Validación rápida | ⚡ Ultra-rápido |
 
 ### Modelos de Proveedores Externos (FREE tier)
 
@@ -95,10 +91,10 @@ Todas las claves se leen desde `~/.zshenv` mediante `{env:VARIABLE}`.
 | Agente | Modelo | Permiso | Descripción |
 |--------|--------|---------|-------------|
 | `auditor` | `mimo-v2.5-free` | edit: deny | Analiza sin modificar |
-| `implementer` | `nemotron-3.5-lightning-free` | — | Ejecuta cambios |
+| `implementer` | `gemini-3.6-flash` | — | Ejecuta cambios |
 | `optimizer` | `mimo-v2.5-free` | edit: deny | Propone sin aplicar |
 | `reviewer` | `nemotron-3-ultra-free` | edit: deny | Valida cambios |
-| `validator` | `ling-3.0-flash-fin-free` | edit: deny | Lint, syntax-check |
+| `validator` | `gpt-5-nano` | edit: deny | Lint, syntax-check |
 
 ### Agentes oh-my-opencode (~/.omo/omo.jsonc)
 
@@ -120,6 +116,7 @@ Todas las claves se leen desde `~/.zshenv` mediante `{env:VARIABLE}`.
 ## 6. oh-my-opencode
 
 ### Instalación
+
 ```bash
 brew install bun
 bun add -g oh-my-opencode
@@ -132,16 +129,24 @@ bunx oh-my-opencode install --no-tui \
 ```
 
 ### Funciones
+
 - **Enrutamiento automático** de modelos según el tipo de tarea
 - **Fallback automático** sin perder contexto
 - **Cadenas de fallback por agente**
-- **Cadena global**: `nemotron-3-ultra-free` → `gemini-3.6-flash` → `nemotron-3.5` → `mimo-v2.5` → `ling-3.0-flash-fin-free`
+- **Cadena global**: `nemotron-3-ultra-free` → `gemini-3.6-flash` → `nemotron-3.5` → `mimo-v2.5` → `ling-3.0-flash-fin-free` → `gpt-5-nano`
+
+### AST-Grep
+
+Herramienta de búsqueda de código por patrones AST. Habilita el skill `ast-grep` para buscar código por estructura.
+
+Instalación: `brew install ast-grep`
 
 ---
 
 ## 7. Comandos
 
 ### opencode
+
 | Comando | Descripción |
 |---------|-------------|
 | `opencode` | Iniciar opencode |
@@ -151,20 +156,24 @@ bunx oh-my-opencode install --no-tui \
 | `opencode doctor` | Verificar configuración |
 
 ### oh-my-opencode
+
 | Comando | Descripción |
 |---------|-------------|
 | `omo` | Iniciar oh-my-opencode |
 | `omo --version` | Ver versión (4.19.4) |
+| `omo doctor` | Diagnosticar configuración |
 
 ### cerrar (alias en ~/.alias_gio)
+
 | Qué hace | Detalle |
 |----------|---------|
 | **Auto-commit** | En todos los repos git del sistema |
 | **Auto-push** | A GitHub donde hay remoto configurado |
-| **Verificación** | Comprueba procesos NEXº (3 procesos) |
-| **Recordatorio** | Muestra las 4 claves API pendientes |
+| **Verificación** | Comprueba procesos NEXº |
+| **Recordatorio** | Muestra las claves API pendientes |
 
 **Repos que `cerrar` procesa** (5 repositorios):
+
 | Repo | Remoto | URL |
 |------|--------|-----|
 | `~/.config/opencode/` | `srgiolaguna/opencode-config` | `github.com/srgiolaguna/opencode-config` |
@@ -184,18 +193,33 @@ bunx oh-my-opencode install --no-tui \
 | `opencode-config` | `github.com/srgiolaguna/opencode-config` | opencode.jsonc, agentes, DOCUMENTACION.md, GUIA_INTERACTIVA.html |
 | `dotfiles` | `github.com/srgiolaguna/dotfiles` | omo.jsonc, .gitignore, README.md |
 
-> **Seguridad**: `~/.zshenv` está en `.gitignore`. Ninguna clave API en GitHub.
+> **Seguridad**: `~/.zshenv` está en `.gitignore`. Ninguna clave API en GitHub. `.zshenv` eliminado del historial de git con `git filter-repo`.
 
 ---
 
-## 9. Pendientes
+## 9. Estado de Configuración
 
-### ❌ 4 claves API faltantes
-| Proveedor | Clave | Dónde buscar |
-|-----------|-------|--------------|
-| OpenRouter | `sk-or-v1-...` | Gmail, Google Docs |
-| GitHub | `ghp_...` | GitHub Settings → Tokens |
-| NVIDIA NIM | `nvapi-...` | NVIDIA API Console |
+### ✅ Completo (13/13 claves configuradas)
+
+Todas las claves API están configuradas en `~/.zshenv`:
+
+| Variable | Estado |
+|-----------|--------|
+| `OPENCODE_SECRET_KEY` | ✅ |
+| `GROQ_API_KEY` | ✅ |
+| `CEREBRAS_API_KEY` | ✅ |
+| `MISTRAL_API_KEY` | ✅ |
+| `SAMBANOVA_API_KEY` | ✅ |
+| `AI_GATEWAY_API_KEY` | ✅ |
+| `GEMINI_API_KEY` | ✅ |
+| `GOOGLE_API_KEY` | ✅ |
+| `CLOUDFLARE_API_TOKEN` | ✅ |
+| `OPENROUTER_API_KEY` | ✅ |
+| `GITHUB_TOKEN` | ✅ |
+| `NVIDIA_NIM_API_KEY` | ✅ |
+| `HUGGINGFACE_TOKEN` | ✅ |
+
+**0 claves pendientes.**
 
 ---
 
@@ -203,7 +227,7 @@ bunx oh-my-opencode install --no-tui \
 
 ```
 ~/.config/opencode/
-├── opencode.jsonc          ← Config principal
+├── opencode.jsonc          ← Config principal (13 proveedores, 5 agentes)
 ├── agent/                  ← Agentes nativos (5)
 │   ├── auditor.md
 │   ├── implementer.md
@@ -215,9 +239,9 @@ bunx oh-my-opencode install --no-tui \
 └── GUIA_INTERACTIVA.html   ← Guía visual interactiva
 
 ~/.omo/
-└── omo.jsonc              ← Config oh-my-opencode
+└── omo.jsonc              ← Config oh-my-opencode (10 agentes, 8 categorías)
 
-~/.zshenv                  ← Claves API (no en git)
+~/.zshenv                  ← Claves API (no en git, en .gitignore)
 ~/.alias_gio               ← Comandos incluye 'cerrar'
 ~/dotfiles/                ← Repo git (config sistema)
 ~/Desktop/OpenCode_Config_Resumen.md  ← Symlink → DOCUMENTACION.md
@@ -243,9 +267,38 @@ bunx oh-my-opencode install --no-tui \
 | Sep 2026 | .zshenv excluido de git mediante .gitignore |
 | Sep 2026 | Alias `cerrar` añadido a ~/.alias_gio |
 | Sep 2026 | Guía HTML interactiva creada |
+| Sep 2026 | **Seguridad**: `.zshenv` eliminado del historial de git con `git filter-repo` |
+| Sep 2026 | Añadido proveedores: openrouter, github, nvidia, huggingface |
+| Sep 2026 | Todas las 13 claves API resueltas |
+| Sep 2026 | Instalación de AST-Grep (`brew install ast-grep`) |
 | Sep 2026 | Documentación actualizada y verificada |
 
 ---
 
-*Generado el 15 septiembre 2026 · opencode v1.18.31 · oh-my-opencode v4.19.4*  
+## 12. Verificación rápida
+
+Para verificar que todo funciona:
+
+```bash
+# Versiones
+opencode --version          # 1.18.31
+omo --version               # 4.19.4
+sg --version                # ast-grep 0.45.3
+
+# Doctor
+bunx oh-my-opencode doctor  # Solo compatibility fallback (no-crítico)
+
+# Claves
+source ~/.zshenv            # Carga todas las variables
+echo $GITHUB_TOKEN          # Debe mostrar ghp_...
+echo $NVIDIA_NIM_API_KEY    # Debe mostrar nvapi_...
+
+# cerrar
+cerrar                      # Commit + push de todos los repos
+```
+
+---
+
+*Generado el 16 septiembre 2026 · opencode v1.18.31 · oh-my-opencode v4.19.4*
 *Documentación fiel a la realidad y actualizada ✅*
+*13 proveedores · 13 claves API · 0 pendientes*
