@@ -34,6 +34,8 @@ a{color:var(--a);text-decoration:none}
 
 .cg{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:8px}
 .card{background:var(--s);border:1px solid var(--b);border-radius:8px;padding:10px 12px;transition:all .2s;cursor:pointer}
+.clickable{cursor:pointer;transition:all .2s}
+.clickable:hover{border-color:var(--a);box-shadow:0 0 8px rgba(0,200,212,.12)}
 .card:hover{border-color:var(--a)}
 .card.clickable:hover{box-shadow:0 0 12px rgba(0,200,212,.15)}
 .card h4{font-size:0.78em;color:var(--t);margin-bottom:3px;word-break:break-all;font-family:'Urbanist',sans-serif;font-weight:600;letter-spacing:.5px}
@@ -277,41 +279,6 @@ tr:hover td{background:rgba(99,102,241,.02)}
 </div>
 </div>
 
-<div class="sec" id="cerrar">
-<div class="stitle">CERRAR</div>
-<div class="ib">
-<p>Escribe <code>cerrar</code> antes de cerrar sesión. Automáticamente:</p>
-<p> Auto-commit en todos los repos git<br>
-   Auto-push a GitHub<br>
-   Verifica procesos NEXº<br>
-   Muestra claves API pendientes<br>
-<strong>5 repos:</strong> opencode-config, dotfiles, Cycle, NEXº, Workstation</p>
-</div>
-</div>
-
-<div class="sec" id="seguridad">
-<div class="stitle">SEGURIDAD</div>
-<div class="ib">
-<p> <code>~/.zshenv</code> NO en git ni en historial de GitHub</p>
-<p> <code>git filter-repo</code> eliminó .zshenv del historial</p>
-<p> Todas las claves usan <code>{env:VAR}</code> en opencode.jsonc</p>
-<h3>Claves configuradas: 13/13 </h3>
-<p style="font-size:0.7em;word-break:break-all">OPENCODE_SECRET_KEY · GROQ_API_KEY · CEREBRAS_API_KEY · MISTRAL_API_KEY · SAMBANOVA_API_KEY · AI_GATEWAY_API_KEY · GEMINI_API_KEY · GOOGLE_API_KEY · CLOUDFLARE_API_TOKEN · OPENROUTER_API_KEY · GITHUB_TOKEN · NVIDIA_NIM_API_KEY · HUGGINGFACE_TOKEN</p>
-</div>
-</div>
-
-<div class="sec" id="verificacion">
-<div class="stitle">VERIFICACIÓN</div>
-<div class="ib">
-<h3>Comandos</h3>
-<div class="cb"><code>opencode --version</code> → 1.18.31<br>
-<code>omo --version</code> → 4.19.4<br>
-<code>sg --version</code> → ast-grep 0.45.3<br>
-<code>bunx oh-my-opencode doctor</code> → 1 warning no-crítico<br>
-<code>opencode models</code> → 34 modelos FREE</div>
-</div>
-</div>
-
 <div class="sec" id="launcher">
 <div class="stitle"> Launcher — Elige modelo, escribe prompt, abre Terminal</div>
 <div class="ib">
@@ -350,6 +317,42 @@ tr:hover td{background:rgba(99,102,241,.02)}
 </div>
 <button class="nb" onclick="launchOpenCode()" style="background:var(--a);color:#fff;border-color:var(--a);font-weight:700;padding:10px 24px;font-size:0.85em"> Abrir Terminal con este modelo</button>
 <div id="launch-result" style="margin-top:8px;font-size:0.78em"></div>
+</div>
+</div>
+
+
+<div class="sec" id="cerrar">
+<div class="stitle">CERRAR</div>
+<div class="ib">
+<p>Escribe <code>cerrar</code> antes de cerrar sesión. Automáticamente:</p>
+<p> Auto-commit en todos los repos git<br>
+   Auto-push a GitHub<br>
+   Verifica procesos NEXº<br>
+   Muestra claves API pendientes<br>
+<strong>5 repos:</strong> opencode-config, dotfiles, Cycle, NEXº, Workstation</p>
+</div>
+</div>
+
+<div class="sec" id="seguridad">
+<div class="stitle">SEGURIDAD</div>
+<div class="ib">
+<p> <code>~/.zshenv</code> NO en git ni en historial de GitHub</p>
+<p> <code>git filter-repo</code> eliminó .zshenv del historial</p>
+<p> Todas las claves usan <code>{env:VAR}</code> en opencode.jsonc</p>
+<h3>Claves configuradas: 13/13 </h3>
+<p style="font-size:0.7em;word-break:break-all">OPENCODE_SECRET_KEY · GROQ_API_KEY · CEREBRAS_API_KEY · MISTRAL_API_KEY · SAMBANOVA_API_KEY · AI_GATEWAY_API_KEY · GEMINI_API_KEY · GOOGLE_API_KEY · CLOUDFLARE_API_TOKEN · OPENROUTER_API_KEY · GITHUB_TOKEN · NVIDIA_NIM_API_KEY · HUGGINGFACE_TOKEN</p>
+</div>
+</div>
+
+<div class="sec" id="verificacion">
+<div class="stitle">VERIFICACIÓN</div>
+<div class="ib">
+<h3>Comandos</h3>
+<div class="cb"><code>opencode --version</code> → 1.18.31<br>
+<code>omo --version</code> → 4.19.4<br>
+<code>sg --version</code> → ast-grep 0.45.3<br>
+<code>bunx oh-my-opencode doctor</code> → 1 warning no-crítico<br>
+<code>opencode models</code> → 34 modelos FREE</div>
 </div>
 </div>
 
