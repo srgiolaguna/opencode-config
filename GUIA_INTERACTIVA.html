@@ -3,487 +3,378 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>OpenCode — Modelos FREE</title>
+<title>OpenCode — Guía Completa</title>
 <style>
-* { margin: 0; padding: 0; box-sizing: border-box; }
-:root {
-  --bg: #0a0e17; --surface: #111827; --border: #1e293b;
-  --text: #f1f5f9; --text-muted: #94a3b8; --accent: #3b82f6;
-  --green: #22c55e; --yellow: #eab308; --red: #ef4444;
-  --purple: #a855f7; --teal: #14b8a6; --orange: #f97316;
-  --pink: #ec4899; --cyan: #06b6d4; --indigo: #6366f1;
-}
-body { font-family: -apple-system, BlinkMacSystemFont, 'SF Mono', 'Fira Code', monospace; background: var(--bg); color: var(--text); }
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0a0e17;--s:#111827;--b:#1e293b;--t:#f1f5f9;--tm:#94a3b8;--a:#3b82f6;--g:#22c55e;--p:#a855f7;--o:#f97316;--k:#ec4899;--c:#06b6d4;--y:#eab308}
+body{font-family:-apple-system,BlinkMacSystemFont,'SF Mono','Fira Code',monospace;background:var(--bg);color:var(--t);font-size:13px}
+h1,h2,h3{font-weight:600}
 
 /* HEADER */
-.header { background: linear-gradient(135deg, #0a0e17 0%, #1e1b4b 50%, #0a0e17 100%); padding: 60px 20px; text-align: center; border-bottom: 1px solid var(--border); position: relative; overflow: hidden; }
-.header::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(ellipse at 30% 50%, rgba(59,130,246,0.08) 0%, transparent 50%), radial-gradient(ellipse at 70% 50%, rgba(139,92,246,0.06) 0%, transparent 50%); animation: pulse-bg 8s ease-in-out infinite; }
-@keyframes pulse-bg { 0%, 100% { transform: translate(0, 0); } 50% { transform: translate(5%, -5%); } }
-.header h1 { font-size: 3em; background: linear-gradient(135deg, #3b82f6, #a855f7, #ec4899); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 8px; position: relative; }
-.header p { color: var(--text-muted); font-size: 1.1em; position: relative; }
-.header .stats { display: flex; justify-content: center; gap: 40px; margin-top: 30px; position: relative; flex-wrap: wrap; }
-.header .stat { text-align: center; }
-.header .stat .number { font-size: 2.5em; font-weight: 800; background: linear-gradient(135deg, #3b82f6, #22c55e); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-.header .stat .label { color: var(--text-muted); font-size: 0.8em; margin-top: 4px; }
+.header{background:linear-gradient(135deg,#0a0e17,#1e1b4b,#0a0e17);padding:30px 20px;text-align:center;border-bottom:1px solid var(--b)}
+.header h1{font-size:1.8em;background:linear-gradient(135deg,#3b82f6,#a855f7,#ec4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:4px}
+.header p{color:var(--tm);font-size:0.9em}
+.header .stats{display:flex;justify-content:center;gap:30px;margin-top:16px;flex-wrap:wrap}
+.header .stat{text-align:center}.header .stat .n{font-size:1.8em;font-weight:800;background:linear-gradient(135deg,#3b82f6,#22c55e);-webkit-background-clip:text;-webkit-text-fill-color:transparent}.header .stat .l{color:var(--tm);font-size:0.7em}
 
 /* SEARCH */
-.search-container { max-width: 700px; margin: -30px auto 30px; position: relative; z-index: 10; }
-.search-box { width: 100%; padding: 16px 24px; background: var(--surface); border: 2px solid var(--border); border-radius: 16px; color: var(--text); font-size: 1em; font-family: inherit; outline: none; transition: all 0.3s; }
-.search-box:focus { border-color: var(--accent); box-shadow: 0 0 20px rgba(59,130,246,0.15); }
-.search-box::placeholder { color: var(--text-muted); }
+.search-box{width:100%;max-width:600px;margin:16px auto 0;display:block;padding:10px 16px;background:var(--s);border:1px solid var(--b);border-radius:10px;color:var(--t);font-size:0.9em;font-family:inherit;outline:none}
+.search-box:focus{border-color:var(--a)}
+.search-box::placeholder{color:var(--tm)}
 
 /* FILTERS */
-.filters { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin: 20px auto; max-width: 900px; }
-.filter-btn { padding: 8px 16px; background: var(--surface); border: 1px solid var(--border); border-radius: 20px; color: var(--text-muted); cursor: pointer; font-size: 0.85em; font-family: inherit; transition: all 0.2s; }
-.filter-btn:hover { border-color: var(--accent); color: var(--text); }
-.filter-btn.active { background: rgba(59,130,246,0.15); border-color: var(--accent); color: var(--accent); }
+.filters{display:flex;flex-wrap:wrap;gap:4px;justify-content:center;margin:10px auto;max-width:900px}
+.filter-btn{padding:4px 10px;background:var(--s);border:1px solid var(--b);border-radius:14px;color:var(--tm);cursor:pointer;font-size:0.72em;font-family:inherit;transition:all .2s}
+.filter-btn:hover{border-color:var(--a);color:var(--t)}
+.filter-btn.active{background:rgba(59,130,246,.15);border-color:var(--a);color:var(--a)}
 
-/* LAYOUT */
-.container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+/* CONTAINER */
+.container{max-width:1200px;margin:0 auto;padding:10px}
 
-/* SECTION */
-.section { margin-bottom: 50px; }
-.section-title { font-size: 1.5em; color: var(--accent); margin-bottom: 20px; display: flex; align-items: center; gap: 10px; border-bottom: 1px solid var(--border); padding-bottom: 10px; }
+/* SECTIONS */
+.sec{margin-bottom:24px}
+.sec-title{font-size:1.1em;color:var(--a);margin-bottom:10px;display:flex;align-items:center;gap:8px;border-bottom:1px solid var(--b);padding-bottom:6px}
 
 /* CARDS */
-.card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; }
-.card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 20px; transition: all 0.3s; position: relative; overflow: hidden; }
-.card::after { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--accent), var(--purple)); opacity: 0; transition: opacity 0.3s; }
-.card:hover { border-color: var(--accent); transform: translateY(-2px); box-shadow: 0 12px 40px rgba(0,0,0,0.4); }
-.card:hover::after { opacity: 1; }
-.card h3 { font-size: 1em; color: var(--text); margin-bottom: 8px; word-break: break-all; }
-.card .desc { color: var(--text-muted); font-size: 0.85em; margin-bottom: 10px; }
-.card .meta { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; }
-.tag { display: inline-block; padding: 3px 10px; border-radius: 12px; font-size: 0.7em; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
-.tag-free { background: rgba(34,197,94,0.15); color: var(--green); border: 1px solid rgba(34,197,94,0.3); }
-.tag-fast { background: rgba(59,130,246,0.15); color: var(--accent); border: 1px solid rgba(59,130,246,0.3); }
-.tag-power { background: rgba(168,85,247,0.15); color: var(--purple); border: 1px solid rgba(168,85,247,0.3); }
-.tag-code { background: rgba(249,115,22,0.15); color: var(--orange); border: 1px solid rgba(249,115,22,0.3); }
-.tag-vision { background: rgba(236,72,153,0.15); color: var(--pink); border: 1px solid rgba(236,72,153,0.3); }
-.tag-voice { background: rgba(6,182,212,0.15); color: var(--cyan); border: 1px solid rgba(6,182,212,0.3); }
-.tag-search { background: rgba(234,179,8,0.15); color: var(--yellow); border: 1px solid rgba(234,179,8,0.3); }
-.tag-audio { background: rgba(236,72,153,0.15); color: var(--pink); border: 1px solid rgba(236,72,153,0.3); }
-
-/* PROVIDER BADGE */
-.provider-badge { font-size: 0.7em; padding: 2px 8px; border-radius: 8px; background: rgba(255,255,255,0.05); color: var(--text-muted); }
+.card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px}
+.card{background:var(--s);border:1px solid var(--b);border-radius:10px;padding:12px 14px;transition:all .2s;position:relative}
+.card:hover{border-color:var(--a);transform:translateY(-1px)}
+.card h4{font-size:0.85em;color:var(--t);margin-bottom:4px;word-break:break-all}
+.card .d{color:var(--tm);font-size:0.78em;margin-bottom:6px}
+.card .meta{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:4px}
+.tag{display:inline-block;padding:2px 7px;border-radius:10px;font-size:0.62em;font-weight:700;text-transform:uppercase;letter-spacing:.3px}
+.t-f{background:rgba(34,197,94,.15);color:var(--g);border:1px solid rgba(34,197,94,.3)}
+.t-fast{background:rgba(59,130,246,.15);color:var(--a);border:1px solid rgba(59,130,246,.3)}
+.t-pow{background:rgba(168,85,247,.15);color:var(--p);border:1px solid rgba(168,85,247,.3)}
+.t-code{background:rgba(249,115,22,.15);color:var(--o);border:1px solid rgba(249,115,22,.3)}
+.t-vis{background:rgba(236,72,153,.15);color:var(--k);border:1px solid rgba(236,72,153,.3)}
+.t-srch{background:rgba(234,179,8,.15);color:var(--y);border:1px solid rgba(234,179,8,.3)}
+.t-voice{background:rgba(6,182,212,.15);color:var(--c);border:1px solid rgba(6,182,212,.3)}
+.pb{font-size:0.65em;padding:1px 6px;border-radius:6px;background:rgba(255,255,255,.05);color:var(--tm)}
 
 /* TABLE */
-.compare-table { width: 100%; border-collapse: collapse; margin: 16px 0; }
-.compare-table th { background: var(--surface); color: var(--accent); padding: 12px 16px; text-align: left; font-size: 0.8em; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 2px solid var(--border); }
-.compare-table td { padding: 12px 16px; border-bottom: 1px solid var(--border); font-size: 0.9em; }
-.compare-table tr:hover td { background: rgba(59,130,246,0.03); }
-.compare-table .model-name { color: var(--green); font-weight: 600; }
-.compare-table .best { color: var(--green); font-weight: 700; }
+table{width:100%;border-collapse:collapse;margin:10px 0;font-size:0.82em}
+th{background:var(--s);color:var(--a);padding:8px 12px;text-align:left;font-size:0.72em;text-transform:uppercase;letter-spacing:.3px;border-bottom:2px solid var(--b)}
+td{padding:8px 12px;border-bottom:1px solid var(--b)}
+tr:hover td{background:rgba(59,130,246,.03)}
+.mn{color:var(--g);font-weight:600}
+.best{color:var(--g);font-weight:700}
 
 /* CATEGORY GRID */
-.category-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 16px; }
-.category-card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 24px; text-align: center; transition: all 0.3s; cursor: pointer; }
-.category-card:hover { border-color: var(--accent); transform: translateY(-3px); box-shadow: 0 12px 40px rgba(0,0,0,0.4); }
-.category-card .icon { font-size: 2.5em; margin-bottom: 12px; }
-.category-card h3 { color: var(--text); margin-bottom: 8px; }
-.category-card .count { color: var(--accent); font-size: 0.85em; }
-.category-card .models { color: var(--text-muted); font-size: 0.75em; margin-top: 8px; display: none; }
-.category-card:hover .models { display: block; }
+.cat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px}
+.cat-card{background:var(--s);border:1px solid var(--b);border-radius:10px;padding:16px;text-align:center;transition:all .2s;cursor:pointer}
+.cat-card:hover{border-color:var(--a);transform:translateY(-2px)}
+.cat-card .ic{font-size:2em;margin-bottom:6px}
+.cat-card h4{color:var(--t);margin-bottom:4px;font-size:0.85em}
+.cat-card .c{color:var(--a);font-size:0.78em}
+.cat-card .ms{color:var(--tm);font-size:0.7em;margin-top:6px;display:none}
+.cat-card:hover .ms{display:block}
 
 /* INFO BOX */
-.info-box { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 24px; margin: 20px 0; }
-.info-box h3 { color: var(--accent); margin-bottom: 12px; }
-.info-box p { color: var(--text-muted); font-size: 0.9em; margin-bottom: 8px; }
-.info-box code { background: rgba(59,130,246,0.1); color: var(--accent); padding: 2px 6px; border-radius: 4px; font-size: 0.85em; }
+.info{background:var(--s);border:1px solid var(--b);border-radius:10px;padding:16px;margin:12px 0}
+.info h3{color:var(--a);margin-bottom:8px;font-size:0.9em}
+.info p{color:var(--tm);font-size:0.82em;margin-bottom:6px}
+.info code{background:rgba(59,130,246,.1);color:var(--a);padding:1px 5px;border-radius:3px;font-size:0.8em}
+.info .code-block{background:#0a0e17;border:1px solid var(--b);border-radius:6px;padding:10px 14px;margin:6px 0;overflow-x:auto;font-size:0.8em}
+.info .code-block code{color:var(--g);background:none;padding:0;font-size:0.8em}
 
 /* TIPS */
-.tips-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; margin: 20px 0; }
-.tip { background: var(--surface); border-left: 3px solid var(--green); border-radius: 0 14px 14px 0; padding: 16px 20px; }
-.tip h4 { color: var(--green); font-size: 0.9em; margin-bottom: 6px; }
-.tip p { color: var(--text-muted); font-size: 0.85em; }
+.tips{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px;margin:12px 0}
+.tip{background:var(--s);border-left:3px solid var(--g);border-radius:0 8px 8px 0;padding:10px 14px}
+.tip h4{color:var(--g);font-size:0.82em;margin-bottom:4px}
+.tip p{color:var(--tm);font-size:0.78em}
+
+/* NAV */
+.nav-link{display:inline-block;padding:6px 14px;background:var(--s);border:1px solid var(--b);border-radius:8px;color:var(--t);text-decoration:none;font-size:0.78em;margin:2px;transition:all .2s}
+.nav-link:hover{border-color:var(--a);color:var(--a)}
 
 /* FOOTER */
-.footer { text-align: center; padding: 40px 20px; border-top: 1px solid var(--border); margin-top: 60px; color: var(--text-muted); font-size: 0.85em; }
-.footer .gradient-text { background: linear-gradient(135deg, #3b82f6, #a855f7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 700; }
+.footer{text-align:center;padding:24px 20px;border-top:1px solid var(--b);margin-top:30px;color:var(--tm);font-size:0.78em}
+.gt{background:linear-gradient(135deg,#3b82f6,#a855f7);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:700}
 
-/* HIDDEN for filtering */
-.hidden { display: none !important; }
-
-/* SCROLLBAR */
-::-webkit-scrollbar { width: 8px; }
-::-webkit-scrollbar-track { background: var(--bg); }
-::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
-::-webkit-scrollbar-thumb:hover { background: var(--accent); }
-
-@keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
-.float { animation: float 3s ease-in-out infinite; }
-
-@media (max-width: 768px) {
-  .header h1 { font-size: 1.8em; }
-  .header .stats { gap: 20px; }
-  .card-grid { grid-template-columns: 1fr; }
-  .category-grid { grid-template-columns: 1fr 1fr; }
-  .filters { gap: 4px; }
-  .filter-btn { padding: 6px 12px; font-size: 0.75em; }
-}
+.hidden{display:none!important}
+::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--b);border-radius:3px}::-webkit-scrollbar-thumb:hover{background:var(--a)}
+@media(max-width:768px){.header h1{font-size:1.3em}.card-grid{grid-template-columns:1fr}.cat-grid{grid-template-columns:1fr 1fr}.filters{gap:2px}}
 </style>
 </head>
 <body>
 
 <div class="header">
-  <h1 class="float">⚡ OpenCode</h1>
-  <p>Todos los Modelos GRATUITOS — 34 modelos en 12 proveedores</p>
+  <h1>⚡ OpenCode</h1>
+  <p>Guía Completa — Configuración, Modelos y Comandos</p>
   <div class="stats">
-    <div class="stat"><div class="number">34</div><div class="label">Modelos FREE</div></div>
-    <div class="stat"><div class="number">12</div><div class="label">Proveedores</div></div>
-    <div class="stat"><div class="number">0$</div><div class="label">Costo Total</div></div>
-    <div class="stat"><div class="number">6</div><div class="label">OpenCode Propios</div></div>
+    <div class="stat"><div class="n">34</div><div class="l">Modelos FREE</div></div>
+    <div class="stat"><div class="n">13</div><div class="l">Proveedores</div></div>
+    <div class="stat"><div class="n">0$</div><div class="l">Costo Total</div></div>
+    <div class="stat"><div class="n">4.19.4</div><div class="l">oh-my-opencode</div></div>
   </div>
 </div>
 
-<div class="search-container">
-  <input type="text" class="search-box" id="search" placeholder="🔍 Buscar modelo... (ej: nemotron, gemini, deepseek, coding)">
-</div>
+<input type="text" class="search-box" id="search" placeholder="🔍 Buscar modelo o comando...">
 
-<div class="filters" id="filters">
-  <button class="filter-btn active" onclick="filterCategory('all')">Todos</button>
-  <button class="filter-btn" onclick="filterCategory('fast')">⚡ Ultra-rápido</button>
-  <button class="filter-btn" onclick="filterCategory('power')">🧠 Potente</button>
-  <button class="filter-btn" onclick="filterCategory('code')">💻 Coding</button>
-  <button class="filter-btn" onclick="filterCategory('vision')">🎨 Visual</button>
-  <button class="filter-btn" onclick="filterCategory('search')">🔍 Investigación</button>
-  <button class="filter-btn" onclick="filterCategory('voice')">🎙️ Voz/Audio</button>
-  <button class="filter-btn" onclick="filterCategory('opencode')">🔧 OpenCode</button>
+<div class="filters">
+  <button class="filter-btn active" onclick="filter('all',this)">Todos</button>
+  <button class="filter-btn" onclick="filter('fast',this)">⚡ Rápido</button>
+  <button class="filter-btn" onclick="filter('power',this)">🧠 Potente</button>
+  <button class="filter-btn" onclick="filter('code',this)">💻 Coding</button>
+  <button class="filter-btn" onclick="filter('vis',this)">🎨 Visual</button>
+  <button class="filter-btn" onclick="filter('search',this)">🔍 Search</button>
+  <button class="filter-btn" onclick="filter('voice',this)">🎙️ Voz</button>
+  <button class="filter-btn" onclick="filter('opencode',this)">🔧 OpenCode</button>
+  <button class="filter-btn" onclick="filter('omo',this)">🔮 omo</button>
 </div>
 
 <div class="container">
 
-<!-- BEST MODELS COMPARISON -->
-<div class="section">
-  <div class="section-title">🏆 Mejores Modelos FREE</div>
-  <table class="compare-table">
-    <tr><th>Modelo</th><th>Proveedor</th><th>Categoría</th><th>Velocidad</th><th>Tamaño</th></tr>
-    <tr><td class="model-name">opencode/ling-3.0-flash-fin-free</td><td><span class="provider-badge">opencode</span></td><td><span class="tag tag-fast">ULTRA-RÁPIDO</span></td><td>⚡⚡⚡</td><td>Small</td></tr>
-    <tr><td class="model-name">opencode/nemotron-3-ultra-free</td><td><span class="provider-badge">opencode</span></td><td><span class="tag tag-power">PODEROSO</span></td><td>⚡⚡</td><td>70B+</td></tr>
-    <tr><td class="model-name">opencode/mimo-v2.5-free</td><td><span class="provider-badge">opencode</span></td><td><span class="tag tag-fast">RÁPIDO</span></td><td>⚡⚡</td><td>Medium</td></tr>
-    <tr><td class="model-name">opencode/nemotron-3.5-lightning-free</td><td><span class="provider-badge">opencode</span></td><td><span class="tag tag-fast">LIGHTNING</span></td><td>⚡⚡⚡</td><td>30B</td></tr>
-    <tr><td class="model-name">opencode/deepseek-v4-pro</td><td><span class="provider-badge">opencode</span></td><td><span class="tag tag-code">CODING</span></td><td>⚡⚡</td><td>Large</td></tr>
-    <tr><td class="model-name">google/gemini-3.6-flash</td><td><span class="provider-badge">google</span></td><td><span class="tag tag-vision">VISUAL</span></td><td>⚡⚡</td><td>Medium</td></tr>
-    <tr><td class="model-name">openrouter/nvidia/nemotron-3-ultra-550b-a55b:free</td><td><span class="provider-badge">openrouter/nvidia</span></td><td><span class="tag tag-power">PODEROSO</span></td><td>⚡⚡</td><td>55B</td></tr>
-    <tr><td class="model-name">groq/llama-3.3-70b-versatile</td><td><span class="provider-badge">groq</span></td><td><span class="tag tag-power">CONTEXTO</span></td><td>⚡⚡⚡</td><td>70B</td></tr>
-  </table>
+<!-- NAV -->
+<div class="sec">
+  <div class="sec-title">📑 Navegación</div>
+  <a href="#proveedores" class="nav-link">🌐 Proveedores</a>
+  <a href="#modelos" class="nav-link">🤖 Modelos</a>
+  <a href="#agentes" class="nav-link">👥 Agentes</a>
+  <a href="#ohmy" class="nav-link">🔮 oh-my-opencode</a>
+  <a href="#fallback" class="nav-link">🔄 Fallback</a>
+  <a href="#comandos" class="nav-link">⌨️ Comandos</a>
+  <a href="#cerrar" class="nav-link">🔒 cerrar</a>
+  <a href="#seguridad" class="nav-link">🔒 Seguridad</a>
+  <a href="#verificacion" class="nav-link">✅ Verificación</a>
 </div>
 
-<!-- CATEGORY GRID -->
-<div class="section">
-  <div class="section-title">🎯 Elige tu Categoría</div>
-  <div class="category-grid">
-    <div class="category-card" onclick="filterCategory('fast')">
-      <div class="icon">⚡</div>
-      <h3>Ultra-Rápido</h3>
-      <div class="count">6 modelos</div>
-      <div class="models">ling-3.0-flash-fin-free, gpt-5-nano, mimo-v2.5-free, gemini-3-flash, llama-3.1-8b-instant, north-mini-code:free</div>
-    </div>
-    <div class="category-card" onclick="filterCategory('power')">
-      <div class="icon">🧠</div>
-      <h3>Poderoso / Contexto</h3>
-      <div class="count">8 modelos</div>
-      <div class="models">nemotron-3-ultra-free, nemotron-3.5-lightning-free, llama-3.3-70b, gemini-3.6-flash, nemotron-3-super-120b:free</div>
-    </div>
-    <div class="category-card" onclick="filterCategory('code')">
-      <div class="icon">💻</div>
-      <h3>Coding</h3>
-      <div class="count">5 modelos</div>
-      <div class="models">deepseek-v4-pro, deepseek-v4-flash, Qwen2.5-Coder-32B, Qwen3-Coder-Next, north-mini-code:free</div>
-    </div>
-    <div class="category-card" onclick="filterCategory('vision')">
-      <div class="icon">🎨</div>
-      <h3>Visual / Multimodal</h3>
-      <div class="count">3 modelos</div>
-      <div class="models">gemini-3.6-flash, gemma-4-26b-a4b-it:free, gemma-4-31b-it:free</div>
-    </div>
-    <div class="category-card" onclick="filterCategory('search')">
-      <div class="icon">🔍</div>
-      <h3>Investigación / Web</h3>
-      <div class="count">2 modelos</div>
-      <div class="models">perplexity/sonar-pro-search, gemini-3.5-flash</div>垂直
-    </div>
-    <div class="category-card" onclick="filterCategory('voice')">
-      <div class="icon">🎙️</div>
-      <h3>Voz / Audio</h3>
-      <div class="count">8 modelos</div>
-      <div class="models">fish-audio/s1-free, fish-audio/s2-pro-free, fish-audio/transcribe-1-free, gemma-3-tts-free</div>
-    </div>
+<!-- PROVEEDORES -->
+<div class="sec" id="proveedores">
+  <div class="sec-title">🌐 Proveedores de API</div>
+  <div class="card-grid">
+    <div class="card"><div class="meta"><h4>opencode</h4><span class="t-f">FREE</span></div><p class="d">Modelos propios. Siempre gratuitos.</p><span class="pb">OPENCODE_SECRET_KEY</span></div>
+    <div class="card"><div class="meta"><h4>google/gemini</h4><span class="t-f">FREE</span></div><p class="d">Gemini 3.6 Flash — razonamiento y planificación.</p><span class="pb">GEMINI_API_KEY, GOOGLE_API_KEY</span></div>
+    <div class="card"><div class="meta"><h4>groq</h4><span class="t-f">FREE</span></div><p class="d">Llama 3.1 70B — inferencia ultra-rápida.</p><span class="pb">GROQ_API_KEY</span></div>
+    <div class="card"><div class="meta"><h4>cerebras</h4><span class="t-f">FREE</span></div><p class="d">Llama 3.3 70B — generación rápida.</p><span class="pb">CEREBRAS_API_KEY</span></div>
+    <div class="card"><div class="meta"><h4>mistral</h4><span class="t-f">FREE</span></div><p class="d">Mistral Small — tareas multilingües.</p><span class="pb">MISTRAL_API_KEY</span></div>
+    <div class="card"><div class="meta"><h4>sambanova</h4><span class="t-f">FREE</span></div><p class="d">Llama 3.1 — inferencia rápida.</p><span class="pb">SAMBANOVA_API_KEY</span></div>
+    <div class="card"><div class="meta"><h4>cloudflare</h4><span class="t-f">FREE</span></div><p class="d">Workers AI — llama-3.1, escalable.</p><span class="pb">CLOUDFLARE_API_TOKEN, ACCOUNT_ID</span></div>
+    <div class="card"><div class="meta"><h4>ai-gateway</h4><span class="t-f">FREE</span></div><p class="d">Mixtral — mixture-of-experts.</p><span class="pb">AI_GATEWAY_API_KEY</span></div>
+    <div class="card"><div class="meta"><h4>openrouter</h4><span class="t-f">FREE</span></div><p class="d">Free tier — múltiples modelos.</p><span class="pb">OPENROUTER_API_KEY</span></div>
+    <div class="card"><div class="meta"><h4>github</h4><span class="t-f">FREE</span></div><p class="d">Modelos GitHub.</p><span class="pb">GITHUB_TOKEN</span></div>
+    <div class="card"><div class="meta"><h4>nvidia</h4><span class="t-f">FREE</span></div><p class="d">Nemotron 3 Ultra — potente.</p><span class="pb">NVIDIA_NIM_API_KEY</span></div>
+    <div class="card"><div class="meta"><h4>huggingface</h4><span class="t-f">FREE</span></div><p class="d">Modelos HuggingFace Inference API.</p><span class="pb">HUGGINGFACE_TOKEN</span></div>
+    <div class="card"><div class="meta"><h4>ollama</h4><span class="t-f">LOCAL</span></div><p class="d">100% local. Sin internet.</p><span class="pb">Sin API key</span></div>
   </div>
 </div>
 
-<!-- ALL FREE MODELS -->
-<div class="section">
-  <div class="section-title">📋 Todos los Modelos FREE</div>
+<!-- MODELOS -->
+<div class="sec" id="modelos">
+  <div class="sec-title">🤖 Modelos FREE (34 en 12 proveedores)</div>
   <div class="card-grid" id="models-grid">
+    <div class="card" data-c="fast opencode" data-s="ling flash fin free rapido"><div class="meta"><h4>opencode/ling-3.0-flash-fin-free</h4><span class="t-f">FREE</span></div><p class="d">⚡ Ultra-rápido. Default, validación.</p><span class="pb">opencode</span></div>
+    <div class="card" data-c="fast opencode" data-s="mimo free rapido"><div class="meta"><h4>opencode/mimo-v2.5-free</h4><span class="t-f">FREE</span></div><p class="d">🚀 Rápido. Análisis, optimización.</p><span class="pb">opencode</span></div>
+    <div class="card" data-c="power opencode" data-s="nemotron ultra free potente"><div class="meta"><h4>opencode/nemotron-3-ultra-free</h4><span class="t-f">FREE</span></div><p class="d">🧠 Potente 70B+. Validación final.</p><span class="pb">opencode</span></div>
+    <div class="card" data-c="fast opencode" data-s="nemotron lightning free"><div class="meta"><h4>opencode/nemotron-3.5-lightning-free</h4><span class="t-f">FREE</span></div><p class="d">⚡⚡ Lightning. Ejecución, agentes.</p><span class="pb">opencode</span></div>
+    <div class="card" data-c="fast opencode code" data-s="muse spark contributor free"><div class="meta"><h4>opencode/muse-spark-1.3-contributor-free</h4><span class="t-f">FREE</span></div><p class="d">⚡ Contributor tier, uso gratuito.</p><span class="pb">opencode</span></div>
+    <div class="card" data-c="fast opencode code" data-s="muse spark contributor free"><div class="meta"><h4>opencode/muse-spark-1.2-contributor-free</h4><span class="t-f">FREE</span></div><p class="d">⚡ Contributor tier, uso gratuito.</p><span class="pb">opencode</span></div>
+    <div class="card" data-c="power vis search opencode" data-s="gemini 3 6 flash visual multimodal"><div class="meta"><h4>google/gemini-3.6-flash</h4><span class="t-f">FREE</span></div><p class="d">🎨 Visual + razonamiento.</p><span class="pb">google</span></div>
+    <div class="card" data-c="fast search" data-s="gemini 3 flash rapido"><div class="meta"><h4>google/gemini-3-flash</h4><span class="t-f">FREE</span></div><p class="d">⚡ Rápido. Razonamiento.</p><span class="pb">google</span></div>
+    <div class="card" data-c="power code" data-s="groq llama 3 70b versatil"><div class="meta"><h4>groq/llama-3.3-70b-versatile</h4><span class="t-f">FREE</span></div><p class="d">🧠 70B params. Contexto grande.</p><span class="pb">groq</span></div>
+    <div class="card" data-c="fast" data-s="groq llama 3 1 8b instant rapido"><div class="meta"><h4>groq/llama-3.1-8b-instant</h4><span class="t-f">FREE</span></div><p class="d">⚡ Ultra-instant.</p><span class="pb">groq</span></div>
+    <div class="card" data-c="code" data-s="groq gpt oss 120b coding"><div class="meta"><h4>groq/openai/gpt-oss-120b</h4><span class="t-f">FREE</span></div><p class="d">💻 120B params. Coding.</p><span class="pb">groq</span></div>
+    <div class="card" data-c="code" data-s="deepseek v4 pro flash coding"><div class="meta"><h4>opencode/deepseek-v4-pro</h4><span class="t-f">FREE</span></div><p class="d">💻 Pro coding.</p><span class="pb">opencode</span></div>
+    <div class="card" data-c="code" data-s="deepseek v4 flash coding"><div class="meta"><h4>opencode/deepseek-v4-flash</h4><span class="t-f">FREE</span></div><p class="d">💻 Flash coding.</p><span class="pb">opencode</span></div>
+    <div class="card" data-c="power" data-s="nemotron ultra 55b free"><div class="meta"><h4>openrouter/nvidia/nemotron-3-ultra-550b-a55b:free</h4><span class="t-f">:free</span></div><p class="d">🧠 55B. Ultra-potente NVIDIA.</p><span class="pb">openrouter/nvidia</span></div>
+    <div class="card" data-c="power" data-s="nemotron super 120b free"><div class="meta"><h4>openrouter/nvidia/nemotron-3-super-120b-a12b:free</h4><span class="t-f">:free</span></div><p class="d">🧠 120B. Máxima potencia.</p><span class="pb">openrouter/nvidia</span></div>
+    <div class="card" data-c="fast" data-s="nemotron lightning free"><div class="meta"><h4>openrouter/nvidia/nemotron-3.5-lightning:free</h4><span class="t-f">:free</span></div><p class="d">⚡ Lightning NVIDIA.</p><span class="pb">openrouter/nvidia</span></div>
+    <div class="card" data-c="fast" data-s="nemotron 3 nano free"><div class="meta"><h4>openrouter/nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free</h4><span class="t-f">:free</span></div><p class="d">⚡ Nano 30B. Razonamiento rápido.</p><span class="pb">openrouter/nvidia</span></div>
+    <div class="card" data-c="code" data-s="qwen coder 32b coding"><div class="meta"><h4>huggingface/Qwen/Qwen2.5-Coder-32B-Instruct</h4><span class="t-f">FREE</span></div><p class="d">💻 32B. Coding avanzado.</p><span class="pb">huggingface</span></div>
+    <div class="card" data-c="code" data-s="qwen coder next coding"><div class="meta"><h4>huggingface/Qwen/Qwen3-Coder-Next</h4><span class="t-f">FREE</span></div><p class="d">💻 Next-gen coding.</p><span class="pb">huggingface</span></div>
+    <div class="card" data-c="vis" data-s="gemma 4 26b vision"><div class="meta"><h4>huggingface/google/gemma-4-26b-a4b-it</h4><span class="t-f">:free</span></div><p class="d">🎨 26B. Vision.</p><span class="pb">huggingface</span></div>
+    <div class="card" data-c="vis" data-s="gemma 4 31b vision"><div class="meta"><h4>huggingface/google/gemma-4-31b-it</h4><span class="t-f">:free</span></div><p class="d">🎨 31B. Multimodal.</p><span class="pb">huggingface</span></div>
+    <div class="card" data-c="power vis" data-s="deepseek v4 flash vision"><div class="meta"><h4>huggingface/deepseek-ai/DeepSeek-V4-Flash</h4><span class="t-f">FREE</span></div><p class="d">🧠 Flash. Potente + vision.</p><span class="pb">huggingface</span></div>
+    <div class="card" data-c="search" data-s="perplexity sonar search"><div class="meta"><h4>openrouter/perplexity/sonar-pro-search</h4><span class="t-f">FREE</span></div><p class="d">🔍 Investigación web.</p><span class="pb">openrouter</span></div>
+    <div class="card" data-c="fast" data-s="inkling free"><div class="meta"><h4>openrouter/thinkingmachines/inkling:free</h4><span class="t-f">:free</span></div><p class="d">⚡ Rápido.</p><span class="pb">openrouter</span></div>
+    <div class="card" data-c="fast" data-s="glm 5.2 free"><div class="meta"><h4>openrouter/z-ai/glm-5.2:free</h4><span class="t-f">:free</span></div><p class="d">⚡ Rápido Z-AI.</p><span class="pb">openrouter</span></div>
+    <div class="card" data-c="fast" data-s="laguna xs free"><div class="meta"><h4>openrouter/poolside/laguna-xs-2.1:free</h4><span class="t-f">:free</span></div><p class="d">⚡ Nano ultra-rápido.</p><span class="pb">openrouter</span></div>
+    <div class="card" data-c="code" data-s="north mini code free"><div class="meta"><h4>openrouter/cohere/north-mini-code:free</h4><span class="t-f">:free</span></div><p class="d">💻 Mini coding Cohere.</p><span class="pb">openrouter/cohere</span></div>
+    <div class="card" data-c="voice" data-s="fish audio s1 free transcripcion"><div class="meta"><h4>vercel/fish-audio/s1-free</h4><span class="t-f">FREE</span></div><p class="d">🎙️ Transcripción voz.</p><span class="pb">vercel</span></div>
+    <div class="card" data-c="voice" data-s="fish audio s2 pro free"><div class="meta"><h4>vercel/fish-audio/s2-pro-free</h4><span class="t-f">FREE</span></div><p class="d">🎙️ S2 Pro transcripción.</p><span class="pb">vercel</span></div>
+    <div class="card" data-c="code" data-s="ling 3 flash fin free"><div class="meta"><h4>vercel/inclusionai/ling-3.0-flash-fin-free</h4><span class="t-f">FREE</span></div><p class="d">⚡ Flash fin coding.</p><span class="pb">vercel</span></div>
+    <div class="card" data-c="voice" data-s="fish audio transcribe free"><div class="meta"><h4>vercel/fish-audio/transcribe-1-free</h4><span class="t-f">FREE</span></div><p class="d">🎙️ Transcripción 1.</p><span class="pb">vercel</span></div>
+    <div class="card" data-c="fast search" data-s="gemini 3 6 flash"><div class="meta"><h4>opencode/gemini-3.6-flash</h4><span class="t-f">FREE</span></div><p class="d">⚡⚡ Gemini 3.6 flash.</p><span class="pb">opencode</span></div>
+    <div class="card" data-c="power" data-s="nemotron 3 ultra ultra free"><div class="meta"><h4>opencode/nemotron-3-ultra-550b-a55b:free</h4><span class="t-f">:free</span></div><p class="d">🧠 55B Ultra NVIDIA.</p><span class="pb">opencode</span></div>
+  </div>
+</div>
 
-    <!-- OPENCODE PROPIOS -->
-    <div class="card" data-category="fast opencode" data-search="ling flash fin free ultra rapido">
-      <div class="meta"><h3>opencode/ling-3.0-flash-fin-free</h3><span class="tag tag-free">FREE</span></div>
-      <p class="desc">⚡ Ultra-rápido. Default, validación, exploración.</p>
-      <span class="provider-badge">🔧 opencode</span>
-    </div>
-    <div class="card" data-category="fast opencode" data-search="mimo free rapido analisis optimizacion">
-      <div class="meta"><h3>opencode/mimo-v2.5-free</h3><span class="tag tag-free">FREE</span></div>
-      <p class="desc">🚀 Rápido. Análisis, optimización, tareas generales.</p>
-      <span class="provider-badge">🔧 opencode</span>
-    </div>
-    <div class="card" data-category="power opencode" data-search="nemotron ultra free potente contexto grande">
-      <div class="meta"><h3>opencode/nemotron-3-ultra-free</h3><span class="tag tag-free">FREE</span></div>
-      <p class="desc">🧠 Potente 70B+. Validación final, tareas pesadas.</p>
-      <span class="provider-badge">🔧 opencode</span>
-    </div>
-    <div class="card" data-category="fast opencode" data-search="nemotron lightning free rapido ejecucion cambios">
-      <div class="meta"><h3>opencode/nemotron-3.5-lightning-free</h3><span class="tag tag-free">FREE</span></div>
-      <p class="desc">⚡⚡ Lightning. Ejecución de cambios, agentes.</p>
-      <span class="provider-badge">🔧 opencode</span>
-    </div>
-    <div class="card" data-category="fast opencode code" data-search="muse spark contributor free coding">
-      <div class="meta"><h3>opencode/muse-spark-1.3-contributor-free</h3><span class="tag tag-free">FREE</span></div>
-      <p class="desc">⚡ Contributor tier. Uso gratuito.</p>
-      <span class="provider-badge">🔧 opencode</span>
-    </div>
-    <div class="card" data-category="fast opencode code" data-search="muse spark contributor free coding">
-      <div class="meta"><h3>opencode/muse-spark-1.2-contributor-free</h3><span class="tag tag-free">FREE</span></div>
-      <p class="desc">⚡ Contributor tier. Uso gratuito.</p>
-      <span class="provider-badge">🔧 opencode</span>
-    </div>
+<!-- AGENTES -->
+<div class="sec" id="agentes">
+  <div class="sec-title">👥 Agentes Configurados</div>
+  <div class="two-col" style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+    <div><h4 style="color:var(--a);margin-bottom:6px">Nativos (opencode.jsonc)</h4>
+    <table><tr><th>Agente</th><th>Modelo</th></tr>
+    <tr><td>auditor</td><td class="mn">mimo-v2.5-free</td></tr>
+    <tr><td>implementer</td><td class="mn">gemini-3.6-flash</td></tr>
+    <tr><td>optimizer</td><td class="mn">mimo-v2.5-free</td></tr>
+    <tr><td>reviewer</td><td class="mn">nemotron-3-ultra-free</td></tr>
+    <tr><td>validator</td><td class="mn">nemotron-3-ultra-free</td></tr></table></div>
+    <div><h4 style="color:var(--a);margin-bottom:6px">omo (~/.omo/omo.jsonc)</h4>
+    <table><tr><th>Agente</th><th>Modelo</th></tr>
+    <tr><td>hephaestus</td><td class="mn">gemini-3.6-flash</td></tr>
+    <tr><td>oracle</td><td class="mn">nemotron-3-ultra-free</td></tr>
+    <tr><td>librarian</td><td class="mn">gemini-3.6-flash</td></tr>
+    <tr><td>explore</td><td class="mn">ling-3.0-flash-fin-free</td></tr>
+    <tr><td>multimodal-looker</td><td class="mn">gemini-3.6-flash</td></tr>
+    <tr><td>prometheus</td><td class="mn">nemotron-3-ultra-free</td></tr>
+    <tr><td>metis</td><td class="mn">mimo-v2.5-free</td></tr>
+    <tr><td>momus</td><td class="mn">gpt-5-nano</td></tr>
+    <tr><td>atlas</td><td class="mn">nemotron-3-ultra-free</td></tr>
+    <tr><td>sisyphus-junior</td><td class="mn">nemotron-3-ultra-free</td></tr></table></div>
+  </div>
+</div>
 
-    <!-- GEMINI -->
-    <div class="card" data-category="power vision search opencode" data-search="gemini flash visual multimodal razonamiento">
-      <div class="meta"><h3>google/gemini-3.6-flash</h3><span class="tag tag-free">FREE</span></div>
-      <p class="desc">🎨 Visual + razonamiento. Multimodal, planificación.</p>
-      <span class="provider-badge">☀️ google</span>
-    </div>
-    <div class="card" data-category="fast search" data-search="gemini flash rapido">
-      <div class="meta"><h3>google/gemini-3-flash</h3><span class="tag tag-free">FREE</span></div>
-      <p class="desc">⚡ Rápido. Tareas generales de razonamiento.</p>
-      <span class="provider-badge">☀️ google</span>
-    </div>
+<!-- OH-MY-OPENCODE -->
+<div class="sec" id="ohmy">
+  <div class="sec-title">🔮 oh-my-opencode v4.19.4</div>
+  <div class="info">
+    <h3>¿Qué es?</h3>
+    <p>Plugin de orquestación para OpenCode. Enrutamiento automático de modelos, fallback automático, cadenas de respaldo por agente.</p>
+    <h3 style="margin-top:10px">Instalación</h3>
+    <div class="code-block"><code>brew install bun</code>
+<code>bun add -g oh-my-opencode</code>
+<code>bunx oh-my-opencode install --no-tui --platform opencode --claude no --openai no --gemini no --copilot no --opencode-zen no --zai-coding-plan no --kimi-for-coding no --opencode-go no</code></div>
+    <h3 style="margin-top:10px">Funciones</h3>
+    <p>✅ Enrutamiento automático según tipo de tarea</p>
+    <p>✅ Fallback automático sin perder contexto</p>
+    <p>✅ 10 agentes especializados + 8 categorías</p>
+    <p>✅ Cadena global: nemotron-3-ultra-free → gemini-3.6-flash → nemotron-3.5-lightning-free → mimo-v2.5-free → ling-3.0-flash-fin-free</p>
+    <h3 style="margin-top:10px">Archivos clave</h3>
+    <p><code>~/.omo/omo.jsonc</code> — Configuración principal<br>
+    <code>~/.config/opencode/node_modules/oh-my-openagent/</code> — Plugin<br>
+    <code>~/.bun/bin/omo</code> — Comando omo</p>
+  </div>
+</div>
 
-    <!-- GROQ -->
-    <div class="card" data-category="power code" data-search="groq llama 3 70b versatil contexto grande">
-      <div class="meta"><h3>groq/llama-3.3-70b-versatile</h3><span class="tag tag-free">FREE</span></div>
-      <p class="desc">🧠 70B params. Contexto grande, inferencia rápida.</p>
-      <span class="provider-badge">⚡ groq</span>
-    </div>
-    <div class="card" data-category="fast" data-search="groq llama 3 1 8b instant rapido">
-      <div class="meta"><h3>groq/llama-3.1-8b-instant</h3><span class="tag tag-free">FREE</span></div>
-      <p class="desc">⚡ Ultra-instant. Tareas rápidas, bajo coste.</p>
-      <span class="provider-badge">⚡ groq</span>
-    </div>
-    <div class="card" data-category="code" data-search="groq openai gpt oss 120b coding">
-      <div class="meta"><h3>groq/openai/gpt-oss-120b</h3><span class="tag tag-free">FREE</span></div>
-      <p class="desc">💻 120B params. Coding potente.</p>
-      <span class="provider-badge">⚡ groq</span>
-    </div>
+<!-- FALLBACK -->
+<div class="sec" id="fallback">
+  <div class="sec-title">🔄 Cadena de Fallback</div>
+  <div class="info">
+    <p>Si un modelo falla (rate limit, error 500, timeout), el sistema prueba el siguiente <strong>sin perder contexto</strong>.</p>
+    <h3 style="margin-top:8px">Cadena Global</h3>
+    <div class="code-block" style="font-size:0.85em"><span style="color:var(--g)">nemotron-3-ultra-free</span> → <span style="color:var(--a)">gemini-3.6-flash</span> → <span style="color:var(--o)">nemotron-3.5-lightning-free</span> → <span style="color:var(--p)">mimo-v2.5-free</span> → <span style="color:var(--c)">ling-3.0-flash-fin-free</span></div>
+    <h3 style="margin-top:8px">Categorías</h3>
+    <table><tr><th>Categoría</th><th>Modelo</th></tr>
+    <tr><td>quick</td><td class="mn">gpt-5-nano</td></tr>
+    <tr><td>deep</td><td class="mn">nemotron-3-ultra-free</td></tr>
+    <tr><td>visual-engineering</td><td class="mn">gemini-3.6-flash</td></tr>
+    <tr><td>ultrabrain</td><td class="mn">nemotron-3-ultra-free</td></tr>
+    <tr><td>writing</td><td class="mn">mimo-v2.5-free</td></tr>
+    <tr><td>artistry</td><td class="mn">nemotron-3.5-lightning-free</td></tr></table>
+  </div>
+</div>
 
-    <!-- DEEPSEEK -->
-    <div class="card" data-category="code" data-search="deepseek v4 pro flash coding">
-      <div class="meta"><h3>opencode/deepseek-v4-pro</h3><span class="tag tag-free">FREE</span></div>
-      <p class="desc">💻 Pro coding. Lenguaje, lógica, razonamiento.</p>
-      <span class="provider-badge">🔧 opencode</span>
-    </div>
-    <div class="card" data-category="code" data-search="deepseek v4 flash coding">
-      <div class="meta"><h3>opencode/deepseek-v4-flash</h3><span class="tag tag-free">FREE</span></div>
-      <p class="desc">💻 Flash coding. Rápido y eficiente.</p>
-      <span class="provider-badge">🔧 opencode</span>
-    </div>
+<!-- COMANDOS -->
+<div class="sec" id="comandos">
+  <div class="sec-title">⌨️ Comandos</div>
+  <div class="info">
+    <h3>opencode</h3>
+    <div class="code-block"><code>opencode</code> — Iniciar<br>
+    <code>opencode models</code> — Listar modelos<br>
+    <code>opencode -m &lt;model&gt;</code> — Modelo específico<br>
+    <code>opencode agent &lt;agente&gt;</code> — Lanzar agente<br>
+    <code>opencode doctor</code> — Verificar config<br>
+    <code>/model gemini/gemini-3.6-flash</code> — Cambiar modelo</div>
+    <h3 style="margin-top:8px">oh-my-opencode</h3>
+    <div class="code-block"><code>omo</code> — Iniciar<br>
+    <code>omo --version</code> — Versión (4.19.4)<br>
+    <code>omo doctor</code> — Diagnosticar</div>
+    <h3 style="margin-top:8px">Terminal</h3>
+    <div class="code-block"><code>cerrar</code> — Commit + push<br>
+    <code>source ~/.zshenv</code> — Recargar env<br>
+    <code>sg --version</code> — ast-grep 0.45.3</div>
+  </div>
+</div>
 
-    <!-- OPENROUTER NVIDIA -->
-    <div class="card" data-category="power" data-search="nemotron ultra free powerful 55b">
-      <div class="meta"><h3>openrouter/nvidia/nemotron-3-ultra-550b-a55b:free</h3><span class="tag tag-free">:free</span></div>
-      <p class="desc">🧠 55B params. Ultra-potente, NVIDIA.</p>
-      <span class="provider-badge">🔀 openrouter/nvidia</span>
-    </div>
-    <div class="card" data-category="power" data-search="nemotron super 120b free powerful">
-      <div class="meta"><h3>openrouter/nvidia/nemotron-3-super-120b-a12b:free</h3><span class="tag tag-free">:free</span></div>
-      <p class="desc">🧠 120B params. Máxima potencia.</p>
-      <span class="provider-badge">🔀 openrouter/nvidia</span>
-    </div>
-    <div class="card" data-category="fast" data-search="nemotron lightning free rapido">
-      <div class="meta"><h3>openrouter/nvidia/nemotron-3.5-lightning:free</h3><span class="tag tag-free">:free</span></div>
-      <p class="desc">⚡ Lightning. Ultra-rápido NVIDIA.</p>
-      <span class="provider-badge">🔀 openrouter/nvidia</span>
-    </div>
-    <div class="card" data-category="fast" data-search="nemotron 3 nano free">
-      <div class="meta"><h3>openrouter/nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free</h3><span class="tag tag-free">:free</span></div>
-      <p class="desc">⚡ Nano 30B. Razonamiento rápido.</p>
-      <span class="provider-badge">🔀 openrouter/nvidia</span>
-    </div>
+<!-- CERRAR -->
+<div class="sec" id="cerrar">
+  <div class="sec-title">🔒 Comando: cerrar</div>
+  <div class="info">
+    <p>Escribe <code>cerrar</code> antes de cerrar sesión. Automáticamente:</p>
+    <p>✅ Auto-commit en todos los repos git<br>
+    ✅ Auto-push a GitHub<br>
+    ✅ Verifica procesos NEXº<br>
+    ✅ Muestra claves API pendientes<br>
+    <strong>5 repos:</strong> opencode-config, dotfiles, Cycle, NEXº, Workstation<br>
+    <strong>Excluidos:</strong> node_modules, .cache, .codex, .openclaw</p>
+  </div>
+</div>
 
-    <!-- HUGGINGFACE -->
-    <div class="card" data-category="code" data-search="qwen coder 32b coding">
-      <div class="meta"><h3>huggingface/Qwen/Qwen2.5-Coder-32B-Instruct</h3><span class="tag tag-free">FREE</span></div>
-      <p class="desc">💻 32B params. Coding avanzado.</p>
-      <span class="provider-badge">🤗 huggingface</span>
-    </div>
-    <div class="card" data-category="code" data-search="qwen coder next coding">
-      <div class="meta"><h3>huggingface/Qwen/Qwen3-Coder-Next</h3><span class="tag tag-free">FREE</span></div>
-      <p class="desc">💻 Next-gen coding. Nueva generación.</p>
-      <span class="provider-badge">🤗 huggingface</span>
-    </div>
-    <div class="card" data-category="vision" data-search="gemma 4 26b it free vision">
-      <div class="meta"><h3>huggingface/google/gemma-4-26b-a4b-it</h3><span class="tag tag-free">:free</span></div>
-      <p class="desc">🎨 26B params. Vision + instrucción.</p>
-      <span class="provider-badge">🤗 huggingface/google</span>
-    </div>
-    <div class="card" data-category="vision" data-search="gemma 4 31b it free vision">
-      <div class="meta"><h3>huggingface/google/gemma-4-31b-it</h3><span class="tag tag-free">:free</span></div>
-      <p class="desc">🎨 31B params. Multimodal.</p>
-      <span class="provider-badge">🤗 huggingface/google</span>
-    </div>
-    <div class="card" data-category="power" data-search="deepseek v4 flash vision free powerful">
-      <div class="meta"><h3>huggingface/deepseek-ai/DeepSeek-V4-Flash</h3><span class="tag tag-free">FREE</span></div>
-      <p class="desc">🧠 Flash. Potente + vision.</p>
-      <span class="provider-badge">🤗 huggingface</span>
-    </div>
+<!-- SEGURIDAD -->
+<div class="sec" id="seguridad">
+  <div class="sec-title">🔒 Seguridad</div>
+  <div class="info">
+    <p>✅ <code>~/.zshenv</code> NO está en git ni en historial</p>
+    <p>✅ <code>git filter-repo</code> eliminó .zshenv del historial de GitHub</p>
+    <p>✅ Ninguna clave API en repositorios de GitHub</p>
+    <p>✅ Todas las claves usan <code>{env:VAR}</code> en opencode.jsonc</p>
+    <p>✅ <code>~/.zshenv</code> en .gitignore de dotfiles</p>
+    <h3 style="margin-top:8px">Claves configuradas: 13/13 ✅</h3>
+    <p>OPENCODE_SECRET_KEY, GROQ_API_KEY, CEREBRAS_API_KEY, MISTRAL_API_KEY, SAMBANOVA_API_KEY, AI_GATEWAY_API_KEY, GEMINI_API_KEY, GOOGLE_API_KEY, CLOUDFLARE_API_TOKEN, OPENROUTER_API_KEY, GITHUB_TOKEN, NVIDIA_NIM_API_KEY, HUGGINGFACE_TOKEN</p>
+  </div>
+</div>
 
-    <!-- OPENROUTER OTHERS -->
-    <div class="card" data-category="fast search" data-search="perplexity sonar pro search investigacion">
-      <div class="meta"><h3>openrouter/perplexity/sonar-pro-search</h3><span class="tag tag-free">FREE</span></div>
-      <p class="desc">🔍 Investigación web. Pro-search.</p>
-      <span class="provider-badge">🔀 openrouter/perplexity</span>
-    </div>
-    <div class="card" data-category="fast" data-search="inkling free rapido">
-      <div class="meta"><h3>openrouter/thinkingmachines/inkling:free</h3><span class="tag tag-free">:free</span></div>
-      <p class="desc">⚡ Rápido. Thinking Machines.</p>
-      <span class="provider-badge">🔀 openrouter</span>
-    </div>
-    <div class="card" data-category="fast" data-search="glm 5.2 free rapido">
-      <div class="meta"><h3>openrouter/z-ai/glm-5.2:free</h3><span class="tag tag-free">:free</span></div>
-      <p class="desc">⚡ Rápido. Z-AI GLM-5.2.</p>
-      <span class="provider-badge">🔀 openrouter/z-ai</span>
-    </div>
-    <div class="card" data-category="fast" data-search="laguna xs free">
-      <div class="meta"><h3>openrouter/poolside/laguna-xs-2.1:free</h3><span class="tag tag-free">:free</span></div>
-      <p class="desc">⚡ Nano. Ultra-rápido poolside.</p>
-      <span class="provider-badge">🔀 openrouter/poolside</span>
-    </div>
-
-    <!-- VOICE/AUDIO (VERCEL) -->
-    <div class="card" data-category="voice" data-search="fish audio s1 free transcripcion voz">
-      <div class="meta"><h3>vercel/fish-audio/s1-free</h3><span class="tag tag-free">FREE</span></div>
-      <p class="desc">🎙️ Transcripción de voz gratis.</p>
-      <span class="provider-badge">🎵 vercel</span>
-    </div>
-    <div class="card" data-category="voice" data-search="fish audio s2 pro free transcripcion">
-      <div class="meta"><h3>vercel/fish-audio/s2-pro-free</h3><span class="tag tag-free">FREE</span></div>
-      <p class="desc">🎙️ S2 Pro transcripción gratis.</p>
-      <span class="provider-badge">🎵 vercel</span>
-    </div>
-    <div class="card" data-category="voice" data-search="fish audio transcribe free voz">
-      <div class="meta"><h3>vercel/fish-audio/transcribe-1-free</h3><span class="tag tag-free">FREE</span></div>
-      <p class="desc">🎙️ Transcripción 1 gratis.</p>
-      <span class="provider-badge">🎵 vercel</span>
-    </div>
-
-    <!-- VERCEL OTHERS -->
-    <div class="card" data-category="code" data-search="ling 3 flash fin free coding">
-      <div class="meta"><h3>vercel/inclusionai/ling-3.0-flash-fin-free</h3><span class="tag tag-free">FREE</span></div>
-      <p class="desc">⚡ Flash fin. Coding rápido.</p>
-      <span class="provider-badge">🎵 vercel</span>
-    </div>
-    <div class="card" data-category="power" data-search="ling 3 flash sante free powerful">
-      <div class="meta"><h3>vercel/inclusionai/ling-3.0-flash-sante:free</h3><span class="tag tag-free">:free</span></div>
-      <p class="desc">🧠 Santé. Potente + safety.</p>
-      <span class="provider-badge">🎵 vercel</span>
-    </div>
-
-    <!-- COHERE -->
-    <div class="card" data-category="code" data-search="north mini code free coding">
-      <div class="meta"><h3>openrouter/cohere/north-mini-code:free</h3><span class="tag tag-free">:free</span></div>
-      <p class="desc">💻 Mini coding. Ultra-rápido Cohere.</p>
-      <span class="provider-badge">🔀 openrouter/cohere</span>
-    </div>
-
+<!-- VERIFICACIÓN -->
+<div class="sec" id="verificacion">
+  <div class="sec-title">✅ Verificación</div>
+  <div class="info">
+    <h3>Comandos</h3>
+    <div class="code-block"><code>opencode --version</code> → 1.18.31<br>
+    <code>omo --version</code> → 4.19.4<br>
+    <code>sg --version</code> → ast-grep 0.45.3<br>
+    <code>bunx oh-my-opencode doctor</code> → 1 warning no-crítico<br>
+    <code>opencode models</code> → 34 modelos FREE listados</div>
+    <h3 style="margin-top:8px">Repositorios GitHub</h3>
+    <table><tr><th>Repo</th><th>URL</th></tr>
+    <tr><td>opencode-config</td><td class="mn">github.com/srgiolaguna/opencode-config</td></tr>
+    <tr><td>dotfiles</td><td class="mn">github.com/srgiolaguna/dotfiles</td></tr></table>
   </div>
 </div>
 
 <!-- TIPS -->
-<div class="section">
-  <div class="section-title">💡 Consejos</div>
-  <div class="tips-grid">
-    <div class="tip">
-      <h4>⚡ Para tareas rápidas</h4>
-      <p>Usa <code>ling-3.0-flash-fin-free</code> o <code>gpt-5-nano</code>. Son los más veloces.</p>
-    </div>
-    <div class="tip">
-      <h4>🧠 Para análisis profundo</h4>
-      <p>Usa <code>nemotron-3-ultra-free</code> o <code>llama-3.3-70b</code>. Más parámetros = más capacidad.</p>
-    </div>
-    <div class="tip">
-      <h4>💻 Para programar</h4>
-      <p>Usa <code>deepseek-v4-pro</code>, <code>Qwen2.5-Coder-32B</code>, o <code>gpt-oss-120b</code>.</p>
-    </div>
-    <div class="tip">
-      <h4>🎨 Para imágenes</h4>
-      <p>Usa <code>gemini-3.6-flash</code> o <code>gemma-4-31b-it</code> que son multimodales.</p>
-    </div>
-    <div class="tip">
-      <h4>🔍 Para búsqueda web</h4>
-      <p>Usa <code>perplexity/sonar-pro-search</code> o <code>gemini-3.5-flash</code>.</p>
-    </div>
-    <div class="tip">
-      <h4>🎙️ Para audio</h4>
-      <p>Usa <code>fish-audio/s1-free</code> o <code>transcribe-1-free</code> de Vercel.</p>
-    </div>
-  </div>
-</div>
-
-<!-- HOW TO USE -->
-<div class="section">
-  <div class="section-title">🔧 Cómo Usar un Modelo FREE</div>
-  <div class="info-box">
-    <h3>Cambiar modelo durante una sesión</h3>
-    <p>Abre opencode, luego escribe:</p>
-    <div class="code-block" style="margin:12px 0;"><code>/model opencode/nemotron-3-ultra-free</code></div>
-    <p>o para OpenRouter:</p>
-    <div class="code-block" style="margin:12px 0;"><code>/model openrouter/nvidia/nemotron-3-ultra-550b-a55b:free</code></div>
-    <p style="margin-top:12px;">Para ver todos los modelos disponibles:</p>
-    <div class="code-block" style="margin:12px 0;"><code>opencode models</code></div>
+<div class="sec">
+  <div class="sec-title">💡 Consejos</div>
+  <div class="tips">
+    <div class="tip"><h4>⚡ Tareas rápidas</h4><p>Usa <code>ling-3.0-flash-fin-free</code> o <code>nemotron-3.5-lightning-free</code>.</p></div>
+    <div class="tip"><h4>🧠 Análisis profundo</h4><p>Usa <code>nemotron-3-ultra-free</code> o <code>llama-3.3-70b</code>.</p></div>
+    <div class="tip"><h4>💻 Programar</h4><p>Usa <code>deepseek-v4-pro</code>, <code>Qwen2.5-Coder-32B</code>, <code>gpt-oss-120b</code>.</p></div>
+    <div class="tip"><h4>🎨 Imágenes</h4><p>Usa <code>gemini-3.6-flash</code> o <code>gemma-4-31b-it</code>.</p></div>
+    <div class="tip"><h4>🔍 Investigación</h4><p>Usa <code>perplexity/sonar-pro-search</code>.</p></div>
+    <div class="tip"><h4>🎙️ Audio</h4><p>Usa <code>fish-audio/s1-free</code> o <code>transcribe-1-free</code>.</p></div>
   </div>
 </div>
 
 </div>
 
 <div class="footer">
-  <p>opencode v1.18.31 · oh-my-opencode v4.19.4 · <span class="gradient-text">34 modelos FREE · 0$</span></p>
-  <p style="margin-top:8px;font-size:0.75em;">Todos los modelos verificados con <code>opencode models</code> · 16 septiembre 2026</p>
+  <p>opencode v1.18.31 · oh-my-opencode v4.19.4 · AST-Grep 0.45.3 · <span class="gt">34 modelos FREE · 0$</span></p>
+  <p style="margin-top:6px;font-size:0.7em;">16 septiembre 2026 · Documentación fiel y actualizada</p>
 </div>
 
 <script>
 // SEARCH
-document.getElementById('search').addEventListener('input', function(e) {
-  const query = e.target.value.toLowerCase();
-  const cards = document.querySelectorAll('#models-grid .card');
-  cards.forEach(card => {
-    const text = card.textContent.toLowerCase();
-    card.classList.toggle('hidden', query.length > 0 && !text.includes(query));
+document.getElementById('search').addEventListener('input', function(){
+  const q = this.value.toLowerCase();
+  document.querySelectorAll('#models-grid .card').forEach(c => {
+    const txt = c.textContent.toLowerCase();
+    c.style.display = (q && !txt.includes(q)) ? 'none' : '';
   });
 });
 
 // FILTER
-function filterCategory(cat) {
-  // Update button states
-  document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
-  event.target.classList.add('active');
-  
-  const cards = document.querySelectorAll('#models-grid .card');
-  cards.forEach(card => {
-    if (cat === 'all') {
-      card.classList.remove('hidden');
-    } else {
-      const categories = card.getAttribute('data-category') || '';
-      card.classList.toggle('hidden', !categories.includes(cat));
+function filter(cat, btn){
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('#models-grid .card').forEach(c => {
+    if(cat==='all'){c.style.display=''}
+    else{
+      const catAttr = c.getAttribute('data-c')||'';
+      c.style.display = catAttr.includes(cat)?'':'none';
     }
   });
 }
-
-// Add :free tag styling
-document.querySelectorAll('.tag-free').forEach(tag => {
-  tag.style.cursor = 'default';
-});
 </script>
 </body>
 </html>
