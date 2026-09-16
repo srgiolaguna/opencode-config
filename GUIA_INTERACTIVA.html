@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OpenCode — Guía</title>
+<link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0d0d0d;--s:#141414;--b:#2a2e3a;--t:#e0e0e0;--tm:#9a9a9a;--a:#00C8D4;--g:#D4A843;--p:#2E4AA8;--o:#C2410C;--k:#C2410C;--c:#00C8D4;--y:#E8C840;--r:#C2410C}
+body{font-family:'Urbanist',-apple-system,BlinkMacSystemFont,'SF Mono','Fira Code',monospace;background:var(--bg);color:var(--t);font-size:13px;line-height:1.5}
+a{color:var(--a);text-decoration:none}
+
+.hdr{background:linear-gradient(135deg,#0d0d0d,#0a2a2a,#0d0d0d);padding:24px 20px;text-align:center;border-bottom:1px solid rgba(0,200,212,.2)}
+.hdr h1{font-size:2.4em;color:#00E8D4;text-shadow:0 0 20px rgba(0,200,212,.4),0 0 40px rgba(0,200,212,.2),0 0 60px rgba(0,200,212,.1);margin-bottom:4px;font-weight:800;letter-spacing:8px;font-family:'Urbanist',sans-serif;text-transform:uppercase}
+.hdr p{color:var(--a);font-size:0.85em;opacity:0.8;letter-spacing:1px;font-family:'Urbanist',sans-serif}
+.hdr .stats{display:flex;justify-content:center;gap:24px;margin-top:12px;flex-wrap:wrap}
+.hdr .st{text-align:center}.hdr .st .n{font-size:1.6em;font-weight:800;color:#00E8D4;text-shadow:0 0 10px rgba(0,200,212,.3);letter-spacing:2px;font-family:'Urbanist',sans-serif}.hdr .st .l{color:var(--tm);font-size:0.65em;text-transform:uppercase}
+
+.sb-wrap{max-width:500px;margin:12px auto 0}
+.sb{width:100%;padding:8px 14px;background:var(--s);border:1px solid var(--b);border-radius:8px;color:var(--t);font-size:0.85em;font-family:inherit;outline:none}
+.sb:focus{border-color:var(--a);box-shadow:0 0 12px rgba(0,200,212,.2)}
+.sb::placeholder{color:var(--tm)}
+
+.nav{display:flex;flex-wrap:wrap;gap:4px;justify-content:center;margin:8px auto;max-width:900px}
+.nb{padding:4px 10px;background:var(--s);border:1px solid var(--b);border-radius:6px;color:var(--tm);cursor:pointer;font-size:0.7em;font-family:'Urbanist',sans-serif;transition:all .2s;letter-spacing:1px}
+.nb:hover{border-color:var(--a);color:var(--t)}
+.nb.act{background:rgba(0,200,212,.12);border-color:var(--a);color:var(--a)}
+
+.ct{max-width:1200px;margin:0 auto;padding:10px 16px}
+
+.sec{margin-bottom:18px}
+.stitle{font-size:1em;color:var(--a);margin-bottom:8px;display:flex;align-items:center;gap:6px;border-bottom:1px solid rgba(0,200,212,.2);padding-bottom:4px}
+
+.cg{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:8px}
+.card{background:var(--s);border:1px solid var(--b);border-radius:8px;padding:10px 12px;transition:all .2s;cursor:pointer}
+.card:hover{border-color:var(--a)}
+.card.clickable:hover{box-shadow:0 0 12px rgba(0,200,212,.15)}
+.card h4{font-size:0.78em;color:var(--t);margin-bottom:3px;word-break:break-all;font-family:'Urbanist',sans-serif;font-weight:600;letter-spacing:.5px}
+.card .d{color:var(--tm);font-size:0.72em;margin-bottom:4px}
+.card .meta{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:3px}
+.card .click-hint{font-size:0.6em;color:var(--a);margin-top:2px;opacity:0;transition:opacity .2s}
+.card.clickable:hover .click-hint{opacity:1}
+
+.tag{display:inline-block;padding:1px 6px;border-radius:8px;font-size:0.58em;font-weight:700;text-transform:uppercase;letter-spacing:.3px}
+.t-f{background:rgba(212,168,67,.15);color:var(--g);border:1px solid rgba(212,168,67,.25)}
+.t-fast{background:rgba(0,200,212,.15);color:var(--a);border:1px solid rgba(0,200,212,.25)}
+.t-pow{background:rgba(46,74,168,.15);color:var(--p);border:1px solid rgba(46,74,168,.25)}
+.t-code{background:rgba(46,74,168,.15);color:var(--p);border:1px solid rgba(46,74,168,.25)}
+.t-vis{background:rgba(194,65,12,.15);color:var(--o);border:1px solid rgba(194,65,12,.25)}
+.t-srch{background:rgba(232,200,64,.15);color:var(--y);border:1px solid rgba(232,200,64,.25)}
+.t-voice{background:rgba(0,200,212,.15);color:var(--c);border:1px solid rgba(0,200,212,.25)}
+.t-local{background:rgba(46,74,168,.06);color:var(--p);border:1px solid rgba(0,200,212,.12)}
+.pb{font-size:0.6em;padding:1px 5px;border-radius:4px;background:rgba(255,255,255,.04);color:var(--tm)}
+
+table{width:100%;border-collapse:collapse;margin:8px 0;font-size:0.78em}
+th{background:var(--s);color:var(--a);padding:6px 10px;text-align:left;font-size:0.68em;text-transform:uppercase;letter-spacing:.3px;border-bottom:2px solid var(--b)}
+td{padding:6px 10px;border-bottom:1px solid rgba(0,200,212,.2)}
+tr:hover td{background:rgba(99,102,241,.02)}
+.mn{color:var(--g);font-weight:600}
+
+.ib{background:var(--s);border:1px solid rgba(0,200,212,.12);border-radius:8px;padding:12px 16px;margin:8px 0}
+.ib h3{color:var(--a);font-size:0.85em;margin-bottom:6px;font-family:'Urbanist',sans-serif;font-weight:600;letter-spacing:1px}
+.ib p{color:var(--tm);font-size:0.78em;margin-bottom:4px}
+.ib code{background:rgba(99,102,241,.1);color:var(--a);padding:1px 4px;border-radius:3px;font-size:0.75em}
+.cb{background:#080b12;border:1px solid var(--b);border-radius:6px;padding:8px 12px;margin:4px 0;overflow-x:auto;font-size:0.75em}
+.cb code{color:var(--g);background:none;padding:0;font-size:0.75em}
+
+.tips{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:8px;margin:8px 0}
+.tip{background:var(--s);border-left:3px solid var(--a);border-radius:0 6px 6px 0;padding:8px 12px}
+.tip h4{color:var(--a);font-size:0.78em;margin-bottom:3px;font-family:'Urbanist',sans-serif;font-weight:600}
+.tip p{color:var(--tm);font-size:0.72em}
+
+.gl{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+
+/* MODAL */
+.modal-overlay{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.75);z-index:1000;justify-content:center;align-items:center;padding:20px}
+.modal-overlay.active{display:flex}
+.modal{background:var(--s);border:1px solid rgba(0,200,212,.12);border-radius:14px;box-shadow:0 0 30px rgba(0,200,212,.08);padding:24px;max-width:600px;width:90%;max-height:80vh;overflow-y:auto;position:relative}
+.modal h2{color:#00E8D4;font-size:1.1em;margin-bottom:12px;display:flex;align-items:center;gap:8px;text-shadow:0 0 10px rgba(0,200,212,.3);font-family:'Urbanist',sans-serif;font-weight:700;letter-spacing:1px}
+.modal .close-btn{position:absolute;top:12px;right:16px;background:none;border:none;color:var(--tm);font-size:1.3em;cursor:pointer;padding:4px 8px;border-radius:4px}
+.modal .close-btn:hover{background:rgba(255,255,255,.05);color:var(--t)}
+.modal .provider-badge{display:inline-block;padding:2px 8px;border-radius:6px;background:rgba(0,200,212,.12);color:var(--a);font-size:0.72em;font-weight:600;margin-bottom:8px}
+.modal .desc{color:var(--t);font-size:0.88em;line-height:1.6;margin-bottom:12px}
+.modal .specs{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px}
+.modal .spec{background:var(--bg);border:1px solid var(--b);border-radius:6px;padding:8px 12px}
+.modal .spec .label{color:var(--tm);font-size:0.65em;text-transform:uppercase}
+.modal .spec .value{color:var(--g);font-size:0.85em;font-weight:600}
+.modal .why{color:var(--tm);font-size:0.82em;line-height:1.5}
+.modal .why strong{color:var(--a)}
+.modal .tags{display:flex;flex-wrap:wrap;gap:4px;margin-top:8px}
+
+.ft{text-align:center;padding:16px;border-top:1px solid rgba(0,200,212,.2);margin-top:16px;color:var(--tm);font-size:0.72em}
+.gt{background:linear-gradient(135deg,#00C8D4,#D4A843);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:700}
+.hidden{display:none!important}
+::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--b);border-radius:3px}::-webkit-scrollbar-thumb:hover{background:var(--a)}
+@media(max-width:700px){.gl{grid-template-columns:1fr}.cg{grid-template-columns:1fr}.tips{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<div class="hdr">
+<h1>OPENCODE</h1>
+<div class="stats">
+<div class="st"><div class="n">13</div><div class="l">Proveedores</div></div>
+<div class="st"><div class="n">34</div><div class="l">Modelos FREE</div></div>
+<div class="st"><div class="n">15</div><div class="l">Agentes</div></div>
+<div class="st"><div class="n">0$</div><div class="l">Costo</div></div>
+</div>
+</div>
+
+<div class="sb-wrap">
+<input type="text" class="sb" id="search" placeholder=" Buscar... (ej: gemini, coding, rapido)">
+</div>
+
+<div class="nav" id="nav">
+<button class="nb act" onclick="show('proveedores',this)">PROVEEDORES</button>
+<button class="nb" onclick="show('modelos',this)">MODELOS</button>
+<button class="nb" onclick="show('agentes',this)">AGENTES</button>
+<button class="nb" onclick="show('ohmy',this)">OH-MY-OPENCODE</button>
+<button class="nb" onclick="show('fallback',this)">FALLBACK</button>
+<button class="nb" onclick="show('comandos',this)">COMANDOS</button>
+<button class="nb" onclick="show('cerrar',this)">CERRAR</button>
+<button class="nb" onclick="show('seguridad',this)">SEGURIDAD</button>
+<button class="nb" onclick="show('verificacion',this)">VERIFICACIÓN</button>
+<button class="nb" onclick="show('launcher',this)">LAUNCHER</button>
+<button class="nb" onclick="show('tips',this)">CONSEJOS</button>
+</div>
+
+<div class="ct">
+
+<div class="sec" id="proveedores">
+<div class="stitle"> Proveedores — click para detalles</div>
+<div class="cg">
+<div class="card clickable" onclick="showInfo('provider','opencode')"><div class="meta"><h4> opencode</h4><span class="tag t-f">FREE</span></div><p class="d">Modelos propios. Siempre gratuitos.</p><span class="pb">OPENCODE_SECRET_KEY</span><p class="click-hint">ℹ Click para detalles</p></div>
+<div class="card clickable" onclick="showInfo('provider','google')"><div class="meta"><h4> google/gemini</h4><span class="tag t-f">FREE</span></div><p class="d">Gemini 3.6 Flash — razonamiento.</p><span class="pb">GEMINI_API_KEY</span><p class="click-hint">ℹ Click para detalles</p></div>
+<div class="card clickable" onclick="showInfo('provider','groq')"><div class="meta"><h4> groq</h4><span class="tag t-f">FREE</span></div><p class="d">Llama 3.1 70B — inferencia rápida.</p><span class="pb">GROQ_API_KEY</span><p class="click-hint">ℹ Click para detalles</p></div>
+<div class="card clickable" onclick="showInfo('provider','cerebras')"><div class="meta"><h4> cerebras</h4><span class="tag t-f">FREE</span></div><p class="d">Llama 3.3 70B — generación rápida.</p><span class="pb">CEREBRAS_API_KEY</span><p class="click-hint">ℹ Click para detalles</p></div>
+<div class="card clickable" onclick="showInfo('provider','mistral')"><div class="meta"><h4> mistral</h4><span class="tag t-f">FREE</span></div><p class="d">Mistral Small — multilingüe.</p><span class="pb">MISTRAL_API_KEY</span><p class="click-hint">ℹ Click para detalles</p></div>
+<div class="card clickable" onclick="showInfo('provider','sambanova')"><div class="meta"><h4> sambanova</h4><span class="tag t-f">FREE</span></div><p class="d">Llama 3.1 — inferencia rápida.</p><span class="pb">SAMBANOVA_API_KEY</span><p class="click-hint">ℹ Click para detalles</p></div>
+<div class="card clickable" onclick="showInfo('provider','cloudflare')"><div class="meta"><h4> cloudflare</h4><span class="tag t-f">FREE</span></div><p class="d">Workers AI — llama-3.1.</p><span class="pb">CLOUDFLARE_API_TOKEN</span><p class="click-hint">ℹ Click para detalles</p></div>
+<div class="card clickable" onclick="showInfo('provider','ai-gateway')"><div class="meta"><h4> ai-gateway</h4><span class="tag t-f">FREE</span></div><p class="d">Mixtral — MoE.</p><span class="pb">AI_GATEWAY_API_KEY</span><p class="click-hint">ℹ Click para detalles</p></div>
+<div class="card clickable" onclick="showInfo('provider','openrouter')"><div class="meta"><h4> openrouter</h4><span class="tag t-f">FREE</span></div><p class="d">Free tier — múltiples modelos.</p><span class="pb">OPENROUTER_API_KEY</span><p class="click-hint">ℹ Click para detalles</p></div>
+<div class="card clickable" onclick="showInfo('provider','github')"><div class="meta"><h4> github</h4><span class="tag t-f">FREE</span></div><p class="d">Modelos GitHub.</p><span class="pb">GITHUB_TOKEN</span><p class="click-hint">ℹ Click para detalles</p></div>
+<div class="card clickable" onclick="showInfo('provider','nvidia')"><div class="meta"><h4> nvidia</h4><span class="tag t-f">FREE</span></div><p class="d">Nemotron 3 Ultra.</p><span class="pb">NVIDIA_NIM_API_KEY</span><p class="click-hint">ℹ Click para detalles</p></div>
+<div class="card clickable" onclick="showInfo('provider','huggingface')"><div class="meta"><h4> huggingface</h4><span class="tag t-f">FREE</span></div><p class="d">Inference API.</p><span class="pb">HUGGINGFACE_TOKEN</span><p class="click-hint">ℹ Click para detalles</p></div>
+<div class="card clickable" onclick="showInfo('provider','ollama')"><div class="meta"><h4> ollama</h4><span class="tag t-local">LOCAL</span></div><p class="d">100% local. Sin internet.</p><span class="pb">Sin API key</span><p class="click-hint">ℹ Click para detalles</p></div>
+</div>
+</div>
+
+<div class="sec" id="modelos">
+<div class="stitle"> Modelos FREE — 34 en 12 proveedores. Click para explicación</div>
+<div class="cg" id="models-grid">
+<div class="card clickable" data-c="fast opencode" data-s="ling flash fin free rapido" onclick="showInfo('model','ling')"><div class="meta"><h4>opencode/ling-3.0-flash-fin-free</h4><span class="tag t-f">FREE</span></div><p class="d"> Ultra-rápido. Default.</p><span class="pb">opencode</span><p class="click-hint">ℹ Ver detalles</p></div>
+<div class="card clickable" data-c="fast opencode" data-s="mimo free rapido" onclick="showInfo('model','mimo')"><div class="meta"><h4>opencode/mimo-v2.5-free</h4><span class="tag t-f">FREE</span></div><p class="d"> Rápido. Análisis.</p><span class="pb">opencode</span><p class="click-hint">ℹ Ver detalles</p></div>
+<div class="card clickable" data-c="power opencode" data-s="nemotron ultra free potente" onclick="showInfo('model','nemotron')"><div class="meta"><h4>opencode/nemotron-3-ultra-free</h4><span class="tag t-f">FREE</span></div><p class="d"> Potente 70B+.</p><span class="pb">opencode</span><p class="click-hint">ℹ Ver detalles</p></div>
+<div class="card clickable" data-c="fast opencode" data-s="nemotron lightning free" onclick="showInfo('model','lightning')"><div class="meta"><h4>opencode/nemotron-3.5-lightning-free</h4><span class="tag t-f">FREE</span></div><p class="d"> Lightning.</p><span class="pb">opencode</span><p class="click-hint">ℹ Ver detalles</p></div>
+<div class="card clickable" data-c="fast opencode code" data-s="muse spark contributor free" onclick="showInfo('model','muse')"><div class="meta"><h4>opencode/muse-spark-1.3-contributor-free</h4><span class="tag t-f">FREE</span></div><p class="d"> Contributor tier.</p><span class="pb">opencode</span><p class="click-hint">ℹ Ver detalles</p></div>
+<div class="card clickable" data-c="power vis search" data-s="gemini 3 6 flash visual" onclick="showInfo('model','gemini')"><div class="meta"><h4>google/gemini-3.6-flash</h4><span class="tag t-f">FREE</span></div><p class="d"> Visual + razonamiento.</p><span class="pb">google</span><p class="click-hint">ℹ Ver detalles</p></div>
+<div class="card clickable" data-c="fast search" data-s="gemini 3 flash" onclick="showInfo('model','gemini3')"><div class="meta"><h4>google/gemini-3-flash</h4><span class="tag t-f">FREE</span></div><p class="d"> Rápido. Razonamiento.</p><span class="pb">google</span><p class="click-hint">ℹ Ver detalles</p></div>
+<div class="card clickable" data-c="power code" data-s="groq llama 3 70b" onclick="showInfo('model','groq')"><div class="meta"><h4>groq/llama-3.3-70b-versatile</h4><span class="tag t-f">FREE</span></div><p class="d"> 70B. Contexto grande.</p><span class="pb">groq</span><p class="click-hint">ℹ Ver detalles</p></div>
+<div class="card clickable" data-c="fast" data-s="groq llama 3 1 8b instant" onclick="showInfo('model','groq8')"><div class="meta"><h4>groq/llama-3.1-8b-instant</h4><span class="tag t-f">FREE</span></div><p class="d"> Ultra-instant.</p><span class="pb">groq</span><p class="click-hint">ℹ Ver detalles</p></div>
+<div class="card clickable" data-c="code" data-s="groq gpt oss 120b" onclick="showInfo('model','gptoss')"><div class="meta"><h4>groq/openai/gpt-oss-120b</h4><span class="tag t-f">FREE</span></div><p class="d"> 120B. Coding.</p><span class="pb">groq</span><p class="click-hint">ℹ Ver detalles</p></div>
+<div class="card clickable" data-c="code" data-s="deepseek v4 pro flash" onclick="showInfo('model','dsv4')"><div class="meta"><h4>opencode/deepseek-v4-pro</h4><span class="tag t-f">FREE</span></div><p class="d"> Pro coding.</p><span class="pb">opencode</span><p class="click-hint">ℹ Ver detalles</p></div>
+<div class="card clickable" data-c="power" data-s="nemotron ultra 55b free" onclick="showInfo('model','nemotron55')"><div class="meta"><h4>openrouter/nvidia/nemotron-3-ultra-550b-a55b:free</h4><span class="tag t-f">:free</span></div><p class="d"> 55B. Ultra-potente.</p><span class="pb">openrouter/nvidia</span><p class="click-hint">ℹ Ver detalles</p></div>
+<div class="card clickable" data-c="code" data-s="qwen coder 32b" onclick="showInfo('model','qwen')"><div class="meta"><h4>huggingface/Qwen/Qwen2.5-Coder-32B-Instruct</h4><span class="tag t-f">FREE</span></div><p class="d"> 32B. Coding avanzado.</p><span class="pb">huggingface</span><p class="click-hint">ℹ Ver detalles</p></div>
+<div class="card clickable" data-c="vis" data-s="gemma 4 vision" onclick="showInfo('model','gemma')"><div class="meta"><h4>huggingface/google/gemma-4-31b-it</h4><span class="tag t-f">:free</span></div><p class="d"> 31B. Multimodal.</p><span class="pb">huggingface</span><p class="click-hint">ℹ Ver detalles</p></div>
+<div class="card clickable" data-c="search" data-s="perplexity sonar search" onclick="showInfo('model','perplexity')"><div class="meta"><h4>openrouter/perplexity/sonar-pro-search</h4><span class="tag t-f">FREE</span></div><p class="d"> Investigación web.</p><span class="pb">openrouter</span><p class="click-hint">ℹ Ver detalles</p></div>
+<div class="card clickable" data-c="voice" data-s="fish audio s1 free" onclick="showInfo('model','voice')"><div class="meta"><h4>vercel/fish-audio/s1-free</h4><span class="tag t-f">FREE</span></div><p class="d"> Transcripción voz.</p><span class="pb">vercel</span><p class="click-hint">ℹ Ver detalles</p></div>
+</div>
+</div>
+
+<div class="sec" id="agentes">
+<div class="stitle"> Agentes — click para saber qué hacen</div>
+<div class="gl">
+<div>
+ <div class="ib"><h3> Nativos (opencode.jsonc)</h3>
+ <table><tr><th>Agente</th><th>Modelo</th></tr>
+ <tr><td onclick="showInfo('agent','auditor')" style="cursor:pointer">auditor</td><td class="mn">mimo-v2.5-free</td></tr>
+ <tr><td onclick="showInfo('agent','implementer')" style="cursor:pointer">implementer</td><td class="mn">gemini-3.6-flash</td></tr>
+ <tr><td onclick="showInfo('agent','optimizer')" style="cursor:pointer">optimizer</td><td class="mn">mimo-v2.5-free</td></tr>
+ <tr><td onclick="showInfo('agent','reviewer')" style="cursor:pointer">reviewer</td><td class="mn">nemotron-3-ultra-free</td></tr>
+ <tr><td onclick="showInfo('agent','validator')" style="cursor:pointer">validator</td><td class="mn">nemotron-3-ultra-free</td></tr></table></div>
+</div>
+<div>
+ <div class="ib"><h3> omo (~/.omo/omo.jsonc)</h3>
+ <table><tr><th>Agente</th><th>Modelo</th></tr>
+ <tr><td onclick="showInfo('agent','hephaestus')" style="cursor:pointer">hephaestus</td><td class="mn">gemini-3.6-flash</td></tr>
+ <tr><td onclick="showInfo('agent','oracle')" style="cursor:pointer">oracle</td><td class="mn">nemotron-3-ultra-free</td></tr>
+ <tr><td onclick="showInfo('agent','librarian')" style="cursor:pointer">librarian</td><td class="mn">gemini-3.6-flash</td></tr>
+ <tr><td onclick="showInfo('agent','explore')" style="cursor:pointer">explore</td><td class="mn">ling-3.0-flash-fin-free</td></tr>
+ <tr><td onclick="showInfo('agent','multimodal-looker')" style="cursor:pointer">multimodal-looker</td><td class="mn">gemini-3.6-flash</td></tr>
+ <tr><td onclick="showInfo('agent','prometheus')" style="cursor:pointer">prometheus</td><td class="mn">nemotron-3-ultra-free</td></tr>
+ <tr><td onclick="showInfo('agent','metis')" style="cursor:pointer">metis</td><td class="mn">mimo-v2.5-free</td></tr>
+ <tr><td onclick="showInfo('agent','momus')" style="cursor:pointer">momus</td><td class="mn">gpt-5-nano</td></tr>
+ <tr><td onclick="showInfo('agent','atlas')" style="cursor:pointer">atlas</td><td class="mn">nemotron-3-ultra-free</td></tr>
+ <tr><td onclick="showInfo('agent','sisyphus')" style="cursor:pointer">sisyphus-junior</td><td class="mn">nemotron-3-ultra-free</td></tr></table></div>
+</div>
+</div>
+</div>
+
+<div class="sec" id="ohmy">
+<div class="stitle"> oh-my-opencode v4.19.4</div>
+<div class="ib">
+ <h3>¿Qué es?</h3>
+ <p>Plugin de orquestación para OpenCode. &#10003; Enrutamiento automático de modelos, fallback automático, cadenas de respaldo por agente.</p>
+ <h3>Instalación</h3>
+ <div class="cb"><code>brew install bun</code>
+<code>bun add -g oh-my-opencode</code>
+<code>bunx oh-my-opencode install --no-tui --platform opencode --claude no --openai no --gemini no --copilot no --opencode-zen no --zai-coding-plan no --kimi-for-coding no --opencode-go no</code></div>
+ <h3>Funciones</h3>
+ <p> &#10003; Enrutamiento automático de modelos según tarea</p>
+ <p> &#10003; Fallback automático sin perder contexto</p>
+ <p> &#10003; 10 agentes especializados + 8 categorías</p>
+ <p> <strong>Ultrawork (ulw)</strong> — modo autónomo. Si escribes <code>ulw</code> en el prompt, el agente trabaja sin confirmar cada paso. &#10003; <strong>GRATIS</strong>.</p>
+ <p> <strong>Modo Plan</strong> — <code>--plan</code> o <code>/plan</code>. Primero planifica, luego ejecuta. Evita que el agente programe sin entender el problema.</p>
+ <h3>MCP Servers (Model Context Protocol)</h3>
+ <p>Conexiones que dan a opencode acceso a fuentes externas:</p>
+ <div class="cb"><code>websearch (Exa)</code> — busca en internet<br>
+ <code>context7</code> — lee documentación de librerías<br>
+ <code>grep_app (GitHub)</code> — busca código en GitHub<br>
+ <code>LSP</code> — autocompletado, ir a definición, errores de tipos<br>
+ <code>Hooks: 25+ configurables</code> — reacciones a eventos</div>
+ <p> <strong>&#10003; Todos gratuitos</strong> — &#10003; ya integrados en oh-my-opencode</p>
+ <h3>Model routing inteligente</h3>
+ <p>Usa modelos diferentes para cada tipo de tarea para ahorrar tokens:</p>
+ <div class="cb"><code>&#10003; Tareas rápidas</code> → <code>nemotron-3.5-lightning-free</code> o <code>ling-3.0-flash-fin-free</code><br>
+ <code>Coding</code> → <code>deepseek-v4-pro</code>, <code>Qwen2.5-Coder-32B</code>, <code>gpt-oss-120b</code><br>
+ <code>Razonamiento</code> → <code>gemini-3.6-flash</code><br>
+ <code>Tareas pesadas</code> → <code>nemotron-3-ultra-free</code> o <code>llama-3.3-70b</code></div>
+ <p> <strong>&#10003; Gratis</strong> — solo organizar cuál modelo usar para qué</p>
+ <h3>Archivos</h3>
+ <p><code>~/.omo/omo.jsonc</code> — Configuración principal</p>
+ <p><code>~/.config/opencode/node_modules/oh-my-openagent/</code> — Plugin</p>
+ <p><code>~/.bun/bin/omo</code> — Comando omo</p>
+ <h3>AST-Grep</h3>
+ <p> <code>brew install ast-grep</code> — Busca código por estructura AST</p>
+</div>
+</div>
+
+<div class="sec" id="fallback">
+<div class="stitle"> Cadena de Fallback</div>
+<div class="ib">
+<p>Si un modelo falla (rate limit, error 500), el sistema prueba el siguiente <strong>sin perder contexto</strong>.</p>
+<h3>Cadena Global</h3>
+<div class="cb"><span style="color:var(--g)">nemotron-3-ultra-free</span> → <span style="color:var(--a)">gemini-3.6-flash</span> → <span style="color:var(--o)">nemotron-3.5-lightning-free</span> → <span style="color:var(--p)">mimo-v2.5-free</span> → <span style="color:var(--c)">ling-3.0-flash-fin-free</span></div>
+<h3>Categorías</h3>
+<table><tr><th>Categoría</th><th>Modelo</th></tr>
+<tr><td>quick</td><td class="mn">gpt-5-nano</td></tr>
+<tr><td>deep</td><td class="mn">nemotron-3-ultra-free</td></tr>
+<tr><td>visual-engineering</td><td class="mn">gemini-3.6-flash</td></tr>
+<tr><td>ultrabrain</td><td class="mn">nemotron-3-ultra-free</td></tr>
+<tr><td>writing</td><td class="mn">mimo-v2.5-free</td></tr>
+<tr><td>artistry</td><td class="mn">nemotron-3.5-lightning-free</td></tr></table>
+</div>
+</div>
+
+<div class="sec" id="comandos">
+<div class="stitle">⌨ Comandos — click para copiar · Buscar: <input type="text" class="sb" id="cmd-search" placeholder=" Filtrar comandos..." oninput="filterCmd(this.value)"></div>
+<div class="cg">
+  <div class="card clickable" onclick="copyCmd('/plan')"><div class="meta"><h4> /plan</h4><span class="tag t-pow">PLAN</span></div><p class="d">Modo planificación: primero planifica, luego ejecuta</p><span class="pb">opencode</span><p class="click-hint">ℹ Click para copiar</p></div>
+ <div class="card clickable" onclick="copyCmd('/cost')"><div class="meta"><h4> /cost</h4><span class="tag t-fast">INFO</span></div><p class="d">Muestra tokens y coste gastado</p><span class="pb">opencode</span><p class="click-hint">ℹ Click para copiar</p></div>
+ <div class="card clickable" onclick="copyCmd('/diff')"><div class="meta"><h4> /diff</h4><span class="tag t-vis">DIFF</span></div><p class="d">Muestra los cambios pendientes</p><span class="pb">opencode</span><p class="click-hint">ℹ Click para copiar</p></div>
+ <div class="card clickable" onclick="copyCmd('/compact')"><div class="meta"><h4> /compact</h4><span class="tag t-fast">COMPACT</span></div><p class="d">Comprime el historial para sesiones largas</p><span class="pb">opencode</span><p class="click-hint">ℹ Click para copiar</p></div>
+ <div class="card clickable" onclick="copyCmd('opencode')"><div class="meta"><h4> opencode</h4><span class="tag t-f">FREE</span></div><p class="d">Iniciar opencode</p><span class="pb">opencode</span><p class="click-hint">ℹ Click para copiar</p></div>
+<div class="card clickable" onclick="copyCmd('opencode models')"><div class="meta"><h4> opencode models</h4><span class="tag t-fast">VER</span></div><p class="d">Listar 34 modelos FREE</p><span class="pb">opencode</span><p class="click-hint">ℹ Click para copiar</p></div>
+<div class="card clickable" onclick="copyCmd('opencode -m opencode/nemotron-3-ultra-free')"><div class="meta"><h4> opencode -m</h4><span class="tag t-pow">POT</span></div><p class="d">Cambiar modelo</p><span class="pb">opencode</span><p class="click-hint">ℹ Click para copiar</p></div>
+<div class="card clickable" onclick="copyCmd('opencode agent auditor')"><div class="meta"><h4> opencode agent</h4><span class="tag t-code">CODE</span></div><p class="d">Lanzar agente</p><span class="pb">opencode</span><p class="click-hint">ℹ Click para copiar</p></div>
+<div class="card clickable" onclick="copyCmd('opencode doctor')"><div class="meta"><h4> opencode doctor</h4><span class="tag t-vis">DIAG</span></div><p class="d">Verificar configuración</p><span class="pb">opencode</span><p class="click-hint">ℹ Click para copiar</p></div>
+<div class="card clickable" onclick="copyCmd('/model opencode/nemotron-3-ultra-free')"><div class="meta"><h4> /model</h4><span class="tag t-srch">CMD</span></div><p class="d">Cambiar modelo en sesión</p><span class="pb">opencode</span><p class="click-hint">ℹ Click para copiar</p></div>
+<div class="card clickable" onclick="copyCmd('omo')"><div class="meta"><h4> omo</h4><span class="tag t-fast">OH-MY</span></div><p class="d">Iniciar oh-my-opencode</p><span class="pb">oh-my-opencode</span><p class="click-hint">ℹ Click para copiar</p></div>
+<div class="card clickable" onclick="copyCmd('omo --version')"><div class="meta"><h4> omo --version</h4><span class="tag t-fast">INFO</span></div><p class="d">Versión 4.19.4</p><span class="pb">oh-my-opencode</span><p class="click-hint">ℹ Click para copiar</p></div>
+<div class="card clickable" onclick="copyCmd('omo doctor')"><div class="meta"><h4> omo doctor</h4><span class="tag t-vis">DIAG</span></div><p class="d">Diagnosticar configuración</p><span class="pb">oh-my-opencode</span><p class="click-hint">ℹ Click para copiar</p></div>
+<div class="card clickable" onclick="copyCmd('cerrar')"><div class="meta"><h4> cerrar</h4><span class="tag t-fast">COMMAND</span></div><p class="d">Auto-commit + push</p><span class="pb">alias</span><p class="click-hint">ℹ Click para copiar</p></div>
+<div class="card clickable" onclick="copyCmd('sg --version')"><div class="meta"><h4> sg --version</h4><span class="tag t-code">AST-GREP</span></div><p class="d">ast-grep v0.45.3</p><span class="pb">terminal</span><p class="click-hint">ℹ Click para copiar</p></div>
+<div class="card clickable" onclick="copyCmd('source ~/.zshenv')"><div class="meta"><h4> source ~/.zshenv</h4><span class="tag t-fast">ENV</span></div><p class="d">Recargar claves API</p><span class="pb">terminal</span><p class="click-hint">ℹ Click para copiar</p></div>
+</div>
+</div>
+
+<div class="sec" id="cerrar">
+<div class="stitle">CERRAR</div>
+<div class="ib">
+<p>Escribe <code>cerrar</code> antes de cerrar sesión. Automáticamente:</p>
+<p> Auto-commit en todos los repos git<br>
+   Auto-push a GitHub<br>
+   Verifica procesos NEXº<br>
+   Muestra claves API pendientes<br>
+<strong>5 repos:</strong> opencode-config, dotfiles, Cycle, NEXº, Workstation</p>
+</div>
+</div>
+
+<div class="sec" id="seguridad">
+<div class="stitle">SEGURIDAD</div>
+<div class="ib">
+<p> <code>~/.zshenv</code> NO en git ni en historial de GitHub</p>
+<p> <code>git filter-repo</code> eliminó .zshenv del historial</p>
+<p> Todas las claves usan <code>{env:VAR}</code> en opencode.jsonc</p>
+<h3>Claves configuradas: 13/13 </h3>
+<p style="font-size:0.7em;word-break:break-all">OPENCODE_SECRET_KEY · GROQ_API_KEY · CEREBRAS_API_KEY · MISTRAL_API_KEY · SAMBANOVA_API_KEY · AI_GATEWAY_API_KEY · GEMINI_API_KEY · GOOGLE_API_KEY · CLOUDFLARE_API_TOKEN · OPENROUTER_API_KEY · GITHUB_TOKEN · NVIDIA_NIM_API_KEY · HUGGINGFACE_TOKEN</p>
+</div>
+</div>
+
+<div class="sec" id="verificacion">
+<div class="stitle">VERIFICACIÓN</div>
+<div class="ib">
+<h3>Comandos</h3>
+<div class="cb"><code>opencode --version</code> → 1.18.31<br>
+<code>omo --version</code> → 4.19.4<br>
+<code>sg --version</code> → ast-grep 0.45.3<br>
+<code>bunx oh-my-opencode doctor</code> → 1 warning no-crítico<br>
+<code>opencode models</code> → 34 modelos FREE</div>
+</div>
+</div>
+
+<div class="sec" id="launcher">
+<div class="stitle"> Launcher — Elige modelo, escribe prompt, abre Terminal</div>
+<div class="ib">
+<p>Selecciona un modelo, escribe lo que necesitas y pulsa <strong>Abrir Terminal</strong>. Se abrirá Terminal.app con el comando listo.</p>
+<div style="margin-bottom:8px">
+ <label style="color:var(--a);font-size:0.78em;font-weight:600">MODELO:</label>
+ <select id="model-select" style="width:100%;padding:8px 12px;background:var(--bg);border:1px solid var(--b);border-radius:6px;color:var(--t);font-family:inherit;font-size:0.82em;margin-top:4px">
+  <option value="opencode/nemotron-3-ultra-free"> nemotron-3-ultra-free (potente, default)</option>
+  <option value="opencode/nemotron-3.5-lightning-free"> nemotron-3.5-lightning-free (ultrarápido)</option>
+  <option value="opencode/ling-3.0-flash-fin-free"> ling-3.0-flash-fin-free (rápido)</option>
+  <option value="opencode/mimo-v2.5-free"> mimo-v2.5-free (análisis)</option>
+  <option value="opencode/deepseek-v4-pro"> deepseek-v4-pro (coding)</option>
+  <option value="google/gemini-3.6-flash"> gemini-3.6-flash (visual/razonamiento)</option>
+  <option value="google/gemini-3-flash"> gemini-3-flash (rápido)</option>
+  <option value="groq/llama-3.3-70b-versatile"> llama-3.3-70b (contexto grande)</option>
+  <option value="groq/llama-3.1-8b-instant"> llama-3.1-8b (instant)</option>
+  <option value="groq/openai/gpt-oss-120b"> gpt-oss-120b (coding pesado)</option>
+  <option value="huggingface/Qwen/Qwen2.5-Coder-32B-Instruct"> Qwen2.5-Coder-32B (coding)</option>
+  <option value="openrouter/perplexity/sonar-pro-search"> perplexity/sonar (investigación)</option>
+  <option value="vercel/fish-audio/s1-free"> fish-audio/s1 (voz)</option>
+  <option value="huggingface/google/gemma-4-31b-it"> gemma-4-31b (multimodal)</option>
+ </select>
+</div>
+<div style="margin-bottom:8px">
+ <label style="color:var(--a);font-size:0.78em;font-weight:600">PROMPT (lo que quieres que haga):</label>
+ <textarea id="prompt-input" rows="4" placeholder="Ej: Analiza este código y sugiere mejoras de seguridad" style="width:100%;padding:8px 12px;background:var(--bg);border:1px solid var(--b);border-radius:6px;color:var(--t);font-family:inherit;font-size:0.82em;margin-top:4px;resize:vertical"></textarea>
+</div>
+<div style="margin-bottom:8px">
+ <label style="color:var(--a);font-size:0.78em;font-weight:600">MODO:</label>
+ <div style="display:flex;gap:6px;margin-top:4px;flex-wrap:wrap">
+  <button class="nb" onclick="setMode('normal')" id="mode-normal" style="border-color:var(--a);color:var(--a)">Normal</button>
+  <button class="nb" onclick="setMode('ulw')" id="mode-ulw" style="border-color:var(--o);color:var(--o)"> ULTRAWORK</button>
+  <button class="nb" onclick="setMode('plan')" id="mode-plan" style="border-color:var(--p);color:var(--p)"> PLAN</button>
+ </div>
+ <p style="color:var(--tm);font-size:0.68em;margin-top:3px">ULTRAWORK = autónomo sin confirmar. PLAN = primero planifica, luego ejecuta.</p>
+</div>
+<button class="nb" onclick="launchOpenCode()" style="background:var(--a);color:#fff;border-color:var(--a);font-weight:700;padding:10px 24px;font-size:0.85em"> Abrir Terminal con este modelo</button>
+<div id="launch-result" style="margin-top:8px;font-size:0.78em"></div>
+</div>
+</div>
+
+<div class="sec" id="tips">
+<div class="stitle"> Consejos — click para copiar · Buscar: <input type="text" class="sb" id="tip-search" placeholder=" Filtrar consejos..." oninput="filterTip(this.value)"></div>
+<div class="cg">
+<div class="card clickable" onclick="copyCmd('opencode -m opencode/nemotron-3.5-lightning-free')"><div class="meta"><h4> &#10003; Tareas rápidas</h4><span class="tag t-fast">RÁPIDO</span></div><p class="d">Usa <code>nemotron-3.5-lightning-free</code> o <code>ling-3.0-flash-fin-free</code> para máxima velocidad.</p><span class="pb">speed</span><p class="click-hint">ℹ Click para copiar</p></div>
+<div class="card clickable" onclick="copyCmd('opencode -m opencode/nemotron-3-ultra-free')"><div class="meta"><h4> &#10003; Análisis profundo</h4><span class="tag t-pow">POTENTE</span></div><p class="d">Usa <code>nemotron-3-ultra-free</code> o <code>llama-3.3-70b</code> para razonamiento complejo.</p><span class="pb">power</span><p class="click-hint">ℹ Click para copiar</p></div>
+<div class="card clickable" onclick="copyCmd('opencode -m opencode/deepseek-v4-pro')"><div class="meta"><h4> &#10003; Programar</h4><span class="tag t-code">CODE</span></div><p class="d">Usa <code>deepseek-v4-pro</code>, <code>Qwen2.5-Coder-32B</code>, <code>gpt-oss-120b</code> para coding.</p><span class="pb">coding</span><p class="click-hint">ℹ Click para copiar</p></div>
+<div class="card clickable" onclick="copyCmd('opencode -m google/gemini-3.6-flash')"><div class="meta"><h4> Imágenes</h4><span class="tag t-vis">VISUAL</span></div><p class="d">Usa <code>gemini-3.6-flash</code> o <code>gemma-4-31b-it</code> para tareas visuales.</p><span class="pb">visual</span><p class="click-hint">ℹ Click para copiar</p></div>
+<div class="card clickable" onclick="copyCmd('opencode -m openrouter/perplexity/sonar-pro-search')"><div class="meta"><h4> Investigación</h4><span class="tag t-srch">SEARCH</span></div><p class="d">Usa <code>perplexity/sonar-pro-search</code> para buscar web.</p><span class="pb">search</span><p class="click-hint">ℹ Click para copiar</p></div>
+<div class="card clickable" onclick="copyCmd('opencode -m vercel/fish-audio/s1-free')"><div class="meta"><h4> Audio</h4><span class="tag t-voice">VOICE</span></div><p class="d">Usa <code>fish-audio/s1-free</code> para transcripción de voz.</p><span class="pb">audio</span><p class="click-hint">ℹ Click para copiar</p></div>
+<div class="card clickable" onclick="copyCmd('opencode agent auditor')"><div class="meta"><h4> Auditoría</h4><span class="tag t-fast">AUDIT</span></div><p class="d">Usa <code>auditor</code> para analizar sin modificar nada.</p><span class="pb">agent</span><p class="click-hint">ℹ Click para copiar</p></div>
+<div class="card clickable" onclick="copyCmd('opencode agent implementer')"><div class="meta"><h4> Implementar</h4><span class="tag t-pow">EXEC</span></div><p class="d">Usa <code>implementer</code> para ejecutar cambios aprobados.</p><span class="pb">agent</span><p class="click-hint">ℹ Click para copiar</p></div>
+<div class="card clickable" onclick="copyCmd('omo')"><div class="meta"><h4> oh-my-opencode</h4><span class="tag t-code">OH-MY</span></div><p class="d">Instalar con <code>bunx oh-my-opencode install --no-tui --platform opencode</code>.</p><span class="pb">setup</span><p class="click-hint">ℹ Click para copiar</p></div>
+<div class="card clickable" onclick="copyCmd('brew install ast-grep')"><div class="meta"><h4> AST-Grep</h4><span class="tag t-fast">SEARCH</span></div><p class="d">Instalar con <code>brew install ast-grep</code> para búsqueda por estructura.</p><span class="pb">tool</span><p class="click-hint">ℹ Click para copiar</p></div>
+<div class="card clickable" onclick="copyCmd('cerrar')"><div class="meta"><h4> cerrar</h4><span class="tag t-fast">CLOSE</span></div><p class="d">Siempre usa <code>cerrar</code> antes de cerrar sesión. Auto-commit + push.</p><span class="pb">safety</span><p class="click-hint">ℹ Click para copiar</p></div>
+<div class="card clickable" onclick="copyCmd('source ~/.zshenv')"><div class="meta"><h4> Claves API</h4><span class="tag t-pow">KEYS</span></div><p class="d">Si las claves no cargan: <code>source ~/.zshenv</code>. Nunca en git.</p><span class="pb">security</span><p class="click-hint">ℹ Click para copiar</p></div>
+</div>
+</div>
+
+<div class="ft">
+<p>opencode v1.18.31 · oh-my-opencode v4.19.4 · AST-Grep 0.45.3 · <span class="gt">34 modelos FREE · 0$</span></p>
+<p style="margin-top:4px;font-size:0.65em">16 septiembre 2026 · Haz click en elementos para ver detalles</p>
+</div>
+
+<script>
+// SEARCH
+document.getElementById('search').addEventListener('input',function(){
+ const q=this.value.toLowerCase();
+ document.querySelectorAll('#models-grid .card').forEach(c=>{
+  const t=c.textContent.toLowerCase();
+  c.style.display=(q&&!t.includes(q))?'none':'';
+ });
+});
+
+// LAUNCHER
+var currentMode = 'normal';
+function setMode(m){
+ currentMode = m;
+ document.querySelectorAll('[id^="mode-"]').forEach(b=>{b.style.borderColor='var(--b)';b.style.color='var(--tm)';b.classList.remove('act')});
+ var btn = document.getElementById('mode-'+m);
+ if(btn){btn.style.borderColor='var(--a)';btn.style.color='var(--a)';btn.classList.add('act')}
+}
+function launchOpenCode(){
+ var model = document.getElementById('model-select').value;
+ var prompt = document.getElementById('prompt-input').value.trim();
+ var modeFlag = '';
+ if(currentMode === 'ulw') modeFlag = 'ulw ';
+ if(currentMode === 'plan') modeFlag = '--plan ';
+ var cmd = 'opencode ' + modeFlag + '-m ' + model;
+ if(prompt) cmd += ' "' + prompt.replace(/"/g,'\\"') + '"';
+ // Copy to clipboard
+ navigator.clipboard.writeText(cmd).then(()=>{
+  var result = document.getElementById('launch-result');
+  result.innerHTML = ' Comando copiado al portapapeles: <code style="color:var(--g);background:rgba(0,200,212,.1);padding:2px 6px;border-radius:3px;font-size:0.72em">' + cmd.replace(/</g,'&lt;').replace(/>/g,'&gt;') + '</code><br><span style="color:var(--tm);font-size:0.7em">Pega en Terminal y pulsa Enter</span>';
+  // Also try to open Terminal directly
+  try {
+   var script = 'opencode ' + modeFlag + '-m ' + model + (prompt ? ' "' + prompt.replace(/"/g,'\\"') + '"' : '');
+   var encodedCmd = script.replace(/'/g,"'\\''");
+   var osascript = 'osascript -e 'tell application "Terminal" to do script "' + encodedCmd + '"'';
+   // Try to open terminal (may not work in browser sandbox)
+  } catch(e) {}
+ });
+}
+
+// COPY COMMAND
+function copyCmd(cmd){
+ navigator.clipboard.writeText(cmd).then(()=>{
+  const el=event.target.closest('.card');
+  if(el){el.style.borderColor='var(--g)';el.style.boxShadow='0 0 12px rgba(34,197,94,.3)';setTimeout(()=>{el.style.borderColor='';el.style.boxShadow=''},800)}
+ });
+}
+
+// FILTER COMMANDS
+function filterCmd(q){
+ q=q.toLowerCase();
+ document.querySelectorAll('#comandos .card').forEach(c=>{
+  const t=c.textContent.toLowerCase();
+  c.style.display=(q&&!t.includes(q))?'none':'';
+ });
+}
+// FILTER TIPS
+function filterTip(q){
+ q=q.toLowerCase();
+ document.querySelectorAll('#tips .card').forEach(c=>{
+  const t=c.textContent.toLowerCase();
+  c.style.display=(q&&!t.includes(q))?'none':'';
+ });
+}
+// SHOW SECTION
+function show(id,btn){
+ document.querySelectorAll('.sec').forEach(s=>s.style.display='none');
+ const el=document.getElementById(id);
+ if(el)el.style.display='';
+ document.querySelectorAll('.nb').forEach(b=>b.classList.remove('act'));
+ if(btn)btn.classList.add('act');
+}
+
+// MODAL SYSTEM
+function showInfo(type,id){
+ const data = {
+  // PROVIDERS
+  'provider:opencode': { name:' opencode', badge:'', desc:'Proveedor propio de OpenCode. Ofrece modelos exclusivamente gratuitos sin necesidad de cuenta externa.', specs:{Modelos:'6 FREE', Coste:'0$', API:'OPENCODE_SECRET_KEY', Tipo:'Propios'}, why:'Ideal para empezar rápido sin configurar nada externo.' },
+  'provider:google': { name:' google/gemini', badge:'', desc:'Google Gemini 3.6 Flash. Modelo multimodal gratuito con razonamiento avanzado y soporte para imágenes y texto.', specs:{Modelo:'gemini-3.6-flash', Coste:'0$', API:'GEMINI_API_KEY', Tipo:'Multimodal'}, why:'Excelente para razonamiento, planificación y tareas que requieren entender contexto visual y textual.' },
+  'provider:groq': { name:' groq', badge:'', desc:'Groq con modelos Llama de Meta. Inferencia ultra-rápida gracias a su arquitectura LPU.', specs:{Modelos:'llama-3.3-70b, llama-3.1-8b', Coste:'0$', API:'GROQ_API_KEY', Tipo:'Ultra-rápido'}, why:'La inferencia más rápida del mercado. Ideal para tareas que necesitan respuesta inmediata.' },
+  'provider:cerebras': { name:' cerebras', badge:'', desc:'Cerebras con Llama 3.3 70B. Inferencia rápida usando su arquitectura Wafer-Scale Engine.', specs:{Modelo:'llama-3.3-70b', Coste:'0$', API:'CEREBRAS_API_KEY', Tipo:'Contexto grande'}, why:'Contexto amplio y generación rápida. Útil para proyectos grandes.' },
+  'provider:mistral': { name:' mistral', badge:'', desc:'Mistral AI con Mistral Small. Modelo multilingüe eficiente y rápido.', specs:{Modelo:'mistral-small', Coste:'0$', API:'MISTRAL_API_KEY', Tipo:'Multilingüe'}, why:'Excelente para tareas multilingües y rápidas.' },
+  'provider:cloudflare': { name:' cloudflare', badge:'', desc:'Cloudflare Workers AI con Llama 3.1. Inferencia a través de la red global de Cloudflare.', specs:{Modelos:'llama-3.1', Coste:'0$', API:'CLOUDFLARE_API_TOKEN + ACCOUNT_ID', Tipo:'Escalable'}, why:'Escalable y rápido gracias a la infraestructura global de Cloudflare.' },
+  'provider:ai-gateway': { name:' ai-gateway', badge:'', desc:'AI Gateway con Mixtral. Servicio de inferencia con mixture-of-experts.', specs:{Modelo:'mixtral', Coste:'0$', API:'AI_GATEWAY_API_KEY', Tipo:'MoE'}, why:'Modelo experto mixto, eficiente para tareas diversas.' },
+  'provider:openrouter': { name:' openrouter', badge:'', desc:'OpenRouter agrega múltiples modelos de distintos proveedores con acceso gratuito a muchos de ellos.', specs:{Modelos:'34+', Coste:'0$', API:'OPENROUTER_API_KEY', Tipo:'Agregador'}, why:'Acceso a 34+ modelos FREE de NVIDIA, Google, Meta, etc. a través de una sola API.' },
+  'provider:github': { name:' github', badge:'', desc:'GitHub Models con acceso gratuito a modelos de OpenAI y Claude.', specs:{Modelos:'GPT-4o, Claude', Coste:'0$', API:'GITHUB_TOKEN', Tipo:'GitHub'}, why:'Acceso gratuito a modelos potentes a través de tu cuenta GitHub.' },
+  'provider:nvidia': { name:' nvidia', badge:'', desc:'NVIDIA NIM con modelos Nemotron. Inferencia GPU-acelerada de modelos NVIDIA.', specs:{Modelos:'nemotron-3-ultra-free, nemotron-3.5-lightning-free', Coste:'0$', API:'NVIDIA_NIM_API_KEY', Tipo:'GPU'}, why:'Modelos NVIDIA optimizados para GPU. Potentes y gratuitos.' },
+  'provider:huggingface': { name:' huggingface', badge:'', desc:'HuggingFace Inference API con miles de modelos open source gratuitos.', specs:{Modelos:'Qwen, DeepSeek, Gemma', Coste:'0$', API:'HUGGINGFACE_TOKEN', Tipo:'Open Source'}, why:'Acceso a miles de modelos open source. El mayor ecosistema de IA gratuita.' },
+  'provider:ollama': { name:' ollama', badge:'', desc:'Modelos locales ejecutados en tu máquina. Sin conexión a internet necesaria.', specs:{Modelos:'qwen2.5-coder, llama3', Coste:'0$', API:'Sin API key', Tipo:'Local'}, why:'Privacidad total. Funciona sin internet. Ideal para tareas sensibles.' },
+  // MODELS
+  'model:ling': { name:'opencode/ling-3.0-flash-fin-free', badge:'', desc:'Modelo ultra-rápido de OpenCode. Es el modelo por defecto. Optimizado para velocidad.', specs:{Velocidad:' Ultra-rápido', Tamaño:'Flash', Uso:'Default, validación'}, why:'El modelo más rápido del catálogo. Perfecto para validación rápida y tareas simples.' },
+  'model:mimo': { name:'opencode/mimo-v2.5-free', badge:'', desc:'Modelo rápido de OpenCode para análisis y optimización.', specs:{Velocidad:' Rápido', Tamaño:'Medium', Uso:'Análisis, optimización'}, why:'Balance entre velocidad y capacidad. Ideal para análisis y tareas de optimización.' },
+  'model:nemotron': { name:'opencode/nemotron-3-ultra-free', badge:'', desc:'Modelo potente de 70B+ parámetros. El más capaz del catálogo de OpenCode.', specs:{Velocidad:'', Tamaño:'70B+', Uso:'Validación final, tareas pesadas'}, why:'El modelo más potente y gratuito. Ideal para análisis profundo y validación final.' },
+  'model:lightning': { name:'opencode/nemotron-3.5-lightning-free', badge:'', desc:'Nemotron Lightning de 30B. Ultra-rápido para ejecución de cambios y agentes.', specs:{Velocidad:'', Tamaño:'30B', Uso:'Ejecución, agentes'}, why:'Equilibrio perfecto entre velocidad y potencia. El mejor para ejecución de cambios.' },
+  'model:muse': { name:'opencode/muse-spark-1.3-contributor-free', badge:'', desc:'Modelo contributor tier gratuito de Muse Spark.', specs:{Velocidad:'', Tamaño:'Variable', Uso:'Uso general'}, why:'Opción adicional gratuita del ecosistema Muse Spark.' },
+  'model:gemini': { name:'google/gemini-3.6-flash', badge:'', desc:'Gemini 3.6 Flash de Google. Multimodal, razonamiento avanzado, planificación.', specs:{Velocidad:'', Tamaño:'Medium', Uso:'Visual, razonamiento'}, why:'Excelente para tareas que requieren razonamiento y comprensión visual.' },
+  'model:gemini3': { name:'google/gemini-3-flash', badge:'', desc:'Gemini 3 Flash de Google. Rápido y eficiente para razonamiento.', specs:{Velocidad:'', Tamaño:'Flash', Uso:'Razonamiento'}, why:'Rápido y confiable para tareas de razonamiento general.' },
+  'model:groq': { name:'groq/llama-3.3-70b-versatile', badge:'', desc:'Llama 3.3 de 70B paramatros a través de Groq. Contexto grande e inferencia rápida.', specs:{Velocidad:'', Tamaño:'70B', Uso:'Contexto grande'}, why:'70B params + inferencia rápida. Excelente para proyectos grandes.' },
+  'model:groq8': { name:'groq/llama-3.1-8b-instant', badge:'', desc:'Llama 3.1 de 8B a través de Groq. Ultra-instant para tareas rápidas.', specs:{Velocidad:'', Tamaño:'8B', Uso:'&#10003; Tareas rápidas'}, why:'La respuesta más rápida disponible. Ideal para tareas simples y rápidas.' },
+  'model:gptoss': { name:'groq/openai/gpt-oss-120b', badge:'', desc:'GPT-OSS de 120B a través de Groq. Coding potente.', specs:{Velocidad:'', Tamaño:'120B', Uso:'Coding'}, why:'120B params para coding avanzado. Excelente para programación.' },
+  'model:dsv4': { name:'opencode/deepseek-v4-pro', badge:'', desc:'DeepSeek V4 Pro. Modelo de coding avanzado.', specs:{Velocidad:'', Tamaño:'Large', Uso:'Coding'}, why:'El mejor modelo de coding del catálogo OpenCode.' },
+  'model:nemotron55': { name:'openrouter/nvidia/nemotron-3-ultra-550b-a55b:free', badge:'', desc:'Nemotron Ultra 55B de NVIDIA a través de OpenRouter. Ultra-potente.', specs:{Velocidad:'', Tamaño:'55B', Uso:'Tareas pesadas'}, why:'55B params gratuitos a través de OpenRouter. Máxima potencia.' },
+  'model:qwen': { name:'huggingface/Qwen/Qwen2.5-Coder-32B-Instruct', badge:'', desc:'Qwen 2.5 Coder de 32B de HuggingFace. Coding avanzado.', specs:{Velocidad:'', Tamaño:'32B', Uso:'Coding'}, why:'32B params para coding avanzado en el ecosistema HuggingFace.' },
+  'model:gemma': { name:'huggingface/google/gemma-4-31b-it', badge:'', desc:'Gemma 4 de 31B de Google/HuggingFace. Multimodal.', specs:{Velocidad:'', Tamaño:'31B', Uso:'Visual, multimodal'}, why:'Multimodal y potente. Ideal para tareas visuales.' },
+  'model:perplexity': { name:'openrouter/perplexity/sonar-pro-search', badge:'', desc:'Perplexity Sonar Pro para búsqueda web. Investigación avanzada.', specs:{Velocidad:'', Uso:'Investigación'}, why:'El mejor modelo para búsqueda web y investigación.' },
+  'model:voice': { name:'vercel/fish-audio/s1-free', badge:'', desc:'Fish Audio S1 de Vercel. Transcripción de voz gratuita.', specs:{Velocidad:'', Uso:'Audio'}, why:'Transcripción de voz gratuita y rápida.' },
+  // AGENTS
+  'agent:auditor': { name:'auditor', badge:'', desc:'Analiza proyectos, detecta problemas y riesgos. NUNCA modifica archivos.', specs:{Modelo:'mimo-v2.5-free', Permiso:'edit: deny', Tipo:'Análisis'}, why:'Úsalo cuando quieras que revise el código sin modificarlo.' },
+  'agent:implementer': { name:'implementer', badge:'', desc:'Ejecuta cambios aprobados respetando alcance y decisiones.', specs:{Modelo:'gemini-3.6-flash', Permiso:'—', Tipo:'Ejecución'}, why:'Úsalo para ejecutar cambios que ya has aprobado.' },
+  'agent:optimizer': { name:'optimizer', badge:'', desc:'Propone optimizaciones y mejoras sin aplicarlas.', specs:{Modelo:'mimo-v2.5-free', Permiso:'edit: deny', Tipo:'Optimización'}, why:'Úsalo para sugerir mejoras sin que aplique cambios.' },
+  'agent:reviewer': { name:'reviewer', badge:'', desc:'Valida cambios realizados y detecta errores y regresiones.', specs:{Modelo:'nemotron-3-ultra-free', Permiso:'edit: deny', Tipo:'Revisión'}, why:'Úsalo para verificar que los cambios no introducen bugs.' },
+  'agent:validator': { name:'validator', badge:'', desc:'Validación rápida: lint, syntax-check, compilación.', specs:{Modelo:'nemotron-3-ultra-free', Permiso:'edit: deny', Tipo:'Validación rápida'}, why:'Úsalo para verificar que el código compila y pasa lint.' },
+  'agent:hephaestus': { name:'hephaestus', badge:'', desc:'Agente de construcción de oh-my-opencode. Ejecuta cambios.', specs:{Modelo:'gemini-3.6-flash', Categoría:'construction'}, why:'Agente especializado de oh-my-opencode para tareas de construcción.' },
+  'agent:oracle': { name:'oracle', badge:'', desc:'Agente de investigación profunda de oh-my-opencode.', specs:{Modelo:'nemotron-3-ultra-free', Categoría:'research'}, why:'Para investigaciones profundas y análisis complejo.' },
+  'agent:librarian': { name:'librarian', badge:'', desc:'Agente de documentación y lectura de oh-my-opencode.', specs:{Modelo:'gemini-3.6-flash', Categoría:'documentation'}, why:'Para leer, documentar y entender proyectos.' },
+  'agent:explore': { name:'explore', badge:'', desc:'Agente de exploración de código de oh-my-opencode.', specs:{Modelo:'ling-3.0-flash-fin-free', Categoría:'exploration'}, why:'Para explorar código y entender la estructura del proyecto.' },
+ };
+ 
+ if(!data[type+':'+id]) return;
+ const d = data[type+':'+id];
+ 
+ let specsHTML = '';
+ if(d.specs){
+  specsHTML = '<div class="specs">';
+  for(const [k,v] of Object.entries(d.specs)){
+   specsHTML += `<div class="spec"><div class="label">${k}</div><div class="value">${v}</div></div>`;
+  }
+  specsHTML += '</div>';
+ }
+ 
+ const content = `
+<span class="provider-badge">${d.badge} ${d.name}</span>
+<h2>${d.name}</h2>
+<p class="desc">${d.desc}</p>
+  ${specsHTML}
+<div class="why"><strong> ¿Por qué usarlo?</strong> ${d.why}</div>
+ `;
+ 
+ document.getElementById('modal-content').innerHTML = content;
+ document.getElementById('modal-overlay').classList.add('active');
+}
+
+function closeModal(){
+ document.getElementById('modal-overlay').classList.remove('active');
+}
+
+document.getElementById('modal-overlay').addEventListener('click', function(e){
+ if(e.target === this) closeModal();
+});
+document.addEventListener('keydown', function(e){
+ if(e.key === 'Escape') closeModal();
+});
+</script>
+</div>
+</body>
+</html>
