@@ -1,7 +1,7 @@
 ---
 description: Valida cambios realizados y detecta errores y regresiones.
 mode: all
-model: openrouter/nex-agi/nex-n2.5-mini:free
+model: openrouter/nex-agi/nex-n2.5-pro:free
 permission:
   edit: deny
 ---

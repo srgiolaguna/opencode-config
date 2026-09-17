@@ -1,7 +1,7 @@
 ---
 description: Analiza proyectos, detecta problemas y riesgos. No modifica archivos.
 mode: all
-model: openrouter/nex-agi/nex-n2.5-mini:free
+model: cloudflare-workers-ai/@cf/google/gemma-4-26b-a4b-it
 permission:
   edit: deny
 ---

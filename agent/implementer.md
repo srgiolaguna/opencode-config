@@ -1,7 +1,7 @@
 ---
 description: Ejecuta cambios aprobados respetando alcance y decisiones.
 mode: all
-model: openrouter/nex-agi/nex-n2.5-mini:free
+model: cloudflare-workers-ai/@cf/google/gemma-4-26b-a4b-it
 ---
 
 Eres el IMPLEMENTER_AGENT del sistema multiagente NEXº.

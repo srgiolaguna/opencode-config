@@ -106,8 +106,8 @@ tr:hover td{background:rgba(99,102,241,.02)}
 <div class="hdr">
 <h1>OPENCODE</h1>
 <div class="stats">
-<div class="st"><div class="n">13</div><div class="l">Proveedores</div></div>
-<div class="st"><div class="n">151</div><div class="l">Modelos a 0&#36;</div></div>
+<div class="st"><div class="n">2/13</div><div class="l">Proveedores activos</div></div>
+<div class="st"><div class="n">9</div><div class="l">Modelos verificados EN VIVO</div></div>
 <div class="st"><div class="n">15</div><div class="l">Agentes</div></div>
 <div class="st"><div class="n">0$</div><div class="l">Costo</div></div>
 </div>
@@ -134,42 +134,32 @@ tr:hover td{background:rgba(99,102,241,.02)}
 <div class="ct">
 
 <div class="sec" id="proveedores">
-<div class="stitle"> Proveedores — click para detalles</div>
+<div class="stitle"> Proveedores — click para detalles. Verde = activo hoy, gris = desactivado (ver por qué en cada tarjeta)</div>
 <div class="cg">
-<div class="card clickable" onclick="showInfo('provider','opencode')"><div class="meta"><h4> opencode</h4><span class="tag t-f">FREE</span></div><p class="d">Modelos propios. Siempre gratuitos.</p><span class="pb">OPENCODE_SECRET_KEY</span><p class="click-hint">ℹ Click para detalles</p></div>
-<div class="card clickable" onclick="showInfo('provider','google')"><div class="meta"><h4> google/gemma</h4><span class="tag t-f">FREE</span></div><p class="d">Gemma 4 31B — visual y razonamiento.</p><span class="pb">GEMINI_API_KEY</span><p class="click-hint">ℹ Click para detalles</p></div>
-<div class="card clickable" onclick="showInfo('provider','groq')"><div class="meta"><h4> groq</h4><span class="tag t-f">FREE</span></div><p class="d">Llama 3.1 70B — inferencia rápida.</p><span class="pb">GROQ_API_KEY</span><p class="click-hint">ℹ Click para detalles</p></div>
-<div class="card clickable" onclick="showInfo('provider','cerebras')"><div class="meta"><h4> cerebras</h4><span class="tag t-f">FREE</span></div><p class="d">Llama 3.3 70B — generación rápida.</p><span class="pb">CEREBRAS_API_KEY</span><p class="click-hint">ℹ Click para detalles</p></div>
-<div class="card clickable" onclick="showInfo('provider','mistral')"><div class="meta"><h4> mistral</h4><span class="tag t-f">FREE</span></div><p class="d">Mistral Small — multilingüe.</p><span class="pb">MISTRAL_API_KEY</span><p class="click-hint">ℹ Click para detalles</p></div>
-<div class="card clickable" onclick="showInfo('provider','sambanova')"><div class="meta"><h4> sambanova</h4><span class="tag t-f">FREE</span></div><p class="d">Llama 3.1 — inferencia rápida.</p><span class="pb">SAMBANOVA_API_KEY</span><p class="click-hint">ℹ Click para detalles</p></div>
-<div class="card clickable" onclick="showInfo('provider','cloudflare')"><div class="meta"><h4> cloudflare</h4><span class="tag t-f">FREE</span></div><p class="d">Workers AI — llama-3.1.</p><span class="pb">CLOUDFLARE_API_TOKEN</span><p class="click-hint">ℹ Click para detalles</p></div>
-<div class="card clickable" onclick="showInfo('provider','ai-gateway')"><div class="meta"><h4> ai-gateway</h4><span class="tag t-f">FREE</span></div><p class="d">Mixtral — MoE.</p><span class="pb">AI_GATEWAY_API_KEY</span><p class="click-hint">ℹ Click para detalles</p></div>
-<div class="card clickable" onclick="showInfo('provider','openrouter')"><div class="meta"><h4> openrouter</h4><span class="tag t-f">FREE</span></div><p class="d">Free tier — múltiples modelos.</p><span class="pb">OPENROUTER_API_KEY</span><p class="click-hint">ℹ Click para detalles</p></div>
-<div class="card clickable" onclick="showInfo('provider','github')"><div class="meta"><h4> github</h4><span class="tag t-f">FREE</span></div><p class="d">Modelos GitHub.</p><span class="pb">GITHUB_TOKEN</span><p class="click-hint">ℹ Click para detalles</p></div>
-<div class="card clickable" onclick="showInfo('provider','nvidia')"><div class="meta"><h4> nvidia</h4><span class="tag t-f">FREE</span></div><p class="d">Nemotron 3 Ultra.</p><span class="pb">NVIDIA_NIM_API_KEY</span><p class="click-hint">ℹ Click para detalles</p></div>
-<div class="card clickable" onclick="showInfo('provider','huggingface')"><div class="meta"><h4> huggingface</h4><span class="tag t-f">FREE</span></div><p class="d">Inference API.</p><span class="pb">HUGGINGFACE_TOKEN</span><p class="click-hint">ℹ Click para detalles</p></div>
-<div class="card clickable" onclick="showInfo('provider','ollama')"><div class="meta"><h4> ollama</h4><span class="tag t-local">LOCAL</span></div><p class="d">100% local. Sin internet.</p><span class="pb">Sin API key</span><p class="click-hint">ℹ Click para detalles</p></div>
+<div class="card clickable" onclick="showInfo('provider','cloudflare')"><div class="meta"><h4> cloudflare-workers-ai</h4><span class="tag t-f">ACTIVO · PRINCIPAL</span></div><p class="d">Gemma 4 26B — probado en vivo con el toolset completo.</p><span class="pb">CLOUDFLARE_API_TOKEN</span><p class="click-hint">ℹ Click para detalles</p></div>
+<div class="card clickable" onclick="showInfo('provider','openrouter')"><div class="meta"><h4> openrouter</h4><span class="tag t-f">ACTIVO · ÚLTIMO RECURSO</span></div><p class="d">Funciona, pero 50 peticiones/día compartidas sin crédito.</p><span class="pb">OPENROUTER_API_KEY</span><p class="click-hint">ℹ Click para detalles</p></div>
+<div class="card clickable" onclick="showInfo('provider','google')"><div class="meta"><h4> google (gemini/gemma)</h4><span class="tag t-vis">DESACTIVADO</span></div><p class="d">Bug real de omo: rompe con el toolset completo (funciona con --pure).</p><span class="pb">GEMINI_API_KEY</span><p class="click-hint">ℹ Click para detalles</p></div>
+<div class="card clickable" onclick="showInfo('provider','groq')"><div class="meta"><h4> groq</h4><span class="tag t-vis">DESACTIVADO</span></div><p class="d">TPM de cuenta (8000) insuficiente para un agente con herramientas.</p><span class="pb">GROQ_API_KEY</span><p class="click-hint">ℹ Click para detalles</p></div>
+<div class="card clickable" onclick="showInfo('provider','cerebras')"><div class="meta"><h4> cerebras</h4><span class="tag t-vis">DESCARTADO</span></div><p class="d">Pide tarjeta para un crédito promo de 5$/30 días — no es gratis de verdad.</p><span class="pb">CEREBRAS_API_KEY</span><p class="click-hint">ℹ Click para detalles</p></div>
+<div class="card clickable" onclick="showInfo('provider','mistral')"><div class="meta"><h4> mistral</h4><span class="tag t-vis">DIAGNÓSTICO PENDIENTE</span></div><p class="d">Su free tier SÍ es gratis sin tarjeta — tu cuenta da 0 req/min, revisa el panel.</p><span class="pb">MISTRAL_API_KEY</span><p class="click-hint">ℹ Click para detalles</p></div>
+<div class="card clickable" onclick="showInfo('provider','github')"><div class="meta"><h4> github-copilot</h4><span class="tag t-vis">ELIMINADO</span></div><p class="d">Sin suscripción de pago no vale la pena — quitado de la config.</p><span class="pb">GITHUB_TOKEN</span><p class="click-hint">ℹ Click para detalles</p></div>
+<div class="card clickable" onclick="showInfo('provider','vercel')"><div class="meta"><h4> vercel (AI Gateway)</h4><span class="tag t-vis">NO INCLUIDO</span></div><p class="d">Crédito de prueba, no es free tier permanente.</p><span class="pb">AI_GATEWAY_API_KEY</span><p class="click-hint">ℹ Click para detalles</p></div>
+<div class="card clickable" onclick="showInfo('provider','otros')"><div class="meta"><h4> sambanova / nvidia / huggingface</h4><span class="tag t-vis">SIN PROBAR</span></div><p class="d">Claves presentes, no auditadas en esta revisión.</p><span class="pb">— </span><p class="click-hint">ℹ Click para detalles</p></div>
+<div class="card clickable" onclick="showInfo('provider','ollama')"><div class="meta"><h4> ollama</h4><span class="tag t-local">NO CONFIGURADO</span></div><p class="d">100% local, pero requiere tener Ollama corriendo.</p><span class="pb">Sin API key</span><p class="click-hint">ℹ Click para detalles</p></div>
 </div>
 </div>
 
 <div class="sec" id="modelos">
-<div class="stitle"> Modelos a 0&#36; — 151 en 7 proveedores (nvidia 98, openrouter 28, opencode 8, google 7, groq 7, mistral 2, huggingface 1). Click para detalle</div>
+<div class="stitle"> Modelos — verificados con una llamada real el 17-sep-2026. Click para detalle</div>
 <div class="cg" id="models-grid">
-<div class="card clickable" data-c="fast opencode" data-s="ling flash fin free rapido" onclick="showInfo('model','ling')"><div class="meta"><h4>openrouter/nex-agi/nex-n2.5-mini:free</h4><span class="tag t-f">FREE</span></div><p class="d"> Ultra-rápido. Default.</p><span class="pb">opencode</span><p class="click-hint">ℹ Ver detalles</p></div>
-<div class="card clickable" data-c="fast opencode" data-s="mimo free rapido" onclick="showInfo('model','mimo')"><div class="meta"><h4>openrouter/nex-agi/nex-n2.5-mini:free</h4><span class="tag t-f">FREE</span></div><p class="d"> Rápido. Análisis.</p><span class="pb">opencode</span><p class="click-hint">ℹ Ver detalles</p></div>
-<div class="card clickable" data-c="power opencode" data-s="nemotron ultra free potente" onclick="showInfo('model','nemotron')"><div class="meta"><h4>openrouter/nex-agi/nex-n2.5-mini:free</h4><span class="tag t-f">FREE</span></div><p class="d"> Potente 70B+.</p><span class="pb">opencode</span><p class="click-hint">ℹ Ver detalles</p></div>
-<div class="card clickable" data-c="fast opencode" data-s="nemotron lightning free" onclick="showInfo('model','lightning')"><div class="meta"><h4>openrouter/nvidia/nemotron-3.5-lightning:free</h4><span class="tag t-f">FREE</span></div><p class="d"> Lightning.</p><span class="pb">opencode</span><p class="click-hint">ℹ Ver detalles</p></div>
-<div class="card clickable" data-c="fast opencode code" data-s="muse spark contributor free" onclick="showInfo('model','muse')"><div class="meta"><h4>opencode/muse-spark-1.3-contributor-free</h4><span class="tag t-f">FREE</span></div><p class="d"> Contributor tier.</p><span class="pb">opencode</span><p class="click-hint">ℹ Ver detalles</p></div>
-<div class="card clickable" data-c="power vis search" data-s="gemma 4 31 visual" onclick="showInfo('model','gemma')"><div class="meta"><h4>google/gemma-4-31b-it</h4><span class="tag t-f">FREE</span></div><p class="d"> 31B. Multimodal.</p><span class="pb">google</span><p class="click-hint">ℹ Ver detalles</p></div>
-<div class="card clickable" data-c="power code" data-s="nvidia llama 3 70b" onclick="showInfo('model','groq')"><div class="meta"><h4>nvidia/meta/llama-3.3-70b-instruct</h4><span class="tag t-f">FREE</span></div><p class="d"> 70B. Contexto grande.</p><span class="pb">groq</span><p class="click-hint">ℹ Ver detalles</p></div>
-<div class="card clickable" data-c="fast" data-s="groq compound mini" onclick="showInfo('model','groq8')"><div class="meta"><h4>groq/groq/compound-mini</h4><span class="tag t-f">FREE</span></div><p class="d"> Ultra-instant.</p><span class="pb">groq</span><p class="click-hint">ℹ Ver detalles</p></div>
-<div class="card clickable" data-c="code" data-s="nvidia gpt oss 120b" onclick="showInfo('model','gptoss')"><div class="meta"><h4>nvidia/openai/gpt-oss-120b</h4><span class="tag t-f">FREE</span></div><p class="d"> 120B. Coding.</p><span class="pb">groq</span><p class="click-hint">ℹ Ver detalles</p></div>
-<div class="card clickable" data-c="code" data-s="deepseek v4 pro flash" onclick="showInfo('model','dsv4')"><div class="meta"><h4>nvidia/deepseek-ai/deepseek-v4-pro-0813</h4><span class="tag t-f">FREE</span></div><p class="d"> Pro coding.</p><span class="pb">opencode</span><p class="click-hint">ℹ Ver detalles</p></div>
-<div class="card clickable" data-c="power" data-s="nemotron ultra 55b free" onclick="showInfo('model','nemotron55')"><div class="meta"><h4>openrouter/nvidia/nemotron-3-ultra-550b-a55b:free</h4><span class="tag t-f">:free</span></div><p class="d"> 55B. Ultra-potente.</p><span class="pb">openrouter/nvidia</span><p class="click-hint">ℹ Ver detalles</p></div>
-<div class="card clickable" data-c="code" data-s="qwen coder 32b" onclick="showInfo('model','qwen')"><div class="meta"><h4>nvidia/qwen/qwen2.5-coder-32b-instruct</h4><span class="tag t-f">FREE</span></div><p class="d"> 32B. Coding avanzado.</p><span class="pb">huggingface</span><p class="click-hint">ℹ Ver detalles</p></div>
-<div class="card clickable" data-c="vis" data-s="gemma 4 vision" onclick="showInfo('model','gemma')"><div class="meta"><h4>openrouter/google/gemma-4-31b-it:free</h4><span class="tag t-f">:free</span></div><p class="d"> 31B. Multimodal.</p><span class="pb">huggingface</span><p class="click-hint">ℹ Ver detalles</p></div>
-<div class="card clickable" data-c="search" data-s="glm investi redaccion" onclick="showInfo('model','perplexity')"><div class="meta"><h4>nvidia/z-ai/glm-5.2</h4><span class="tag t-f">FREE</span></div><p class="d"> Investigación web.</p><span class="pb">openrouter</span><p class="click-hint">ℹ Ver detalles</p></div>
-<div class="card clickable" data-c="voice" data-s="whisper transcripcion voz" onclick="showInfo('model','voice')"><div class="meta"><h4>nvidia/openai/whisper-large-v3</h4><span class="tag t-f">FREE</span></div><p class="d"> Transcripción voz.</p><span class="pb">nvidia</span><p class="click-hint">ℹ Ver detalles</p></div>
+<div class="card clickable" data-c="fast power cloudflare default" data-s="gemma cloudflare default principal" onclick="showInfo('model','cfgemma')"><div class="meta"><h4>cloudflare-workers-ai/@cf/google/gemma-4-26b-a4b-it</h4><span class="tag t-f">✓ VERIFICADO</span></div><p class="d"> Default y small_model. Funciona con el toolset completo.</p><span class="pb">cloudflare</span><p class="click-hint">ℹ Ver detalles</p></div>
+<div class="card clickable" data-c="fast openrouter last" data-s="nex mini default openrouter" onclick="showInfo('model','ormini')"><div class="meta"><h4>openrouter/nex-agi/nex-n2.5-mini:free</h4><span class="tag t-f">✓ estructural</span></div><p class="d"> Último recurso. Falló hoy solo por cuota diaria agotada.</p><span class="pb">openrouter</span><p class="click-hint">ℹ Ver detalles</p></div>
+<div class="card clickable" data-c="power openrouter last" data-s="nex pro razonamiento openrouter" onclick="showInfo('model','orpro')"><div class="meta"><h4>openrouter/nex-agi/nex-n2.5-pro:free</h4><span class="tag t-vis">sin probar hoy</span></div><p class="d"> Último recurso para razonamiento. Misma cuota que arriba.</p><span class="pb">openrouter</span><p class="click-hint">ℹ Ver detalles</p></div>
+<div class="card clickable" data-c="power openrouter last" data-s="nemotron ultra 550b contexto" onclick="showInfo('model','ultra')"><div class="meta"><h4>openrouter/nvidia/nemotron-3-ultra-550b-a55b:free</h4><span class="tag t-vis">sin probar hoy</span></div><p class="d"> Último recurso, contexto 1M. Misma cuota compartida.</p><span class="pb">openrouter</span><p class="click-hint">ℹ Ver detalles</p></div>
+<div class="card clickable" data-c="fast openrouter last" data-s="nemotron lightning rapido" onclick="showInfo('model','lightning')"><div class="meta"><h4>openrouter/nvidia/nemotron-3.5-lightning:free</h4><span class="tag t-vis">sin probar hoy</span></div><p class="d"> Último recurso rápido. Misma cuota compartida.</p><span class="pb">openrouter</span><p class="click-hint">ℹ Ver detalles</p></div>
+<div class="card clickable" data-c="vis openrouter" data-s="vision imagenes ling" onclick="showInfo('model','vl')"><div class="meta"><h4>openrouter/inclusionai/ling-3.0-flash-vl:free</h4><span class="tag t-vis">⚠ sin confirmar</span></div><p class="d"> Único intento de visión. Respuesta vacía al probarlo hoy.</p><span class="pb">openrouter</span><p class="click-hint">ℹ Ver detalles</p></div>
+<div class="card clickable" data-c="power google broken" data-s="gemma google pure roto omo" onclick="showInfo('model','ggemma')"><div class="meta"><h4>google/gemma-4-31b-it</h4><span class="tag t-vis">solo --pure</span></div><p class="d"> Funciona en vivo, pero rompe con el toolset completo de omo.</p><span class="pb">google</span><p class="click-hint">ℹ Ver detalles</p></div>
+<div class="card clickable" data-c="power google broken" data-s="gemini flash google pure roto omo" onclick="showInfo('model','ggemini')"><div class="meta"><h4>google/gemini-3.6-flash</h4><span class="tag t-vis">solo --pure</span></div><p class="d"> El más inteligente que probamos, pero mismo bug con omo.</p><span class="pb">google</span><p class="click-hint">ℹ Ver detalles</p></div>
 </div>
 </div>
 
@@ -179,25 +169,25 @@ tr:hover td{background:rgba(99,102,241,.02)}
 <div>
  <div class="ib"><h3> Nativos (opencode.jsonc)</h3>
  <table><tr><th>Agente</th><th>Modelo</th></tr>
- <tr><td onclick="showInfo('agent','auditor')" style="cursor:pointer">auditor</td><td class="mn">openrouter/nex-agi/nex-n2.5-mini:free</td></tr>
- <tr><td onclick="showInfo('agent','implementer')" style="cursor:pointer">implementer</td><td class="mn">openrouter/nvidia/nemotron-3.5-lightning:free</td></tr>
- <tr><td onclick="showInfo('agent','optimizer')" style="cursor:pointer">optimizer</td><td class="mn">openrouter/nex-agi/nex-n2.5-mini:free</td></tr>
- <tr><td onclick="showInfo('agent','reviewer')" style="cursor:pointer">reviewer</td><td class="mn">openrouter/nex-agi/nex-n2.5-mini:free</td></tr>
- <tr><td onclick="showInfo('agent','validator')" style="cursor:pointer">validator</td><td class="mn">openrouter/nex-agi/nex-n2.5-mini:free</td></tr></table></div>
+ <tr><td onclick="showInfo('agent','auditor')" style="cursor:pointer">auditor</td><td class="mn">cloudflare gemma</td></tr>
+ <tr><td onclick="showInfo('agent','implementer')" style="cursor:pointer">implementer</td><td class="mn">cloudflare gemma</td></tr>
+ <tr><td onclick="showInfo('agent','optimizer')" style="cursor:pointer">optimizer</td><td class="mn">cloudflare gemma</td></tr>
+ <tr><td onclick="showInfo('agent','reviewer')" style="cursor:pointer">reviewer</td><td class="mn">openrouter nex-n2.5-pro:free</td></tr>
+ <tr><td onclick="showInfo('agent','validator')" style="cursor:pointer">validator</td><td class="mn">cloudflare gemma</td></tr></table></div>
 </div>
 <div>
  <div class="ib"><h3> omo (~/.omo/omo.jsonc)</h3>
  <table><tr><th>Agente</th><th>Modelo</th></tr>
- <tr><td onclick="showInfo('agent','hephaestus')" style="cursor:pointer">hephaestus</td><td class="mn">openrouter/nvidia/nemotron-3.5-lightning:free</td></tr>
- <tr><td onclick="showInfo('agent','oracle')" style="cursor:pointer">oracle</td><td class="mn">openrouter/nex-agi/nex-n2.5-mini:free</td></tr>
- <tr><td onclick="showInfo('agent','librarian')" style="cursor:pointer">librarian</td><td class="mn">openrouter/nex-agi/nex-n2.5-mini:free</td></tr>
- <tr><td onclick="showInfo('agent','explore')" style="cursor:pointer">explore</td><td class="mn">openrouter/nex-agi/nex-n2.5-mini:free</td></tr>
- <tr><td onclick="showInfo('agent','multimodal-looker')" style="cursor:pointer">multimodal-looker</td><td class="mn">gemma-4-31b-it</td></tr>
- <tr><td onclick="showInfo('agent','prometheus')" style="cursor:pointer">prometheus</td><td class="mn">openrouter/nex-agi/nex-n2.5-mini:free</td></tr>
- <tr><td onclick="showInfo('agent','metis')" style="cursor:pointer">metis</td><td class="mn">openrouter/nex-agi/nex-n2.5-mini:free</td></tr>
- <tr><td onclick="showInfo('agent','momus')" style="cursor:pointer">momus</td><td class="mn">openrouter/nex-agi/nex-n2.5-mini:free</td></tr>
- <tr><td onclick="showInfo('agent','atlas')" style="cursor:pointer">atlas</td><td class="mn">openrouter/nvidia/nemotron-3.5-lightning:free</td></tr>
- <tr><td onclick="showInfo('agent','sisyphus-junior')" style="cursor:pointer">sisyphus-junior</td><td class="mn">openrouter/nex-agi/nex-n2.5-mini:free</td></tr></table></div>
+ <tr><td onclick="showInfo('agent','hephaestus')" style="cursor:pointer">hephaestus</td><td class="mn">cloudflare gemma</td></tr>
+ <tr><td onclick="showInfo('agent','oracle')" style="cursor:pointer">oracle</td><td class="mn">cloudflare gemma</td></tr>
+ <tr><td onclick="showInfo('agent','librarian')" style="cursor:pointer">librarian</td><td class="mn">cloudflare gemma</td></tr>
+ <tr><td onclick="showInfo('agent','explore')" style="cursor:pointer">explore</td><td class="mn">cloudflare gemma</td></tr>
+ <tr><td onclick="showInfo('agent','multimodal-looker')" style="cursor:pointer">multimodal-looker</td><td class="mn">cloudflare gemma (texto)</td></tr>
+ <tr><td onclick="showInfo('agent','prometheus')" style="cursor:pointer">prometheus</td><td class="mn">cloudflare gemma</td></tr>
+ <tr><td onclick="showInfo('agent','metis')" style="cursor:pointer">metis</td><td class="mn">cloudflare gemma</td></tr>
+ <tr><td onclick="showInfo('agent','momus')" style="cursor:pointer">momus</td><td class="mn">cloudflare gemma</td></tr>
+ <tr><td onclick="showInfo('agent','atlas')" style="cursor:pointer">atlas</td><td class="mn">cloudflare gemma</td></tr>
+ <tr><td onclick="showInfo('agent','sisyphus-junior')" style="cursor:pointer">sisyphus-junior</td><td class="mn">cloudflare gemma</td></tr></table></div>
 </div>
 </div>
 </div>
@@ -217,37 +207,31 @@ tr:hover td{background:rgba(99,102,241,.02)}
  <p> &#10003; 10 agentes especializados + 8 categorías</p>
  <p> <strong>Ultrawork (ulw)</strong> — modo autónomo. Si escribes <code>ulw</code> en el prompt, el agente trabaja sin confirmar cada paso. &#10003; <strong>GRATIS</strong>.</p>
  <p> <strong>Modo Plan</strong> — <code>--plan</code> o <code>/plan</code>. Primero planifica, luego ejecuta. Evita que el agente programe sin entender el problema.</p>
- <h3>MCP Servers (Model Context Protocol)</h3>
- <p>Conexiones que dan a opencode acceso a fuentes externas:</p>
- <div class="cb"><code>websearch (Exa)</code> — busca en internet<br>
- <code>context7</code> — lee documentación de librerías<br>
- <code>grep_app (GitHub)</code> — busca código en GitHub<br>
- <code>LSP</code> — autocompletado, ir a definición, errores de tipos<br>
- <code>Hooks: 25+ configurables</code> — reacciones a eventos</div>
- <p> <strong>&#10003; Todos gratuitos</strong> — &#10003; ya integrados en oh-my-openagent</p>
- <h3>Model routing inteligente</h3>
- <p>Usa modelos diferentes para cada tipo de tarea para ahorrar tokens:</p>
- <div class="cb"><code>&#10003; Tareas rápidas</code> → <code>openrouter/nvidia/nemotron-3.5-lightning:free</code> o <code>openrouter/nex-agi/nex-n2.5-mini:free</code><br>
- <code>Coding</code> → <code>qwen3-coder-480b</code>, <code>gpt-oss-120b</code>, <code>deepseek-v4-pro</code> (NVIDIA 0$)<br>
- <code>Razonamiento</code> → <code>openrouter/nex-agi/nex-n2.5-mini:free</code> o <code>gemma-4-31b-it</code><br>
- <code>Tareas pesadas</code> → <code>openrouter/nex-agi/nex-n2.5-mini:free</code> o <code>llama-3.3-70b</code></div>
- <p> <strong>&#10003; Gratis</strong> — solo organizar cuál modelo usar para qué</p>
+ <h3 style="color:var(--o)">⚠ Bug conocido del doctor</h3>
+ <p><code>omo doctor</code> marca 10 avisos "Deprecated: fallback_models → models" en la sección
+ <code>agents.*</code>. Es un <strong>falso positivo</strong>: comprobado en el código fuente del plugin,
+ el schema real de <code>agents.&lt;nombre&gt;</code> solo acepta <code>fallback_models</code> — el campo
+ <code>models</code> solo existe para <code>categories.*</code>. Si lo "arreglas" siguiendo el aviso, omo
+ deja de arrancar ("Unknown config key"). Déjalo tal cual.</p>
+ <h3>Model routing (config real, verificado 17-sep)</h3>
+ <p>Todos los agentes usan Cloudflare Workers AI (gemma) como modelo principal — es el único que se probó
+ en vivo con el toolset completo de omo sin romperse. OpenRouter queda como fallback por agente (ver
+ pestaña AGENTES), sujeto a la cuota compartida de 50/día.</p>
  <h3>Archivos</h3>
  <p><code>~/.omo/omo.jsonc</code> — Configuración principal</p>
- <p><code>~/.config/opencode/node_modules/oh-my-openagent/</code> — Plugin</p>
  <p><code>~/.bun/bin/omo</code> — Comando omo</p>
- <h3>AST-Grep</h3>
- <p> <code>brew install ast-grep</code> — Busca código por estructura AST</p>
 </div>
 </div>
 
 <div class="sec" id="fallback">
 <div class="stitle"> Cadena de Fallback</div>
 <div class="ib">
-<p>Si un modelo falla (rate limit, error 500), el sistema prueba el siguiente <strong>sin perder contexto</strong>.</p>
-<h3>Cadena Global</h3>
-<div class="cb"><span style="color:var(--g)">openrouter/nex-agi/nex-n2.5-mini:free</span> → <span style="color:var(--a)">openrouter/nvidia/nemotron-3.5-lightning:free</span> → <span style="color:var(--o)">openrouter/nex-agi/nex-n2.5-mini:free</span> → <span style="color:var(--p)">openrouter/nex-agi/nex-n2.5-mini:free</span> → <span style="color:var(--c)">openrouter/nex-agi/nex-n2.5-mini:free</span></div>
-<h3>Categorías</h3><table><tr><td>visual-engineering</td><td class="mn">gemma-4-31b-it</td></tr><tr><td>ultrabrain</td><td class="mn">openrouter/nex-agi/nex-n2.5-mini:free</td></tr><tr><td>deep</td><td class="mn">openrouter/nex-agi/nex-n2.5-mini:free</td></tr><tr><td>artistry</td><td class="mn">openrouter/nvidia/nemotron-3.5-lightning:free</td></tr><tr><td>quick</td><td class="mn">openrouter/nex-agi/nex-n2.5-mini:free</td></tr><tr><td>writing</td><td class="mn">openrouter/nex-agi/nex-n2.5-mini:free</td></tr><tr><td>unspecified-low</td><td class="mn">openrouter/nex-agi/nex-n2.5-mini:free</td></tr><tr><td>unspecified-high</td><td class="mn">openrouter/nex-agi/nex-n2.5-mini:free</td></tr></table>
+<p>Si un modelo falla (rate limit, error), el sistema prueba el siguiente <strong>sin perder contexto</strong>.
+Ojo: todos los fallbacks de OpenRouter comparten la misma cuota diaria de 50 peticiones — si el primario
+(Cloudflare) también estuviera caído, es poco probable que el fallback de OpenRouter tenga cupo.</p>
+<h3>Cadena por defecto</h3>
+<div class="cb"><span style="color:var(--g)">cloudflare-workers-ai/@cf/google/gemma-4-26b-a4b-it</span> (principal, verificado) → <span style="color:var(--a)">openrouter/nex-agi/nex-n2.5-mini:free</span> (último recurso, sujeto a cuota)</div>
+<h3>Categorías (omo.jsonc)</h3><table><tr><td>visual-engineering</td><td class="mn">cloudflare gemma</td></tr><tr><td>ultrabrain</td><td class="mn">cloudflare gemma → nemotron-3-ultra</td></tr><tr><td>deep</td><td class="mn">cloudflare gemma → nemotron-3-ultra</td></tr><tr><td>artistry</td><td class="mn">cloudflare gemma</td></tr><tr><td>quick</td><td class="mn">cloudflare gemma</td></tr><tr><td>writing</td><td class="mn">cloudflare gemma</td></tr><tr><td>unspecified-low</td><td class="mn">cloudflare gemma</td></tr><tr><td>unspecified-high</td><td class="mn">cloudflare gemma → nex-n2.5-pro</td></tr></table>
 </div>
 </div>
 
@@ -260,45 +244,71 @@ tr:hover td{background:rgba(99,102,241,.02)}
  <div class="card clickable" onclick="copyCmd('/compact')"><div class="meta"><h4> /compact</h4><span class="tag t-fast">COMPACT</span></div><p class="d">Comprime el historial para sesiones largas</p><span class="pb">opencode</span><p class="click-hint">ℹ Click para copiar</p></div>
  <div class="card clickable" onclick="copyCmd('opencode')"><div class="meta"><h4> opencode</h4><span class="tag t-f">FREE</span></div><p class="d">Iniciar opencode</p><span class="pb">opencode</span><p class="click-hint">ℹ Click para copiar</p></div>
 <div class="card clickable" onclick="copyCmd('opencode models')"><div class="meta"><h4> opencode models</h4><span class="tag t-fast">VER</span></div><p class="d">Listar modelos 0&#36; del catálogo</p><span class="pb">opencode</span><p class="click-hint">ℹ Click para copiar</p></div>
-<div class="card clickable" onclick="copyCmd('opencode -m openrouter/nex-agi/nex-n2.5-mini:free')"><div class="meta"><h4> opencode -m</h4><span class="tag t-pow">POT</span></div><p class="d">Cambiar modelo</p><span class="pb">opencode</span><p class="click-hint">ℹ Click para copiar</p></div>
-<div class="card clickable" onclick="copyCmd('opencode agent auditor')"><div class="meta"><h4> opencode agent</h4><span class="tag t-code">CODE</span></div><p class="d">Lanzar agente</p><span class="pb">opencode</span><p class="click-hint">ℹ Click para copiar</p></div>
+<div class="card clickable" onclick="copyCmd('opencode -m cloudflare-workers-ai/@cf/google/gemma-4-26b-a4b-it')"><div class="meta"><h4> opencode -m</h4><span class="tag t-pow">POT</span></div><p class="d">Cambiar modelo</p><span class="pb">opencode</span><p class="click-hint">ℹ Click para copiar</p></div>
+<div class="card clickable" onclick="copyCmd('opencode run --pure -m google/gemini-3.6-flash \"tu mensaje\"')"><div class="meta"><h4> opencode run --pure</h4><span class="tag t-vis">SIN OMO</span></div><p class="d">Usar Google directo (evita el bug de omo con Gemini)</p><span class="pb">opencode</span><p class="click-hint">ℹ Click para copiar</p></div>
+<div class="card clickable" onclick="copyCmd('opencode providers list')"><div class="meta"><h4> opencode providers list</h4><span class="tag t-fast">VER</span></div><p class="d">Ver qué claves detecta y desde dónde</p><span class="pb">opencode</span><p class="click-hint">ℹ Click para copiar</p></div>
+<div class="card clickable" onclick="copyCmd('opencode run --agent auditor \"tu mensaje\"')"><div class="meta"><h4> opencode run --agent</h4><span class="tag t-code">CODE</span></div><p class="d">Lanzar un agente concreto (auditor, implementer, optimizer, reviewer, validator)</p><span class="pb">opencode</span><p class="click-hint">ℹ Click para copiar</p></div>
 <div class="card clickable" onclick="copyCmd('opencode doctor')"><div class="meta"><h4> opencode doctor</h4><span class="tag t-vis">DIAG</span></div><p class="d">Verificar configuración</p><span class="pb">opencode</span><p class="click-hint">ℹ Click para copiar</p></div>
 <div class="card clickable" onclick="copyCmd('/model openrouter/nex-agi/nex-n2.5-mini:free')"><div class="meta"><h4> /model</h4><span class="tag t-srch">CMD</span></div><p class="d">Cambiar modelo en sesión</p><span class="pb">opencode</span><p class="click-hint">ℹ Click para copiar</p></div>
 <div class="card clickable" onclick="copyCmd('omo')"><div class="meta"><h4> omo</h4><span class="tag t-fast">OH-MY</span></div><p class="d">Iniciar oh-my-openagent</p><span class="pb">oh-my-openagent</span><p class="click-hint">ℹ Click para copiar</p></div>
 <div class="card clickable" onclick="copyCmd('omo --version')"><div class="meta"><h4> omo --version</h4><span class="tag t-fast">INFO</span></div><p class="d">Versión 4.19.4</p><span class="pb">oh-my-openagent</span><p class="click-hint">ℹ Click para copiar</p></div>
 <div class="card clickable" onclick="copyCmd('omo doctor')"><div class="meta"><h4> omo doctor</h4><span class="tag t-vis">DIAG</span></div><p class="d">Diagnosticar configuración</p><span class="pb">oh-my-openagent</span><p class="click-hint">ℹ Click para copiar</p></div>
-<div class="card clickable" onclick="copyCmd('cerrar')"><div class="meta"><h4> cerrar</h4><span class="tag t-fast">COMMAND</span></div><p class="d">Auto-commit + push</p><span class="pb">alias</span><p class="click-hint">ℹ Click para copiar</p></div>
+<div class="card clickable" onclick="copyCmd('cd ~/.config/opencode && git add -A && git commit -m \"update\" && git push')"><div class="meta"><h4> commit + push</h4><span class="tag t-fast">GIT</span></div><p class="d">No existe alias "cerrar" (comprobado 17-sep) — usa git directo</p><span class="pb">git</span><p class="click-hint">ℹ Click para copiar</p></div>
 <div class="card clickable" onclick="copyCmd('sg --version')"><div class="meta"><h4> sg --version</h4><span class="tag t-code">AST-GREP</span></div><p class="d">ast-grep v0.45.3</p><span class="pb">terminal</span><p class="click-hint">ℹ Click para copiar</p></div>
 <div class="card clickable" onclick="copyCmd('source ~/.zshenv')"><div class="meta"><h4> source ~/.zshenv</h4><span class="tag t-fast">ENV</span></div><p class="d">Recargar claves API</p><span class="pb">terminal</span><p class="click-hint">ℹ Click para copiar</p></div>
 </div>
 </div>
 
 <div class="sec" id="launcher">
-<div class="stitle"> Launcher — Elige modelo, escribe prompt, abre Terminal</div>
+<div class="stitle"> Launcher — di qué quieres hacer, te doy el comando listo para pegar en Terminal</div>
 <div class="ib">
-<p>Selecciona un modelo, escribe lo que necesitas y pulsa <strong>Abrir Terminal</strong>. Se abrirá Terminal.app con el comando listo.</p>
-<div style="margin-bottom:8px">
- <label style="color:var(--a);font-size:0.78em;font-weight:600">MODELO:</label>
- <select id="model-select" style="width:100%;padding:8px 12px;background:var(--bg);border:1px solid var(--b);border-radius:6px;color:var(--t);font-family:inherit;font-size:0.82em;margin-top:4px">
-  <option value="openrouter/nex-agi/nex-n2.5-mini:free" selected> nex-n2.5-mini:free (default, potente)</option>
-  <option value="openrouter/inclusionai/ling-3.0-flash-fin:free"> ling-3.0-flash-fin:free (rápido)</option>
-  <option value="openrouter/nvidia/nemotron-3.5-lightning:free"> nemotron-3.5-lightning:free (ultrarápido)</option>
-</select>
+<p style="color:var(--tm);font-size:0.72em">Un navegador no puede abrir Terminal.app ni ejecutar comandos por ti (por seguridad) — este launcher
+genera el comando correcto y lo copia al portapapeles. Pégalo con <code>Cmd+V</code> y pulsa Enter.</p>
+
+<div style="margin-bottom:10px">
+ <label style="color:var(--a);font-size:0.78em;font-weight:600">1. ¿QUÉ QUIERES HACER?</label>
+ <select id="task-select" onchange="applyTask()" style="width:100%;padding:8px 12px;background:var(--bg);border:1px solid var(--b);border-radius:6px;color:var(--t);font-family:inherit;font-size:0.82em;margin-top:4px">
+  <option value="general" selected>Uso general / no sé muy bien qué necesito</option>
+  <option value="quick">Algo rápido y simple</option>
+  <option value="reasoning">Razonar o analizar algo complejo</option>
+  <option value="bigcontext">Analizar un proyecto entero / mucho contexto</option>
+  <option value="writing">Escribir o redactar texto</option>
+  <option value="vision">Analizar o describir una imagen</option>
+  <option value="gemini">Usar Gemini de Google directamente</option>
+  <option value="audit">Auditar código sin tocar nada (agente auditor)</option>
+  <option value="implement">Ejecutar cambios ya aprobados (agente implementer)</option>
+  <option value="review">Revisar cambios y buscar bugs (agente reviewer)</option>
+  <option value="validate">Validación rápida: lint/compila (agente validator)</option>
+ </select>
+ <p id="task-note" style="font-size:0.7em;margin-top:4px"></p>
 </div>
+
 <div style="margin-bottom:8px">
- <label style="color:var(--a);font-size:0.78em;font-weight:600">PROMPT (lo que quieres que haga):</label>
+ <label style="color:var(--a);font-size:0.78em;font-weight:600">2. MODELO (se rellena solo, puedes cambiarlo)</label>
+ <select id="model-select" style="width:100%;padding:8px 12px;background:var(--bg);border:1px solid var(--b);border-radius:6px;color:var(--t);font-family:inherit;font-size:0.82em;margin-top:4px">
+  <option value="cloudflare-workers-ai/@cf/google/gemma-4-26b-a4b-it"> Cloudflare gemma (principal, verificado)</option>
+  <option value="openrouter/nex-agi/nex-n2.5-mini:free"> OpenRouter nex-n2.5-mini:free (último recurso, cuota 50/día)</option>
+  <option value="openrouter/nex-agi/nex-n2.5-pro:free"> OpenRouter nex-n2.5-pro:free (razonamiento, último recurso)</option>
+  <option value="openrouter/nvidia/nemotron-3-ultra-550b-a55b:free"> OpenRouter nemotron-3-ultra (contexto 1M, último recurso)</option>
+  <option value="openrouter/inclusionai/ling-3.0-flash-vl:free"> OpenRouter ling-3.0-flash-vl:free (visión, sin confirmar)</option>
+  <option value="google/gemini-3.6-flash"> Google gemini-3.6-flash (requiere --pure)</option>
+ </select>
+</div>
+
+<div style="margin-bottom:8px">
+ <label style="color:var(--a);font-size:0.78em;font-weight:600">3. PROMPT (lo que quieres que haga):</label>
  <textarea id="prompt-input" rows="4" placeholder="Ej: Analiza este código y sugiere mejoras de seguridad" style="width:100%;padding:8px 12px;background:var(--bg);border:1px solid var(--b);border-radius:6px;color:var(--t);font-family:inherit;font-size:0.82em;margin-top:4px;resize:vertical"></textarea>
 </div>
 <div style="margin-bottom:8px">
- <label style="color:var(--a);font-size:0.78em;font-weight:600">MODO:</label>
+ <label style="color:var(--a);font-size:0.78em;font-weight:600">4. MODO:</label>
  <div style="display:flex;gap:6px;margin-top:4px;flex-wrap:wrap">
   <button class="nb" onclick="setMode('normal')" id="mode-normal" style="border-color:var(--a);color:var(--a)">Normal</button>
   <button class="nb" onclick="setMode('ulw')" id="mode-ulw" style="border-color:var(--o);color:var(--o)"> ULTRAWORK</button>
   <button class="nb" onclick="setMode('plan')" id="mode-plan" style="border-color:var(--p);color:var(--p)"> PLAN</button>
  </div>
- <p style="color:var(--tm);font-size:0.68em;margin-top:3px">ULTRAWORK = autónomo sin confirmar. PLAN = primero planifica, luego ejecuta.</p>
+ <p style="color:var(--tm);font-size:0.68em;margin-top:3px">ULTRAWORK = autónomo sin confirmar. PLAN = primero planifica, luego ejecuta. (No aplican si el comando usa --agent).</p>
 </div>
-<button class="nb" onclick="launchOpenCode()" style="background:var(--a);color:#fff;border-color:var(--a);font-weight:700;padding:10px 24px;font-size:0.85em"> Abrir Terminal con este modelo</button>
+<button class="nb" onclick="launchOpenCode()" style="background:var(--a);color:#fff;border-color:var(--a);font-weight:700;padding:10px 24px;font-size:0.85em"> Copiar comando al portapapeles</button>
 <div id="launch-result" style="margin-top:8px;font-size:0.78em"></div>
 </div>
 </div>
@@ -307,12 +317,12 @@ tr:hover td{background:rgba(99,102,241,.02)}
 <div class="sec" id="cerrar">
 <div class="stitle">CERRAR</div>
 <div class="ib">
-<p>Escribe <code>cerrar</code> antes de cerrar sesión. Automáticamente:</p>
-<p> Auto-commit en todos los repos git<br>
-   Auto-push a GitHub<br>
-   Verifica procesos NEXº<br>
-   Muestra claves API pendientes<br>
-<strong>5 repos:</strong> opencode-config, dotfiles, Cycle, NEXº, Workstation</p>
+<p style="color:var(--o)">⚠ Comprobado el 17-sep: el comando <code>cerrar</code> descrito aquí en versiones anteriores de esta
+guía <strong>no existe</strong> — no está en <code>~/.zshrc</code>, <code>~/.zshenv</code> ni
+<code>~/.alias_gio</code>. Era una afirmación de una sesión anterior nunca verificada. Si lo quieres, hay
+que crearlo; mientras tanto, para commitear/pushear usa git a mano en cada repo:</p>
+<div class="cb"><code>cd ~/.config/opencode && git add -A && git commit -m "..." && git push</code><br>
+<code>cd ~/.omo && git add -A && git commit -m "..." && git push</code></div>
 </div>
 </div>
 
@@ -322,8 +332,9 @@ tr:hover td{background:rgba(99,102,241,.02)}
 <p> <code>~/.zshenv</code> NO en git ni en historial de GitHub</p>
 <p> <code>git filter-repo</code> eliminó .zshenv del historial</p>
 <p> Todas las claves usan <code>{env:VAR}</code> en opencode.jsonc</p>
-<h3>Claves configuradas: 13/13 </h3>
+<h3>Claves configuradas: 13/13 (2 proveedores activos hoy)</h3>
 <p style="font-size:0.7em;word-break:break-all">OPENCODE_SECRET_KEY · GROQ_API_KEY · CEREBRAS_API_KEY · MISTRAL_API_KEY · SAMBANOVA_API_KEY · AI_GATEWAY_API_KEY · GEMINI_API_KEY · GOOGLE_API_KEY · CLOUDFLARE_API_TOKEN · OPENROUTER_API_KEY · GITHUB_TOKEN · NVIDIA_NIM_API_KEY · HUGGINGFACE_TOKEN</p>
+<p style="font-size:0.72em;color:var(--tm);margin-top:6px">Las 13 claves siguen intactas en <code>~/.zshenv</code> — solo 2 proveedores están en <code>enabled_providers</code> hoy por los motivos de la pestaña PROVEEDORES, no porque falten claves.</p>
 </div>
 </div>
 
@@ -333,33 +344,30 @@ tr:hover td{background:rgba(99,102,241,.02)}
 <h3>Comandos</h3>
 <div class="cb"><code>opencode --version</code> → 1.18.31<br>
 <code>omo --version</code> → 4.19.4<br>
-<code>sg --version</code> → ast-grep 0.45.3<br>
-<code>bunx oh-my-openagent doctor</code> → 1 warning no-crítico<br>
-<code>opencode models</code> → 151 modelos a 0&#36;</div>
+<code>omo doctor</code> → 10 avisos "fallback_models" (falso positivo conocido, ver pestaña OH-MY-OPENCODE)<br>
+<code>opencode providers list</code> → confirma qué claves detecta opencode<br>
+<code>opencode run "responde solo con la palabra OK"</code> → prueba real de que el modelo por defecto responde</div>
 </div>
 </div>
 
 <div class="sec" id="tips">
 <div class="stitle"> Consejos — click para copiar · Buscar: <input type="text" class="sb" id="tip-search" placeholder=" Filtrar consejos..." oninput="filterTip(this.value)"></div>
 <div class="cg">
-<div class="card clickable" onclick="copyCmd('opencode -m openrouter/nvidia/nemotron-3.5-lightning:free')"><div class="meta"><h4> &#10003; Tareas rápidas</h4><span class="tag t-fast">RÁPIDO</span></div><p class="d">Usa <code>openrouter/nvidia/nemotron-3.5-lightning:free</code> o <code>openrouter/nex-agi/nex-n2.5-mini:free</code> para máxima velocidad.</p><span class="pb">speed</span><p class="click-hint">ℹ Click para copiar</p></div>
-<div class="card clickable" onclick="copyCmd('opencode -m openrouter/nex-agi/nex-n2.5-mini:free')"><div class="meta"><h4> &#10003; Análisis profundo</h4><span class="tag t-pow">POTENTE</span></div><p class="d">Usa <code>openrouter/nex-agi/nex-n2.5-mini:free</code> o <code>llama-3.3-70b</code> para razonamiento complejo.</p><span class="pb">power</span><p class="click-hint">ℹ Click para copiar</p></div>
-<div class="card clickable" onclick="copyCmd('opencode -m nvidia/qwen/qwen3-coder-480b-a35b-instruct')"><div class="meta"><h4> &#10003; Programar</h4><span class="tag t-code">CODE</span></div><p class="d">Usa <code>qwen3-coder-480b</code>, <code>gpt-oss-120b</code>, <code>deepseek-v4-pro</code> (todos NVIDIA gratis).</p><span class="pb">coding</span><p class="click-hint">ℹ Click para copiar</p></div>
-<div class="card clickable" onclick="copyCmd('opencode -m google/gemma-4-31b-it')"><div class="meta"><h4> Imágenes</h4><span class="tag t-vis">VISUAL</span></div><p class="d">Usa <code>gemma-4-31b-it</code> o <code>llama-3.2-90b-vision</code> para tareas visuales.</p><span class="pb">visual</span><p class="click-hint">ℹ Click para copiar</p></div>
-<div class="card clickable" onclick="copyCmd('opencode -m nvidia/z-ai/glm-5.2')"><div class="meta"><h4> Investigación</h4><span class="tag t-srch">SEARCH</span></div><p class="d">Usa <code>glm-5.2</code> (NVIDIA) para investigación y redacción 0$.</p><span class="pb">search</span><p class="click-hint">ℹ Click para copiar</p></div>
-<div class="card clickable" onclick="copyCmd('opencode -m nvidia/openai/whisper-large-v3')"><div class="meta"><h4> Audio</h4><span class="tag t-voice">VOICE</span></div><p class="d">Usa <code>whisper-large-v3</code> (NVIDIA) para transcripción de voz.</p><span class="pb">audio</span><p class="click-hint">ℹ Click para copiar</p></div>
-<div class="card clickable" onclick="copyCmd('opencode agent auditor')"><div class="meta"><h4> Auditoría</h4><span class="tag t-fast">AUDIT</span></div><p class="d">Usa <code>auditor</code> para analizar sin modificar nada.</p><span class="pb">agent</span><p class="click-hint">ℹ Click para copiar</p></div>
-<div class="card clickable" onclick="copyCmd('opencode agent implementer')"><div class="meta"><h4> Implementar</h4><span class="tag t-pow">EXEC</span></div><p class="d">Usa <code>implementer</code> para ejecutar cambios aprobados.</p><span class="pb">agent</span><p class="click-hint">ℹ Click para copiar</p></div>
-<div class="card clickable" onclick="copyCmd('omo')"><div class="meta"><h4> oh-my-openagent</h4><span class="tag t-code">OH-MY</span></div><p class="d">Instalar con <code>bunx oh-my-openagent install --no-tui --platform opencode</code>.</p><span class="pb">setup</span><p class="click-hint">ℹ Click para copiar</p></div>
-<div class="card clickable" onclick="copyCmd('brew install ast-grep')"><div class="meta"><h4> AST-Grep</h4><span class="tag t-fast">SEARCH</span></div><p class="d">Instalar con <code>brew install ast-grep</code> para búsqueda por estructura.</p><span class="pb">tool</span><p class="click-hint">ℹ Click para copiar</p></div>
-<div class="card clickable" onclick="copyCmd('cerrar')"><div class="meta"><h4> cerrar</h4><span class="tag t-fast">CLOSE</span></div><p class="d">Siempre usa <code>cerrar</code> antes de cerrar sesión. Auto-commit + push.</p><span class="pb">safety</span><p class="click-hint">ℹ Click para copiar</p></div>
+<div class="card clickable" onclick="copyCmd('opencode -m cloudflare-workers-ai/@cf/google/gemma-4-26b-a4b-it')"><div class="meta"><h4> &#10003; Uso general</h4><span class="tag t-fast">DEFAULT</span></div><p class="d">Es el modelo por defecto — no hace falta ni especificarlo. Verificado en vivo.</p><span class="pb">default</span><p class="click-hint">ℹ Click para copiar</p></div>
+<div class="card clickable" onclick="copyCmd('opencode -m openrouter/nex-agi/nex-n2.5-pro:free')"><div class="meta"><h4> Razonamiento pesado</h4><span class="tag t-pow">POTENTE</span></div><p class="d">Si Cloudflare no basta, prueba <code>nex-n2.5-pro:free</code> — sujeto a la cuota de 50/día de OpenRouter.</p><span class="pb">power</span><p class="click-hint">ℹ Click para copiar</p></div>
+<div class="card clickable" onclick="copyCmd('opencode run --pure -m google/gemini-3.6-flash \"tu mensaje\"')"><div class="meta"><h4> Imágenes / Gemini</h4><span class="tag t-vis">VISUAL</span></div><p class="d">Usa <code>--pure</code> para acceder a Google directamente — con omo activo rompe (bug documentado).</p><span class="pb">visual</span><p class="click-hint">ℹ Click para copiar</p></div>
+<div class="card clickable" onclick="copyCmd('opencode run --agent auditor \"tu mensaje\"')"><div class="meta"><h4> Auditoría</h4><span class="tag t-fast">AUDIT</span></div><p class="d">Usa <code>auditor</code> para analizar sin modificar nada.</p><span class="pb">agent</span><p class="click-hint">ℹ Click para copiar</p></div>
+<div class="card clickable" onclick="copyCmd('opencode run --agent implementer \"tu mensaje\"')"><div class="meta"><h4> Implementar</h4><span class="tag t-pow">EXEC</span></div><p class="d">Usa <code>implementer</code> para ejecutar cambios aprobados.</p><span class="pb">agent</span><p class="click-hint">ℹ Click para copiar</p></div>
+<div class="card clickable" onclick="copyCmd('opencode providers list')"><div class="meta"><h4> Ver claves detectadas</h4><span class="tag t-code">DEBUG</span></div><p class="d">Si algo no responde, empieza por aquí: confirma qué proveedores ve opencode de verdad.</p><span class="pb">debug</span><p class="click-hint">ℹ Click para copiar</p></div>
+<div class="card clickable" onclick="copyCmd('git status')"><div class="meta"><h4> Antes de cerrar sesión</h4><span class="tag t-fast">CLOSE</span></div><p class="d">No hay alias "cerrar" real — revisa <code>git status</code> en cada repo y commitea a mano.</p><span class="pb">safety</span><p class="click-hint">ℹ Click para copiar</p></div>
 <div class="card clickable" onclick="copyCmd('source ~/.zshenv')"><div class="meta"><h4> Claves API</h4><span class="tag t-pow">KEYS</span></div><p class="d">Si las claves no cargan: <code>source ~/.zshenv</code>. Nunca en git.</p><span class="pb">security</span><p class="click-hint">ℹ Click para copiar</p></div>
+<div class="card clickable" onclick="copyCmd('openrouter.ai/settings/credits')"><div class="meta"><h4> Subir cuota OpenRouter</h4><span class="tag t-srch">10$</span></div><p class="d">Añade 10$ una vez para pasar de 50 a 1000 peticiones/día gratis (los modelos :free nunca cobran).</p><span class="pb">tip</span><p class="click-hint">ℹ Click para copiar</p></div>
 </div>
 </div>
 
 <div class="ft">
-<p>opencode v1.18.31 · oh-my-openagent v4.19.4 · AST-Grep 0.45.3 · <span class="gt">151 modelos a 0$</span></p>
-<p style="margin-top:4px;font-size:0.65em">16 septiembre 2026 · Haz click en elementos para ver detalles</p>
+<p>opencode v1.18.31 · oh-my-openagent v4.19.4 · <span class="gt">2/13 proveedores activos, verificados en vivo</span></p>
+<p style="margin-top:4px;font-size:0.65em">17 septiembre 2026 · Auditoría con pruebas reales, no solo catálogo · Haz click en elementos para ver detalles</p>
 </div>
 
 <script>// SEARCH
@@ -374,50 +382,39 @@ document.getElementById('search').addEventListener('input', function() {
 // SHOW INFO (PROVIDER/MODEL/AGENT DETAILS)
 function showInfo(type, id) {
   var data = {
- "provider:opencode": { name:"opencode", desc:"Proveedor propio de OpenCode. Ofrece modelos exclusivamente gratuitos sin necesidad de cuenta externa.", specs:{Modelos:"6 FREE", Coste:"0$", API:"OPENCODE_SECRET_KEY", Tipo:"Propios"}, why:"Ideal para empezar rápido sin configurar nada externo." },
- "provider:google": { name:" google/gemma", desc:"Google Gemma 4 31B. Modelo multimodal 100% gratuito con soporte para imágenes y texto.", specs:{Modelo:"gemma-4-31b-it", Coste:"0$", API:"GEMINI_API_KEY", Tipo:"Multimodal"}, why:"Excelente para razonamiento, planificación y tareas que requieren entender contexto visual y textual." },
- "provider:groq": { name:" groq", desc:"Groq con modelos Llama de Meta. Inferencia ultra-rápida gracias a su arquitectura LPU.", specs:{Modelos:"llama-3.3-70b, llama-3.1-8b", Coste:"0$", API:"GROQ_API_KEY", Tipo:"Ultra-rápido"}, why:"La inferencia más rápida del mercado. Ideal para tareas que necesitan respuesta inmediata." },
- "provider:cerebras": { name:"cerebras", desc:"Cerebras con Llama 3.3 70B. Inferencia rápida usando su arquitectura Wafer-Scale Engine.", specs:{Modelo:"llama-3.3-70b", Coste:"0$", API:"CEREBRAS_API_KEY", Tipo:"Contexto grande"}, why:"Contexto amplio y generación rápida. Útil para proyectos grandes." },
- "provider:sambanova": { name:"sambanova", desc:"SambaNova con Llama 3.1. Inferencia rápida usando Cerebras-grade hardware.", specs:{Modelos:"llama-3.1", Coste:"0$", API:"SAMBANOVA_API_KEY", Tipo:"Ultra-rápido"}, why:"Rendimiento alto de inferencia. Útil para tareas de generación rápida." },
- "provider:mistral": { name:"mistral", desc:"Mistral AI con Mistral Small. Modelo multilingüe eficiente y rápido.", specs:{Modelo:"mistral-small", Coste:"0$", API:"MISTRAL_API_KEY", Tipo:"Multilingüe"}, why:"Excelente para tareas multilingües y rápidas." },
- "provider:cloudflare": { name:" cloudflare", desc:"Cloudflare Workers AI con Llama 3.1. Inferencia a través de la red global de Cloudflare.", specs:{Modelos:"llama-3.1", Coste:"0$", API:"CLOUDFLARE_API_TOKEN + ACCOUNT_ID", Tipo:"Escalable"}, why:"Escalable y rápido gracias a la infraestructura global de Cloudflare." },
- "provider:ai-gateway": { name:"ai-gateway", desc:"AI Gateway con Mixtral. Servicio de inferencia con mixture-of-experts.", specs:{Modelo:"mixtral", Coste:"0$", API:"AI_GATEWAY_API_KEY", Tipo:"MoE"}, why:"Modelo experto mixto, eficiente para tareas diversas." },
- "provider:openrouter": { name:"openrouter", desc:"OpenRouter agrega múltiples modelos de distintos proveedores con acceso gratuito a muchos de ellos.", specs:{Modelos:"28 a 0$", Coste:"0$", API:"OPENROUTER_API_KEY", Tipo:"Agregador"}, why:"Acceso a 28 modelos 0$ de NVIDIA, Google, Meta, etc. a través de una sola API." },
- "provider:github": { name:"github", desc:"GitHub Models con acceso gratuito a modelos de OpenAI y Claude.", specs:{Modelos:"GPT-4o, Claude", Coste:"0$", API:"GITHUB_TOKEN", Tipo:"GitHub"}, why:"Acceso gratuito a modelos potentes a través de tu cuenta GitHub." },
- "provider:nvidia": { name:"nvidia", desc:"NVIDIA NIM con modelos Nemotron. Inferencia GPU-acelerada de modelos NVIDIA.", specs:{Modelos:"98 a 0$", Coste:"0$", API:"NVIDIA_NIM_API_KEY", Tipo:"GPU"}, why:"El proveedor con más modelos gratis disponible: Nemotron, Llama, Qwen Coder, GLM, DeepSeek, Whisper." },
- "provider:huggingface": { name:"huggingface", desc:"HuggingFace Inference API con miles de modelos open source gratuitos.", specs:{Modelos:"Qwen, DeepSeek, Gemma", Coste:"0$", API:"HUGGINGFACE_TOKEN", Tipo:"Open Source"}, why:"Acceso a miles de modelos open source. El mayor ecosistema de IA gratuita." },
- "provider:ollama": { name:"ollama", desc:"Modelos locales ejecutados en tu máquina. Sin conexión a internet necesaria.", specs:{Modelos:"qwen2.5-coder, llama3", Coste:"0$", API:"Sin API key", Tipo:"Local"}, why:"Privacidad total. Funciona sin internet. Ideal para tareas sensibles." },
- "model:ling": { name:"openrouter/nex-agi/nex-n2.5-mini:free", desc:"Modelo ultra-rápido de OpenCode. Es el modelo por defecto. Optimizado para velocidad.", specs:{Velocidad:" Ultra-rápido", Tamaño:"Flash", Uso:"Default, validación"}, why:"El modelo más rápido del catálogo. Perfecto para validación rápida y tareas simples." },
- "model:mimo": { name:"openrouter/nex-agi/nex-n2.5-mini:free", desc:"Modelo rápido de OpenCode para análisis y optimización.", specs:{Velocidad:" Rápido", Tamaño:"Medium", Uso:"Análisis, optimización"}, why:"Balance entre velocidad y capacidad. Ideal para análisis y tareas de optimización." },
- "model:nemotron": { name:"openrouter/nex-agi/nex-n2.5-mini:free", desc:"Modelo potente de 70B+ parámetros. El más capaz del catálogo de OpenCode.", specs:{Velocidad:"", Tamaño:"70B+", Uso:"Validación final, tareas pesadas"}, why:"El modelo más potente y gratuito. Ideal para análisis profundo y validación final." },
- "model:lightning": { name:"openrouter/nvidia/nemotron-3.5-lightning:free", desc:"Nemotron Lightning de 30B. Ultra-rápido para ejecución de cambios y agentes.", specs:{Velocidad:"", Tamaño:"30B", Uso:"Ejecución, agentes"}, why:"Equilibrio perfecto entre velocidad y potencia. El mejor para ejecución de cambios." },
- "model:muse": { name:"opencode/muse-spark-1.3-contributor-free", desc:"Modelo contributor tier gratuito de Muse Spark.", specs:{Velocidad:"", Tamaño:"Variable", Uso:"Uso general"}, why:"Opción adicional gratuita del ecosistema Muse Spark." },
- "model:gemini": { name:"google/gemma-4-31b-it", desc:"Gemma 4 31B de Google. Multimodal gratuito con soporte de imágenes y razonamiento. 0$ real.", specs:{Velocidad:"", Tamaño:"Medium", Uso:"Visual, razonamiento"}, why:"Excelente para tareas que requieren razonamiento y comprensión visual." },
- "model:gemini3": { name:"groq/groq/compound-mini", desc:"Compound Mini de Groq. Modelo rápido y gratuito para tareas ligeras.", specs:{Velocidad:"", Tamaño:"Flash", Uso:"Razonamiento"}, why:"Rápido y confiable para tareas de razonamiento general." },
- "model:groq": { name:"nvidia/meta/llama-3.3-70b-instruct", desc:"Llama 3.3 de 70B paramatros a través de Groq. Contexto grande e inferencia rápida.", specs:{Velocidad:"", Tamaño:"70B", Uso:"Contexto grande"}, why:"70B params + inferencia rápida. Excelente para proyectos grandes." },
- "model:groq8": { name:"groq/groq/compound-mini", desc:"Llama 3.1 de 8B a través de Groq. Ultra-instant para tareas rápidas.", specs:{Velocidad:"", Tamaño:"8B", Uso:"Tareas rápidas"}, why:"La respuesta más rápida disponible. Ideal para tareas simples y rápidas." },
- "model:gptoss": { name:"nvidia/openai/gpt-oss-120b", desc:"GPT-OSS de 120B a través de NVIDIA NIM. Coding potente. 100% gratis.", specs:{Velocidad:"", Tamaño:"120B", Uso:"Coding"}, why:"120B params para coding avanzado. Excelente para programación." },
- "model:dsv4": { name:"nvidia/deepseek-ai/deepseek-v4-pro-0813", desc:"DeepSeek V4 Pro a través de NVIDIA NIM. Coding avanzado. 100% gratis.", specs:{Velocidad:"", Tamaño:"Large", Uso:"Coding"}, why:"El mejor modelo de coding del catálogo OpenCode." },
- "model:nemotron55": { name:"openrouter/nvidia/nemotron-3-ultra-550b-a55b:free", desc:"Nemotron Ultra 55B de NVIDIA a través de OpenRouter. Ultra-potente.", specs:{Velocidad:"", Tamaño:"55B", Uso:"Tareas pesadas"}, why:"55B params gratuitos a través de OpenRouter. Máxima potencia." },
- "model:qwen": { name:"nvidia/qwen/qwen2.5-coder-32b-instruct", desc:"Qwen 2.5 Coder de 32B de HuggingFace. Coding avanzado.", specs:{Velocidad:"", Tamaño:"32B", Uso:"Coding"}, why:"32B params para coding avanzado en el ecosistema HuggingFace." },
- "model:gemma": { name:"openrouter/google/gemma-4-31b-it:free", desc:"Gemma 4 de 31B de Google/HuggingFace. Multimodal.", specs:{Velocidad:"", Tamaño:"31B", Uso:"Visual, multimodal"}, why:"Multimodal y potente. Ideal para tareas visuales." },
- "model:perplexity": { name:"nvidia/z-ai/glm-5.2", desc:"Perplexity Sonar Pro para búsqueda web. Investigación avanzada.", specs:{Velocidad:"", Uso:"Investigación"}, why:"El mejor modelo para búsqueda web y investigación." },
- "model:voice": { name:"nvidia/openai/whisper-large-v3", desc:"Whisper Large v3 de OpenAI via NVIDIA NIM. Transcripción de voz gratuita.", specs:{Velocidad:"", Uso:"Audio"}, why:"Transcripción de voz gratuita y rápida." },
- "agent:auditor": { name:"auditor", desc:"Analiza proyectos, detecta problemas y riesgos. NUNCA modifica archivos.", specs:{Modelo:"openrouter/nex-agi/nex-n2.5-mini:free", Permiso:"edit: deny", Tipo:"Análisis"}, why:"Úsalo cuando quieras que revise el código sin modificarlo." },
- "agent:implementer": { name:"implementer", desc:"Ejecuta cambios aprobados respetando alcance y decisiones.", specs:{Modelo:"openrouter/nvidia/nemotron-3.5-lightning:free", Permiso:"—", Tipo:"Ejecución"}, why:"Úsalo para ejecutar cambios que ya has aprobado." },
- "agent:optimizer": { name:"optimizer", desc:"Propone optimizaciones y mejoras sin aplicarlas.", specs:{Modelo:"openrouter/nex-agi/nex-n2.5-mini:free", Permiso:"edit: deny", Tipo:"Optimización"}, why:"Úsalo para sugerir mejoras sin que aplique cambios." },
- "agent:reviewer": { name:"reviewer", desc:"Valida cambios realizados y detecta errores y regresiones.", specs:{Modelo:"openrouter/nex-agi/nex-n2.5-mini:free", Permiso:"edit: deny", Tipo:"Revisión"}, why:"Úsalo para verificar que los cambios no introducen bugs." },
- "agent:validator": { name:"validator", desc:"Validación rápida: lint, syntax-check, compilación.", specs:{Modelo:"openrouter/nex-agi/nex-n2.5-mini:free", Permiso:"edit: deny", Tipo:"Validación rápida"}, why:"Úsalo para verificar que el código compila y pasa lint." },
- "agent:hephaestus": { name:"hephaestus", desc:"Agente de construcción de oh-my-openagent. Ejecuta cambios.", specs:{Modelo:"openrouter/nvidia/nemotron-3.5-lightning:free", Categoría:"construction"}, why:"Agente especializado de oh-my-openagent para tareas de construcción." },
- "agent:oracle": { name:"oracle", desc:"Agente de investigación profunda de oh-my-openagent.", specs:{Modelo:"openrouter/nex-agi/nex-n2.5-mini:free", Categoría:"research"}, why:"Para investigaciones profundas y análisis complejo." },
- "agent:librarian": { name:"librarian", desc:"Agente de documentación y lectura de oh-my-openagent.", specs:{Modelo:"openrouter/nex-agi/nex-n2.5-mini:free", Categoría:"documentation"}, why:"Para leer, documentar y entender proyectos." },
- "agent:explore": { name:"explore", desc:"Agente de exploración de código de oh-my-openagent.", specs:{Modelo:"openrouter/nex-agi/nex-n2.5-mini:free", Categoría:"exploration"}, why:"Para explorar código y entender la estructura del proyecto." },
- "agent:multimodal-looker": { name:"multimodal-looker", desc:"Agente multimodal de oh-my-openagent. Analiza imágenes y PDFs.", specs:{Modelo:"gemma-4-31b-it", Categoría:"visual"}, why:"Para análisis visual, imágenes y PDFs." },
- "agent:prometheus": { name:"prometheus", desc:"Agente de planificación de oh-my-openagent.", specs:{Modelo:"openrouter/nex-agi/nex-n2.5-mini:free", Categoría:"planning"}, why:"Para planificación de proyectos y planificación de tareas." },
- "agent:metis": { name:"metis", desc:"Agente de optimización de oh-my-openagent.", specs:{Modelo:"openrouter/nex-agi/nex-n2.5-mini:free", Categoría:"optimization"}, why:"Para optimización y sugerencias de mejora." },
- "agent:momus": { name:"momus", desc:"Agente general de oh-my-openagent.", specs:{Modelo:"openrouter/nex-agi/nex-n2.5-mini:free", Categoría:"general"}, why:"Para tareas generales de desarrollo." },
- "agent:atlas": { name:"atlas", desc:"Agente orquestador de oh-my-openagent.", specs:{Modelo:"openrouter/nvidia/nemotron-3.5-lightning:free", Categoría:"orchestration"}, why:"Para orquestar proyectos y coordinar agentes." },
- "agent:sisyphus-junior": { name:"sisyphus-junior", desc:"Agente de persistencia de oh-my-openagent.", specs:{Modelo:"openrouter/nex-agi/nex-n2.5-mini:free", Categoría:"persistence"}, why:"Para tareas de persistencia y recuperación." }
+ "provider:cloudflare": { name:"cloudflare-workers-ai", desc:"Cloudflare Workers AI. Probado en vivo el 17-sep con el toolset completo de omo (no --pure) y respondió sin errores.", specs:{Modelo:"@cf/google/gemma-4-26b-a4b-it", Coste:"0$ (10.000 neurons/día)", API:"CLOUDFLARE_API_TOKEN + ACCOUNT_ID", Estado:"✓ ACTIVO"}, why:"Es el único proveedor que hoy pasó la prueba real end-to-end con todas las herramientas de omo activas. Por eso es el principal." },
+ "provider:openrouter": { name:"openrouter", desc:"Agrega modelos de muchos proveedores. Sin crédito añadido, la cuenta tiene 50 peticiones/día COMPARTIDAS entre todos los modelos :free — no es un límite por modelo.", specs:{Modelos:"20 con sufijo :free", Coste:"0$ (o 1000/día con 10$ de crédito)", API:"OPENROUTER_API_KEY", Estado:"✓ ACTIVO, último recurso"}, why:"Funciona, pero la cuota compartida lo hace poco fiable como principal — por eso solo es el fallback final." },
+ "provider:google": { name:"google (Gemini/Gemma)", desc:"Funciona perfecto con 'opencode run --pure' (sin omo). Con el toolset completo de omo, la API de Google rechaza la petición: una de las tool-schemas que inyecta omo trae un enum vacío en un campo anidado, y Google valida eso más estricto que otros proveedores (400 INVALID_ARGUMENT).", specs:{Modelos:"gemma-4-31b-it, gemini-3.6-flash", Coste:"0$ (tier gratis de AI Studio)", API:"GEMINI_API_KEY", Estado:"⏸ Bug de omo, no de tu config"}, why:"Úsalo con --pure si necesitas Gemini directamente; no lo actives como modelo de agente hasta que omo arregle esto." },
+ "provider:groq": { name:"groq", desc:"El límite de la cuenta gratuita 'on_demand' es 8000 tokens-por-minuto TOTALES. Las herramientas de opencode+omo ya ocupan 9-12k tokens de overhead antes de tu prompt, así que siempre da rate_limit_exceeded — con cualquier modelo.", specs:{Modelos:"16 en catálogo, todos a 0$", Coste:"0$ pero TPM insuficiente", API:"GROQ_API_KEY", Estado:"⏸ No viable para un agente con herramientas"}, why:"No es un problema de configuración — la cuenta gratuita no da suficiente TPM para este caso de uso." },
+ "provider:cerebras": { name:"cerebras", desc:"Comprobado en su web (17-sep): pide añadir tarjeta para un crédito promocional de 5$ que caduca en 30 días. No es un free tier permanente.", specs:{Modelos:"2 en catálogo", Coste:"crédito promo 5$/30 días, requiere tarjeta", API:"CEREBRAS_API_KEY", Estado:"❌ Descartado a propósito"}, why:"No encaja con 'solo modelos gratis de verdad' — decidido no activarlo. Clave se queda sin usar en el config." },
+ "provider:mistral": { name:"mistral", desc:"Verificado en docs.mistral.ai y help.mistral.ai: el free tier 'Experiment' SÍ es gratis sin tarjeta (1 req/s, 500K tokens/min, 1.000M tokens/mes). El 0 req/min que dio tu cuenta no es el valor por defecto — algo en el workspace no está en modo Free.", specs:{Modelos:"26 en catálogo", Coste:"0$ real (sin tarjeta)", API:"MISTRAL_API_KEY", Estado:"⏸ Diagnóstico pendiente, no descartado"}, why:"Revisa admin.mistral.ai/plateforme/limits y la sección Billing/Plan de tu panel — es el único de los 3 problemáticos que vale la pena perseguir." },
+ "provider:github": { name:"github-copilot", desc:"La API de Copilot rechazó el GITHUB_TOKEN ('Personal Access Tokens are not supported for this endpoint') y además requeriría pagar la suscripción de Copilot. Eliminado de opencode.jsonc el 17-sep a petición tuya.", specs:{Estado:"❌ Eliminado de la config"}, why:"No vale la pena sin pagar Copilot — decisión tomada, no queda pendiente." },
+ "provider:vercel": { name:"vercel (AI Gateway)", desc:"Es un gateway de pago que factura contra crédito de prueba, no un free tier permanente que se renueve.", specs:{Coste:"crédito de prueba, se agota", API:"AI_GATEWAY_API_KEY", Estado:"○ Excluido a propósito"}, why:"No encaja con la regla de 'solo gratis para siempre' — lo dejamos fuera de enabled_providers." },
+ "provider:otros": { name:"sambanova / nvidia / huggingface", desc:"Las claves están presentes en ~/.zshenv y tienen formato correcto, pero no se auditaron con pruebas en vivo en esta revisión.", specs:{Estado:"○ Sin probar"}, why:"Si quieres añadirlos, primero pruébalos con 'opencode run --pure -m proveedor/modelo' antes de activarlos como agente." },
+ "provider:ollama": { name:"ollama", desc:"Modelos 100% locales. Requiere tener la app Ollama instalada y corriendo — no está configurado hoy.", specs:{Coste:"0$ siempre", API:"Sin API key", Estado:"○ No configurado"}, why:"Privacidad total y sin límites de cuota, pero exige tener el modelo descargado localmente." },
+ "model:cfgemma": { name:"cloudflare-workers-ai/@cf/google/gemma-4-26b-a4b-it", desc:"Modelo por defecto. Probado el 17-sep con una llamada real a través del pipeline completo de omo — respondió 'OK' sin errores.", specs:{Estado:"✓ Verificado end-to-end", Contexto:"~128K", Uso:"Default y small_model"}, why:"El único modelo que hoy pasó la prueba real con todo el toolset de omo activo." },
+ "model:ormini": { name:"openrouter/nex-agi/nex-n2.5-mini:free", desc:"Funciona estructuralmente (se probó con el pipeline completo), pero hoy devolvió 'Rate limit exceeded: free-models-per-day' porque la cuota de 50/día ya estaba agotada.", specs:{Estado:"✓ estructural, cuota agotada hoy", Contexto:"262K", Uso:"Último recurso"}, why:"Buena opción de reserva una vez que la cuota diaria se resetea (o si añades 10$ de crédito)." },
+ "model:orpro": { name:"openrouter/nex-agi/nex-n2.5-pro:free", desc:"No se probó en vivo hoy porque la cuota diaria de OpenRouter ya estaba a cero. Versión más grande/razonadora del mini.", specs:{Estado:"Sin probar (cuota agotada)", Contexto:"262K", Uso:"Razonamiento, último recurso"}, why:"Para tareas que necesiten más capacidad de razonamiento que el modelo por defecto." },
+ "model:ultra": { name:"openrouter/nvidia/nemotron-3-ultra-550b-a55b:free", desc:"El modelo más grande del catálogo gratis de OpenRouter. No probado hoy (misma cuota agotada).", specs:{Estado:"Sin probar (cuota agotada)", Contexto:"1M", Uso:"Tareas pesadas, último recurso"}, why:"Contexto enorme para analizar proyectos completos, si la cuota de OpenRouter lo permite." },
+ "model:lightning": { name:"openrouter/nvidia/nemotron-3.5-lightning:free", desc:"Modelo rápido de NVIDIA vía OpenRouter. No probado hoy (misma cuota agotada).", specs:{Estado:"Sin probar (cuota agotada)", Contexto:"1M", Uso:"Rápido, último recurso"}, why:"Para tareas rápidas cuando Cloudflare no esté disponible." },
+ "model:vl": { name:"openrouter/inclusionai/ling-3.0-flash-vl:free", desc:"Único modelo de visión gratis que se intentó. Al probarlo con el pipeline completo devolvió una respuesta vacía sin error explícito — no se pudo confirmar que funcione.", specs:{Estado:"⚠ Sin confirmar", Uso:"Visión / imágenes (no garantizado)"}, why:"Es la única opción de imágenes en el setup gratuito actual, pero pruébalo tú mismo antes de confiar en él para algo importante." },
+ "model:ggemma": { name:"google/gemma-4-31b-it", desc:"Responde perfecto con 'opencode run --pure' (coste 0 confirmado). Con el toolset completo de omo activo, la petición falla por un bug de omo (enum vacío en una tool-schema).", specs:{Estado:"✓ con --pure, ✗ con omo completo", Contexto:"262K"}, why:"Úsalo directo con --pure si necesitas este modelo en concreto; no como modelo de agente todavía." },
+ "model:ggemini": { name:"google/gemini-3.6-flash", desc:"El modelo más capaz que se probó hoy — funciona perfecto con --pure, pero mismo bug de omo con el toolset completo.", specs:{Estado:"✓ con --pure, ✗ con omo completo", Contexto:"1M"}, why:"La mejor opción de Google para razonamiento complejo, en cuanto se pueda usar con omo." },
+ "agent:auditor": { name:"auditor", desc:"Analiza proyectos, detecta problemas y riesgos. NUNCA modifica archivos.", specs:{Modelo:"cloudflare-workers-ai gemma", Permiso:"edit: deny", Tipo:"Análisis"}, why:"Úsalo cuando quieras que revise el código sin modificarlo." },
+ "agent:implementer": { name:"implementer", desc:"Ejecuta cambios aprobados respetando alcance y decisiones.", specs:{Modelo:"cloudflare-workers-ai gemma", Permiso:"—", Tipo:"Ejecución"}, why:"Úsalo para ejecutar cambios que ya has aprobado." },
+ "agent:optimizer": { name:"optimizer", desc:"Propone optimizaciones y mejoras sin aplicarlas.", specs:{Modelo:"cloudflare-workers-ai gemma", Permiso:"edit: deny", Tipo:"Optimización"}, why:"Úsalo para sugerir mejoras sin que aplique cambios." },
+ "agent:reviewer": { name:"reviewer", desc:"Valida cambios realizados y detecta errores y regresiones.", specs:{Modelo:"openrouter nex-n2.5-pro:free", Permiso:"edit: deny", Tipo:"Revisión"}, why:"Usa el modelo de más razonamiento disponible (último recurso, sujeto a cuota) porque revisar bien importa más que la velocidad." },
+ "agent:validator": { name:"validator", desc:"Validación rápida: lint, syntax-check, compilación.", specs:{Modelo:"cloudflare-workers-ai gemma", Permiso:"edit: deny", Tipo:"Validación rápida"}, why:"Úsalo para verificar que el código compila y pasa lint." },
+ "agent:hephaestus": { name:"hephaestus", desc:"Agente de construcción de oh-my-openagent. Ejecuta cambios.", specs:{Modelo:"cloudflare gemma → nex-n2.5-mini → lightning", Categoría:"construction"}, why:"Agente especializado de oh-my-openagent para tareas de construcción." },
+ "agent:oracle": { name:"oracle", desc:"Agente de investigación profunda de oh-my-openagent.", specs:{Modelo:"cloudflare gemma → nex-n2.5-pro → nemotron-ultra", Categoría:"research"}, why:"Para investigaciones profundas y análisis complejo." },
+ "agent:librarian": { name:"librarian", desc:"Agente de documentación y lectura de oh-my-openagent.", specs:{Modelo:"cloudflare gemma → ling-flash-fin → nex-n2.5-mini", Categoría:"documentation"}, why:"Para leer, documentar y entender proyectos." },
+ "agent:explore": { name:"explore", desc:"Agente de exploración de código de oh-my-openagent.", specs:{Modelo:"cloudflare gemma → lightning → nex-n2.5-mini", Categoría:"exploration"}, why:"Para explorar código y entender la estructura del proyecto." },
+ "agent:multimodal-looker": { name:"multimodal-looker", desc:"Agente multimodal de oh-my-openagent. En teoría analiza imágenes, pero hoy no hay ningún modelo de visión 100% confirmado (ver ling-3.0-flash-vl en MODELOS).", specs:{Modelo:"cloudflare gemma (texto) → ling-vl (sin confirmar)", Categoría:"visual"}, why:"Úsalo sabiendo que el soporte de imágenes no está garantizado hoy." },
+ "agent:prometheus": { name:"prometheus", desc:"Agente de planificación de oh-my-openagent.", specs:{Modelo:"cloudflare gemma → nex-n2.5-mini → ling-flash-fin", Categoría:"planning"}, why:"Para planificación de proyectos y planificación de tareas." },
+ "agent:metis": { name:"metis", desc:"Agente de optimización de oh-my-openagent.", specs:{Modelo:"cloudflare gemma → lightning → nex-n2.5-mini", Categoría:"optimization"}, why:"Para optimización y sugerencias de mejora." },
+ "agent:momus": { name:"momus", desc:"Agente general de oh-my-openagent.", specs:{Modelo:"cloudflare gemma → nex-n2.5-pro → nex-n2.5-mini", Categoría:"general"}, why:"Para tareas generales de desarrollo." },
+ "agent:atlas": { name:"atlas", desc:"Agente orquestador de oh-my-openagent.", specs:{Modelo:"cloudflare gemma → nemotron-ultra → nex-n2.5-mini", Categoría:"orchestration"}, why:"Para orquestar proyectos y coordinar agentes." },
+ "agent:sisyphus-junior": { name:"sisyphus-junior", desc:"Agente de persistencia de oh-my-openagent.", specs:{Modelo:"cloudflare gemma → nex-n2.5-mini → lightning", Categoría:"persistence"}, why:"Para tareas de persistencia y recuperación." }
   };
 
   if (!data[type + ':' + id]) return;
@@ -480,6 +477,28 @@ function copyCmd(cmd) {
 
 // LAUNCHER
 var currentMode = 'normal';
+var TASKS = {
+  general:   { model:"cloudflare-workers-ai/@cf/google/gemma-4-26b-a4b-it", note:"✓ Modelo por defecto, verificado en vivo el 17-sep.", color:"var(--g)" },
+  quick:     { model:"cloudflare-workers-ai/@cf/google/gemma-4-26b-a4b-it", note:"✓ Rápido y con cuota generosa (10.000 neurons/día).", color:"var(--g)" },
+  reasoning: { model:"openrouter/nex-agi/nex-n2.5-pro:free", note:"⚠ Último recurso — cuota compartida de 50 peticiones/día en OpenRouter.", color:"var(--o)" },
+  bigcontext:{ model:"openrouter/nvidia/nemotron-3-ultra-550b-a55b:free", note:"⚠ Contexto 1M, pero misma cuota compartida de OpenRouter (50/día).", color:"var(--o)" },
+  writing:   { model:"cloudflare-workers-ai/@cf/google/gemma-4-26b-a4b-it", note:"✓ Modelo verificado, funciona bien para texto.", color:"var(--g)" },
+  vision:    { model:"openrouter/inclusionai/ling-3.0-flash-vl:free", note:"⚠ SIN CONFIRMAR — dio respuesta vacía al probarlo el 17-sep. Pruébalo con precaución.", color:"var(--o)" },
+  gemini:    { model:"google/gemini-3.6-flash", note:"⚠ Necesita --pure (se añade solo) — con omo activo esto rompe por un bug conocido.", color:"var(--o)", pure:true },
+  audit:     { agent:"auditor", note:"✓ No modifica archivos — solo analiza y da un informe.", color:"var(--g)" },
+  implement: { agent:"implementer", note:"✓ Ejecuta cambios ya decididos/aprobados.", color:"var(--g)" },
+  review:    { agent:"reviewer", note:"⚠ Usa OpenRouter nex-n2.5-pro:free — sujeto a la cuota de 50/día.", color:"var(--o)" },
+  validate:  { agent:"validator", note:"✓ Lint / syntax-check ultra-rápido.", color:"var(--g)" }
+};
+
+function applyTask() {
+  var t = TASKS[document.getElementById('task-select').value];
+  var note = document.getElementById('task-note');
+  if (t.model) document.getElementById('model-select').value = t.model;
+  note.textContent = t.note;
+  note.style.color = t.color;
+}
+
 function setMode(m) {
   currentMode = m;
   document.querySelectorAll('[id^="mode-"]').forEach(b => {
@@ -496,18 +515,34 @@ function setMode(m) {
 }
 
 function launchOpenCode() {
+  var taskKey = document.getElementById('task-select').value;
+  var task = TASKS[taskKey];
   var model = document.getElementById('model-select').value;
   var prompt = document.getElementById('prompt-input').value.trim();
-  var modeFlag = '';
-  if (currentMode === 'ulw') modeFlag = 'ulw ';
-  if (currentMode === 'plan') modeFlag = '--plan ';
-  var cmd = 'opencode ' + modeFlag + '-m ' + model;
+  var cmd;
+  if (task.agent) {
+    // Los agentes nativos (auditor/implementer/optimizer/reviewer/validator) se lanzan con --agent,
+    // no con -m. El modo ulw/plan no aplica en este caso.
+    cmd = 'opencode run --agent ' + task.agent;
+  } else {
+    var pureFlag = task.pure ? '--pure ' : '';
+    var modeFlag = '';
+    if (currentMode === 'ulw') modeFlag = 'ulw ';
+    if (currentMode === 'plan') modeFlag = '--plan ';
+    cmd = 'opencode run ' + pureFlag + modeFlag + '-m ' + model;
+  }
   if (prompt) cmd += ' "' + prompt.replace(/"/g, '\\"') + '"';
+  else cmd += ' "tu mensaje aquí"';
   navigator.clipboard.writeText(cmd).then(() => {
     var result = document.getElementById('launch-result');
-    result.innerHTML = '&#10003; Comando copiado: <code style="color:var(--g);background:rgba(0,200,212,.1);padding:2px 6px;border-radius:3px;font-size:0.72em">' + cmd.replace(/</g, '&lt;').replace(/>/g, '&gt;') + '</code><br><span style="color:var(--tm);font-size:0.7em">Pega en Terminal y pulsa Enter</span>';
+    result.innerHTML = '&#10003; Comando copiado: <code style="color:var(--g);background:rgba(0,200,212,.1);padding:2px 6px;border-radius:3px;font-size:0.72em">' + cmd.replace(/</g, '&lt;').replace(/>/g, '&gt;') + '</code><br><span style="color:var(--tm);font-size:0.7em">Pega en Terminal (Cmd+V) y pulsa Enter</span>';
   });
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+  var ts = document.getElementById('task-select');
+  if (ts) applyTask();
+});
 
 // CLOSE MODAL
 function closeModal() {

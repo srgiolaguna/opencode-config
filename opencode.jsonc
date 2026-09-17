@@ -1,30 +1,48 @@
 {
   "$schema": "https://opencode.ai/config.json",
   "plugin": ["oh-my-openagent@latest"],
-  "model": "openrouter/nex-agi/nex-n2.5-mini:free",
-  "small_model": "openrouter/nex-agi/nex-n2.5-mini:free",
+
+  // Verificado en vivo el 17-sep-2026 CON el toolset completo de omo (no --pure).
+  // Ver DOCUMENTACION.md para el porqué de cada elección y qué se descartó y por qué.
+  "model": "cloudflare-workers-ai/@cf/google/gemma-4-26b-a4b-it",
+  "small_model": "cloudflare-workers-ai/@cf/google/gemma-4-26b-a4b-it",
   "shell": "/bin/zsh",
   "autoupdate": false,
   "snapshot": true,
   "logLevel": "INFO",
 
-  "enabled_providers": ["openrouter"],
+  // openrouter va el último: cuenta sin crédito = 50 peticiones/día COMPARTIDAS entre
+  // todos los modelos ":free". Úsalo solo como último recurso, nunca como principal.
+  "enabled_providers": ["cloudflare-workers-ai", "openrouter"],
   "provider": {
-    "openrouter": {
-      "options": { "apiKey": "{env:OPENROUTER_API_KEY}", "baseURL": "https://openrouter.ai/api/v1", "timeout": 45000 },
-      "whitelist": [
-        "nex-agi/nex-n2.5-mini:free",
-        "inclusionai/ling-3.0-flash-fin:free",
-        "nvidia/nemotron-3.5-lightning:free"
-      ]
-    }
+    "cloudflare-workers-ai":  { "options": { "apiKey": "{env:CLOUDFLARE_API_TOKEN}", "baseURL": "https://api.cloudflare.com/client/v4/accounts/{env:CLOUDFLARE_ACCOUNT_ID}/ai/v1" } },
+    "openrouter":             { "options": { "apiKey": "{env:OPENROUTER_API_KEY}", "baseURL": "https://openrouter.ai/api/v1", "timeout": 45000 } },
+
+    // Desactivado hoy (17-sep-2026): bug real de omo, no de tu config. Con el toolset
+    // completo de omo, Gemini/Gemma rechaza la petición (una de las tool-schemas de omo
+    // trae un enum vacío y la API de Google valida eso más estricto que otros proveedores).
+    // Funciona perfecto en modo `opencode run --pure` (sin omo). Reactívalo en
+    // enabled_providers en cuanto arregles/actualices lo de DOCUMENTACION.md.
+    "google": { "options": { "apiKey": "{env:GEMINI_API_KEY}" } },
+
+    // Desactivados hoy (17-sep-2026) por problemas de CUENTA, no de config:
+    "groq":     { "options": { "apiKey": "{env:GROQ_API_KEY}" } },
+    // Cerebras: comprobado en su web (17-sep) — pide AÑADIR TARJETA para un crédito promo de 5$
+    // que caduca en 30 días. No es free tier permanente, es un trial con tarjeta. No usar.
+    "cerebras": { "options": { "apiKey": "{env:CEREBRAS_API_KEY}" } },
+    // Mistral: su free tier oficial ("Experiment") SÍ es gratis sin tarjeta (1 req/s, 500K TPM,
+    // 1B tokens/mes — confirmado en docs.mistral.ai). El 0 req/min que dio hoy no es el
+    // default esperado: revisa admin.mistral.ai/plateforme/limits y la sección Billing/Plan
+    // de tu workspace por si el modo "Free" no está seleccionado.
+    "mistral":  { "options": { "apiKey": "{env:MISTRAL_API_KEY}" } }
+    // github-copilot: ELIMINADO (17-sep) — no vale la pena sin pagar la suscripción, y con PAT no funciona.
   },
 
   "agent": {
-    "auditor":     { "model": "openrouter/nex-agi/nex-n2.5-mini:free", "mode": "all", "permission": { "edit": "deny" }, "description": "Analiza proyectos, detecta problemas y riesgos. No modifica archivos. [FREE]" },
-    "implementer": { "model": "openrouter/nex-agi/nex-n2.5-mini:free", "mode": "all", "description": "Ejecuta cambios aprobados respetando alcance y decisiones. [FREE]" },
-    "optimizer":   { "model": "openrouter/nex-agi/nex-n2.5-mini:free", "mode": "all", "permission": { "edit": "deny" }, "description": "Propone optimizaciones y mejoras sin aplicarlas. [FREE]" },
-    "reviewer":    { "model": "openrouter/nex-agi/nex-n2.5-mini:free", "mode": "all", "permission": { "edit": "deny" }, "description": "Valida cambios realizados y detecta errores y regresiones. [FREE]" },
-    "validator":   { "model": "openrouter/nex-agi/nex-n2.5-mini:free", "mode": "all", "permission": { "edit": "deny" }, "description": "Validación rápida: lint, syntax-check, compilación. Ultra-rápido y FREE. [FREE]" }
+    "auditor":     { "model": "cloudflare-workers-ai/@cf/google/gemma-4-26b-a4b-it", "mode": "all", "permission": { "edit": "deny" }, "description": "Analiza proyectos, detecta problemas y riesgos. No modifica archivos. [FREE]" },
+    "implementer": { "model": "cloudflare-workers-ai/@cf/google/gemma-4-26b-a4b-it", "mode": "all", "description": "Ejecuta cambios aprobados respetando alcance y decisiones. [FREE]" },
+    "optimizer":   { "model": "cloudflare-workers-ai/@cf/google/gemma-4-26b-a4b-it", "mode": "all", "permission": { "edit": "deny" }, "description": "Propone optimizaciones y mejoras sin aplicarlas. [FREE]" },
+    "reviewer":    { "model": "openrouter/nex-agi/nex-n2.5-pro:free", "mode": "all", "permission": { "edit": "deny" }, "description": "Valida cambios realizados y detecta errores y regresiones. [FREE]" },
+    "validator":   { "model": "cloudflare-workers-ai/@cf/google/gemma-4-26b-a4b-it", "mode": "all", "permission": { "edit": "deny" }, "description": "Validación rápida: lint, syntax-check, compilación. Ultra-rápido y FREE. [FREE]" }
   }
 }
