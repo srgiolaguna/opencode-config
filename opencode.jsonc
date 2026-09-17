@@ -13,17 +13,17 @@
 
   // openrouter va el último: cuenta sin crédito = 50 peticiones/día COMPARTIDAS entre
   // todos los modelos ":free". Úsalo solo como último recurso, nunca como principal.
-  "enabled_providers": ["cloudflare-workers-ai", "openrouter"],
+  // google y opencode (zen) están activados para que salgan en "oc models" y los puedas elegir a
+  // mano — pero OJO: si el modelo activo/agente principal es "google/..." y usas el toolset
+  // completo de omo (el modo normal, no --pure), puede fallar con un error sobre un "enum" vacío
+  // — es un bug real de omo, no tuyo. Si pasa, cambia de modelo con /model y sigue. Zen puede
+  // seguir agotado hasta que te resetee la cuota (no sabemos cada cuánto lo hace).
+  "enabled_providers": ["cloudflare-workers-ai", "openrouter", "google", "opencode"],
   "provider": {
     "cloudflare-workers-ai":  { "options": { "apiKey": "{env:CLOUDFLARE_API_TOKEN}", "baseURL": "https://api.cloudflare.com/client/v4/accounts/{env:CLOUDFLARE_ACCOUNT_ID}/ai/v1" } },
     "openrouter":             { "options": { "apiKey": "{env:OPENROUTER_API_KEY}", "baseURL": "https://openrouter.ai/api/v1", "timeout": 45000 } },
-
-    // Desactivado hoy (17-sep-2026): bug real de omo, no de tu config. Con el toolset
-    // completo de omo, Gemini/Gemma rechaza la petición (una de las tool-schemas de omo
-    // trae un enum vacío y la API de Google valida eso más estricto que otros proveedores).
-    // Funciona perfecto en modo `opencode run --pure` (sin omo). Reactívalo en
-    // enabled_providers en cuanto arregles/actualices lo de DOCUMENTACION.md.
-    "google": { "options": { "apiKey": "{env:GEMINI_API_KEY}" } },
+    "google":                 { "options": { "apiKey": "{env:GEMINI_API_KEY}" } },
+    "opencode":               { "options": { "apiKey": "{env:OPENCODE_SECRET_KEY}" } },
 
     // Desactivados hoy (17-sep-2026) por problemas de CUENTA, no de config:
     "groq":     { "options": { "apiKey": "{env:GROQ_API_KEY}" } },
