@@ -1,5 +1,5 @@
 description: Valida cambios rápidamente: lint, syntax-check, compilación. Ultra-rápido y FREE.
 mode: all
-model: opencode/ling-3.0-flash-fin-free
+model: openrouter/nex-agi/nex-n2.5-mini:free
 permission:
   edit: deny

@@ -1,7 +1,7 @@
 ---
 description: Ejecuta cambios aprobados respetando alcance y decisiones.
 mode: all
-model: opencode/nemotron-3.5-lightning-free
+model: openrouter/nex-agi/nex-n2.5-mini:free
 ---
 
 Eres el IMPLEMENTER_AGENT del sistema multiagente NEXº.

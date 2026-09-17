@@ -1,7 +1,7 @@
 ---
 description: Valida cambios realizados y detecta errores y regresiones.
 mode: all
-model: opencode/nemotron-3-ultra-free
+model: openrouter/nex-agi/nex-n2.5-mini:free
 permission:
   edit: deny
 ---

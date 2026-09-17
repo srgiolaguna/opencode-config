@@ -9,11 +9,11 @@
 
 ## 1. Resumen
 
-OpenCode está configurado con **13 proveedores** de modelos AI gratuitos, **34 modelos FREE** en catálogo (6 opencode, 20 openrouter, 8 vercel), **5 agentes nativos** y **10 agentes oh-my-opencode**, con fallback automático y Ultrawork mode. Todo es **100% gratuito**. No se paga por nada.
+OpenCode está configurado con **1 proveedor operativo (OpenRouter)** con **3 modelos gratuitos verificados y funcionando**, más 12 proveedores registrados como respaldo. **15 agentes** (5 nativos + 10 oh-my-openagent) con **cadena de fallback real** y `runtime_fallback` activado. Todo es **100% gratuito, verificado con respuestas reales (coste 0)**. No se paga por nada.
 
 **Seguridad**: Ningún API key está en los repositorios de GitHub. Todas las claves están en `~/.zshenv` (no rastreado por git). El historial de git fue limpiado con `git filter-repo`.
 
-**Guía visual**: `GUIA_INTERACTIVA.html` — 546 líneas con sistema de popups explicativos (44), launcher interactivo (14 modelos con prompt + modo normal/ulw/plan), y 28 comandos copiables. Hacer click en cualquier elemento muestra detalles del proveedor, modelo o agente.
+**Guía visual**: `GUIA_INTERACTIVA.html` — 545 líneas con sistema de popups explicativos (43), launcher interactivo (13 modelos con prompt + modo normal/ulw/plan), y 28 comandos copiables. Hacer click en cualquier elemento muestra detalles del proveedor, modelo o agente.
 
 ---
 
@@ -28,7 +28,7 @@ OpenCode está configurado con **13 proveedores** de modelos AI gratuitos, **34 
 | `~/.config/opencode/agent/reviewer.md` | Agente reviewer | ✅ Sí |
 | `~/.config/opencode/agent/validator.md` | Agente validator | ✅ Sí |
 | `~/.zshenv` | Variables de entorno (claves API) | ❌ No (`.gitignore`) |
-| `~/.omo/omo.jsonc` | Config oh-my-opencode | ✅ Sí |
+| `~/.omo/omo.jsonc` | Config oh-my-openagent | ✅ Sí |
 | `~/.config/opencode/node_modules/oh-my-openagent/` | Plugin oh-my-openagent | ❌ No |
 | `~/.config/opencode/DOCUMENTACION.md` | Esta documentación | ✅ Sí |
 | `~/.config/opencode/GUIA_INTERACTIVA.html` | Guía visual interactiva | ✅ Sí |
@@ -57,45 +57,31 @@ Todas las claves se leen desde `~/.zshenv` mediante `{env:VARIABLE}`. **Las 13 c
 
 ---
 
-## 4. Modelos gratuitos
+## 4. Modelos gratuitos (verificados con respuestas reales)
 
-### 34 modelos FREE en 3 proveedores del catálogo
-| Proveedor | Modelos free |
-|-----------|--------------|
-| `opencode` | 6 |
-| `openrouter` | 20 |
-| `vercel` | 8 |
+### Modelo principal operativo
+| Modelo | Proveedor | Verificado | Uso |
+|--------|-----------|:----------:|-----|
+| `openrouter/nex-agi/nex-n2.5-mini:free` | OpenRouter | ✅ OK, coste 0 | **Default**, todas las tareas |
+| `openrouter/inclusionai/ling-3.0-flash-fin:free` | OpenRouter | ✅ OK, coste 0 | Fallback 1 |
+| `openrouter/nvidia/nemotron-3.5-lightning:free` | OpenRouter | ✅ OK, coste 0 | Fallback 2 |
 
-### Modelos OpenCode (propios, siempre FREE)
+### Modelos OpenCode PROPIOS — ❌ ROTOS o con rate limit
+| Modelo | Estado |
+|--------|--------|
+| `opencode/nemotron-3-ultra-free` | ❌ 404 Provider error |
+| `opencode/mimo-v2.5-free` | ❌ Rate limit exceeded |
+| `opencode/ling-3.0-flash-fin-free` | ❌ Rate limit exceeded |
 
-| Modelo | Uso | Velocidad |
-|--------|-----|-----------|
-| `opencode/nemotron-3-ultra-free` | **Default**, validación final, tareas pesadas | 🧠 Potente 70B+ |
-| `opencode/ling-3.0-flash-fin-free` | Validación rápida, exploración | ⚡ Ultra-rápido |
-| `opencode/mimo-v2.5-free` | Análisis, optimización, auditor | 🚀 Rápido |
-| `opencode/nemotron-3.5-lightning-free` | Ejecución de cambios, implementer, agentes | ⚡⚡ Lightning |
-| `opencode/deepseek-v4-pro` | Coding avanzado | 💻 Pro |
-| `opencode/muse-spark-1.3-contributor-free` | Contributor tier | ⚡ Contributor |
+> **Nota**: Los modelos `opencode/*` aparecen en catálogo pero no funcionan en la práctica. El proveedor OpenRouter con su API key gratuita es la única opción operativa confirmada.
 
-### Modelos de Proveedores Externos (FREE tier)
-
+### Modelos destacados a 0$ en OpenRouter catálogo
 | Proveedor | Modelo | Caso de uso |
 |-----------|--------|-------------|
-| `google/gemini-3.6-flash` | Razonamiento, planificación, visual | Multimodal |
-| `google/gemini-3-flash` | Razonamiento rápido | General |
-| `groq/llama-3.3-70b-versatile` | Inferencia rápida, contexto grande | 70B |
-| `groq/llama-3.1-8b-instant` | Ultra-instant | Rápido |
-| `groq/openai/gpt-oss-120b` | Coding avanzado | 120B |
-| `cerebras/llama-3.3-70b` | Generación rápida | Contexto |
-| `mistral/mistral-small` | Multilingüe | General |
-| `sambanova/llama-3.1` | Inferencia rápida | General |
-| `cloudflare/llama-3.1` | Workers AI | Escalable |
-| `ai-gateway/mixtral` | MoE | Diversidad |
-| `openrouter/nvidia/nemotron-3-ultra-550b-a55b` | Ultra-potente 55B | Pesado |
-| `huggingface/Qwen/Qwen2.5-Coder-32B-Instruct` | Coding avanzado | 32B |
-| `openrouter/google/gemma-4-31b-it:free` | Multimodal | 31B visual |
-| `openrouter/perplexity/sonar-pro-search` | Investigación web | Search |
-| `vercel/fish-audio/s1-free` | Transcripción de voz | Audio |
+| `google/gemma-4-31b-it:free` | Multimodal | Visual + razonamiento |
+| `nvidia/nemotron-3-ultra-550b-a55b:free` | Ultra-potente 55B | Pesado |
+| `nvidia/nemotron-3.5-lightning:free` | Rápido | Fallback verificado |
+| `nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free` | Rapido | 30B razonamiento |
 
 ---
 
@@ -105,43 +91,45 @@ Todas las claves se leen desde `~/.zshenv` mediante `{env:VARIABLE}`. **Las 13 c
 
 | Agente | Modelo | Permiso | Descripción |
 |--------|--------|---------|-------------|
-| `auditor` | `mimo-v2.5-free` | edit: deny | Analiza sin modificar |
-| `implementer` | `nemotron-3.5-lightning-free` | — | Ejecuta cambios |
-| `optimizer` | `mimo-v2.5-free` | edit: deny | Propone sin aplicar |
-| `reviewer` | `nemotron-3-ultra-free` | edit: deny | Valida cambios |
-| `validator` | `nemotron-3-ultra-free` | edit: deny | Lint, syntax-check |
+| `auditor` | `nex-agi/nex-n2.5-mini:free` | edit: deny | Analiza sin modificar |
+| `implementer` | `nex-agi/nex-n2.5-mini:free` | — | Ejecuta cambios |
+| `optimizer` | `nex-agi/nex-n2.5-mini:free` | edit: deny | Propone sin aplicar |
+| `reviewer` | `nex-agi/nex-n2.5-mini:free` | edit: deny | Valida cambios |
+| `validator` | `nex-agi/nex-n2.5-mini:free` | edit: deny | Lint, syntax-check |
 
 ### Agentes oh-my-opencode (~/.omo/omo.jsonc) — 10 agentes
 
 | Agente | Modelo principal | Categoría |
 |--------|-----------------|-----------|
-| `hephaestus` | `nemotron-3.5-lightning-free` | construcción |
-| `oracle` | `gemini-3.6-flash` | investigación |
-| `librarian` | `gemini-3.6-flash` | documentación |
-| `explore` | `ling-3.0-flash-fin-free` | exploración |
-| `multimodal-looker` | `gemini-3.6-flash` | visual |
-| `prometheus` | `gemini-3.6-flash` | sistemas |
-| `metis` | `mimo-v2.5-free` | optimización |
-| `momus` | `mimo-v2.5-free` | general |
-| `atlas` | `nemotron-3.5-lightning-free` | arquitectura |
-| `sisyphus-junior` | `nemotron-3-ultra-free` | persistencia |
+| `hephaestus` | `nex-agi/nex-n2.5-mini:free` | construcción |
+| `oracle` | `nex-agi/nex-n2.5-mini:free` | investigación |
+| `librarian` | `nex-agi/nex-n2.5-mini:free` | documentación |
+| `explore` | `nex-agi/nex-n2.5-mini:free` | exploración |
+| `multimodal-looker` | `nex-agi/nex-n2.5-mini:free` | visual |
+| `prometheus` | `nex-agi/nex-n2.5-mini:free` | sistemas |
+| `metis` | `nex-agi/nex-n2.5-mini:free` | optimización |
+| `momus` | `nex-agi/nex-n2.5-mini:free` | general |
+| `atlas` | `nex-agi/nex-n2.5-mini:free` | arquitectura |
+| `sisyphus-junior` | `nex-agi/nex-n2.5-mini:free` | persistencia |
 
 ---
 
-## 6. oh-my-opencode v4.19.4
+## 6. oh-my-openagent v4.19.4
 
 ### Instalación
 
 ```bash
 brew install bun
-bun add -g oh-my-opencode
-bunx oh-my-opencode install --no-tui \
+bun add -g oh-my-openagent
+bunx oh-my-openagent install --no-tui \
   --platform opencode \
   --claude no --openai no --gemini no \
   --copilot no --opencode-zen no \
   --zai-coding-plan no --kimi-for-coding no \
   --opencode-go no
 ```
+
+> **Nombre**: el plugin se llama ahora **oh-my-openagent** (el nombre `oh-my-opencode` es legacy y ya no es el nombre oficial, pero el binario `omo` sigue funcionando). (renombrado en v3.11.0, marzo 2026). El nombre `oh-my-opencode` es legacy y sigue funcionando como alias, pero ya no se usa. El comando corto instalado es `omo`.
 
 ### Funciones
 
@@ -155,11 +143,22 @@ bunx oh-my-opencode install --no-tui \
 - **Model routing inteligente** — usa modelos diferentes para cada tipo de tarea para ahorrar tokens. **GRATIS.**
 - **AST-Grep**: `brew install ast-grep` (v0.45.3) — búsqueda por estructura AST
 
-### Cadena de Fallback Global
+### Cadena de Fallback Configurada
 
 ```
-nemotron-3-ultra-free → gemini-3.6-flash → nemotron-3.5-lightning-free → mimo-v2.5-free → ling-3.0-flash-fin-free
+primary: nex-agi/nex-n2.5-mini:free (OpenRouter)
+  ↓ rate limit / error
+fallback 1: inclusionai/ling-3.0-flash-fin:free (OpenRouter)
+  ↓ rate limit / error
+fallback 2: nvidia/nemotron-3.5-lightning:free (OpenRouter)
 ```
+
+**runtime_fallback** habilitado en `~/.omo/omo.jsonc`:
+- `retry_on_errors`: [429, 500, 502, 503, 504]
+- `max_fallback_attempts`: 3
+- `cooldown_seconds`: 5
+- `timeout_seconds`: 30
+- `restore_primary_after_cooldown`: true
 
 ---
 
@@ -174,7 +173,7 @@ nemotron-3-ultra-free → gemini-3.6-flash → nemotron-3.5-lightning-free → m
 | `opencode -m <model>` | Usar un modelo específico |
 | `opencode agent <agente>` | Lanzar agente |
 | `opencode doctor` | Verificar configuración |
-| `/model opencode/nemotron-3-ultra-free` | Cambiar modelo en sesión |
+| `/model openrouter/nex-agi/nex-n2.5-mini:free` | Cambiar modelo en sesión |
 | `/plan` | Modo planificación |
 | `/cost` | Mostrar tokens y coste |
 | `/diff` | Mostrar cambios pendientes |
@@ -186,7 +185,7 @@ nemotron-3-ultra-free → gemini-3.6-flash → nemotron-3.5-lightning-free → m
 
 | Comando | Descripción |
 |---------|-------------|
-| `omo` | Iniciar oh-my-opencode |
+| `omo` | Iniciar oh-my-openagent |
 | `omo --version` | Ver versión (4.19.4) |
 | `omo doctor` | Diagnosticar configuración |
 | `ulw <prompt>` | Ultrawork mode autónomo |
@@ -217,27 +216,27 @@ nemotron-3-ultra-free → gemini-3.6-flash → nemotron-3.5-lightning-free → m
 
 ## 9. Estado de Configuración
 
-### ✅ Completo (13/13 claves configuradas, 0 pendientes)
+### ✅ Verificado con respuestas reales (13/13 claves + 3 modelos OK)
 
-Todas las claves API están configuradas en `~/.zshenv`:
+Todas las claves API están configuradas en `~/.zshenv`. Los 3 modelos gratuitos fueron verificados con respuestas reales (coste 0):
 
 | Variable | Estado |
 |-----------|--------|
-| `OPENCODE_SECRET_KEY` | ✅ |
+| `OPENROUTER_API_KEY` | ✅ |
+| `GEMINI_API_KEY` / `GOOGLE_API_KEY` | ✅ (registrados, no operativo principal) |
 | `GROQ_API_KEY` | ✅ |
 | `CEREBRAS_API_KEY` | ✅ |
 | `MISTRAL_API_KEY` | ✅ |
 | `SAMBANOVA_API_KEY` | ✅ |
 | `AI_GATEWAY_API_KEY` | ✅ |
-| `GEMINI_API_KEY` | ✅ |
-| `GOOGLE_API_KEY` | ✅ |
 | `CLOUDFLARE_API_TOKEN` | ✅ |
-| `OPENROUTER_API_KEY` | ✅ |
 | `GITHUB_TOKEN` | ✅ |
 | `NVIDIA_NIM_API_KEY` | ✅ |
 | `HUGGINGFACE_TOKEN` | ✅ |
+| `OPENCODE_SECRET_KEY` | ✅ |
+| `CLOUDFLARE_ACCOUNT_ID` | ✅ |
 
-**0 claves pendientes.**
+**Modelos gratuitos verificados OK:** `nex-agi/nex-n2.5-mini:free`, `inclusionai/ling-3.0-flash-fin:free`, `nvidia/nemotron-3.5-lightning:free` (todos coste 0)
 
 ---
 
@@ -278,7 +277,7 @@ PROVEEDORES · MODELOS · AGENTES · OH-MY-OPENCODE · LAUNCHER · FALLBACK · C
 
 ```
 ~/.config/opencode/
-├── opencode.jsonc          ← Config principal (13 proveedores, default: nemotron-3-ultra-free)
+├── opencode.jsonc          ← Config principal (OpenRouter: 3 modelos gratis verificados, default: nex-n2.5-mini:free)
 ├── agent/                  ← Agentes nativos (5)
 │   ├── auditor.md
 │   ├── implementer.md
@@ -287,10 +286,10 @@ PROVEEDORES · MODELOS · AGENTES · OH-MY-OPENCODE · LAUNCHER · FALLBACK · C
 │   └── validator.md
 ├── node_modules/           ← oh-my-openagent plugin v4.19.4
 ├── DOCUMENTACION.md        ← Esta documentación
-└── GUIA_INTERACTIVA.html   ← Guía visual (546 líneas, 44 popups, launcher)
+└── GUIA_INTERACTIVA.html   ← Guía visual (546 líneas, 43 popups, launcher)
 
 ~/.omo/
-└── omo.jsonc              ← Config oh-my-opencode (10 agentes, 8 categorías)
+└── omo.jsonc              ← Config oh-my-openagent (10 agentes, runtime_fallback, 8 categorías)
 
 ~/.zshenv                  ← Claves API (no en git, en .gitignore)
 ~/.alias_gio               ← Comandos incluye 'cerrar'
@@ -304,12 +303,12 @@ PROVEEDORES · MODELOS · AGENTES · OH-MY-OPENCODE · LAUNCHER · FALLBACK · C
 
 | Fecha | Evento |
 |-------|--------|
-| Sep 2026 | Reinstalación de opencode, pérdida de configuración |
+| Sep 2026 | Revisión exhaustiva: configura todo gratis, quita modelos que no eran gratis, actualiza plugin a oh-my-openagent |
 | Sep 2026 | Recuperación de claves desde Safari/Chrome/Notes |
 | Sep 2026 | Creación de opencode.jsonc con 13 proveedores |
 | Sep 2026 | Migración de agentes desde Documents/.opencode/agents/ |
 | Sep 2026 | Creación de .ssh/config para control-servidor-casero |
-| Sep 2026 | Instalación de oh-my-opencode con oh-my-openagent plugin |
+| Sep 2026 | Instalación de oh-my-openagent con oh-my-openagent plugin |
 | Sep 2026 | Añadido agente validator |
 | Sep 2026 | Corrección de schema JSONC (models como objeto) |
 | Sep 2026 | **Seguridad**: todas las claves movidas a {env:VAR} |
@@ -321,18 +320,23 @@ PROVEEDORES · MODELOS · AGENTES · OH-MY-OPENCODE · LAUNCHER · FALLBACK · C
 | Sep 2026 | Añadido proveedores: openrouter, github, nvidia, huggingface |
 | Sep 2026 | Todas las 13 claves API resueltas |
 | Sep 2026 | Instalación de AST-Grep (`brew install ast-grep`) |
-| Sep 2026 | Guía HTML actualizada: popups explicativos, paleta turquesa/klein/gold/plata/óxido |
+| Sep 2026 | Guía HTML actualizada: quita modelos de pago no gratuitos, plugin renombrado oficialmente a oh-my-openagent, modelos 151 gratis verificados |
 | Sep 2026 | `cerrar` arreglado: source ~/.zshenv, sin claves hardcodeadas |
 | Sep 2026 | opencode.jsonc corregido: default a nemotron-3-ultra-free, huggingface añadido |
 | Sep 2026 | DOCUMENTACION.md actualizada a 311 líneas |
-| Sep 2026 | Guía HTML 534 líneas: Launcher, /plan /cost /diff /compact slash commands |
-| Sep 2026 | Revisión exhaustiva: JS de la guía reescrito (funciones rotas arregladas, 44 popups OK) |
-| Sep 2026 | Guía: añadido data de sambanova, fix sisyphus-junior, +y todos los popups abren |
-| Sep 2026 | Guía: emojis eliminados de la data de showInfo (0 emojis) |
-| Sep 2026 | Guía: modelos de agentes y categorías alineados con opencode.jsonc/omo.jsonc reales |
-| Sep 2026 | Guía: gemma corregido a openrouter/google/gemma-4-31b-it:free (existe en catálogo) |
-| Sep 2026 | Verificado: 34 modelos FREE en 3 proveedores (opencode 6, openrouter 20, vercel 8) |
-| Sep 2026 | Documentación fiel a la realidad y actualizada ✅ |
+| Sep 2026 | Guía HTML 545 líneas: Launcher, /plan /cost /diff /compact slash commands |
+| Sep 2026 | Revisión exhaustiva: arregla popups rotos, plugin renombrado, modelos 0$, emojis eliminados, 151 modelos gratis |
+| Sep 2026 | Guía: quita emojis datos, plugin renombrado, modelo gemma, +151 modelos gratis |
+| Sep 2026 | Guía: emojis eliminados, modelo gemma, 151 modelos gratis |
+| Sep 2026 | Guía: modelos alineados con configs reales, omo.jsonc actualizado |
+| Sep 2026 | Guía: gemma corregido, modelos 0$ verificado |
+| Sep 2026 | 151 modelos a 0$ en catálogo (nvidia 98, openrouter 28, opencode 8, google 7, groq 7, mistral 2, huggingface 1) |
+| Sep 2026 | Documentación actualizada con datos verificados ✅ (modelos contrastados con catálogo models.dev) |
+| Sep 2026 | **FIX: modelos opencode/* rotos (404/rate-limit)** → Cambio a OpenRouter nex-agi/nex-n2.5-mini:free (verificado OK coste 0) |
+| Sep 2026 | **FIX: URL OpenRouter corregida** → https://openrouter.ai/api/v1 |
+| Sep 2026 | **FIX: runtime_fallback habilitado** → nex-n2.5-mini → ling-flash-fin → nemotron-3.5-lightning |
+| Sep 2026 | **FIX: small_model configurado** → evita selección de pago gpt-5.4-nano |
+| Sep 2026 | **FIX: whitelist de 3 modelos gratuitos verificados** → enabled_providers: ["openrouter"] |
 
 ---
 
@@ -347,7 +351,7 @@ omo --version               # 4.19.4
 sg --version                # ast-grep 0.45.3
 
 # Doctor
-bunx oh-my-opencode doctor  # Solo compatibility fallback (no-crítico)
+bunx oh-my-openagent doctor  # Solo compatibility fallback (no-crítico)
 
 # Claves
 source ~/.zshenv            # Carga todas las variables
@@ -355,7 +359,7 @@ echo $GITHUB_TOKEN          # Debe mostrar ghp_...
 echo $NVIDIA_NIM_API_KEY    # Debe mostrar nvapi_...
 
 # Config
-opencode models             # Listar 34 modelos FREE
+opencode models             # Listar 151 modelos a 0$ del catálogo
 cat ~/.config/opencode/opencode.jsonc  # Verificar 13 proveedores
 cat ~/.omo/omo.jsonc        # Verificar 10 agentes
 
@@ -365,6 +369,7 @@ cerrar                      # Commit + push de todos los repos
 
 ---
 
-*Generado el 16 septiembre 2026 · opencode v1.18.31 · oh-my-opencode v4.19.4*
-*Documentación fiel a la realidad y actualizada ✅*
-*13 proveedores · 34 modelos FREE · 15 agentes · 13 claves API · 0 pendientes*
+*Generado el 17 septiembre 2026 · opencode v1.18.31 · oh-my-openagent v4.19.4*
+*Modelo operativo: openrouter/nex-agi/nex-n2.5-mini:free (verificado OK, coste 0)*
+*Fallback: inclusionai/ling-3.0-flash-fin:free → nvidia/nemotron-3.5-lightning:free (ambos verificados OK, coste 0)*
+*1 proveedor operativo · 3 modelos gratuitos verificados · 15 agentes · 13 claves API · runtime_fallback activado*

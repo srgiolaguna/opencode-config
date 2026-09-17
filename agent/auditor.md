@@ -1,7 +1,7 @@
 ---
 description: Analiza proyectos, detecta problemas y riesgos. No modifica archivos.
 mode: all
-model: opencode/mimo-v2.5-free
+model: openrouter/nex-agi/nex-n2.5-mini:free
 permission:
   edit: deny
 ---
